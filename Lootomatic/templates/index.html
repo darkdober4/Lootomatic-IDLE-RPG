@@ -12,6 +12,7 @@
         <h1>Lootomatic</h1>
         <div class="header-info">
             <button id="btn-donjon" onclick="toggleDonjon()">🏰 Donjon</button>
+            <button id="btn-stats-overlay" onclick="toggleStatsOverlay()">Stats</button>
             <button id="btn-info" onclick="toggleInfo()">❓ Aide</button>
             <span id="or-display">💰 0</span>
             <span id="kill-display">☠️ 0</span>
@@ -178,6 +179,14 @@
             </div>
         </section>
     </main>
+
+    <div id="stats-overlay" class="hidden">
+        <div class="options-header">
+            <h2>Statistiques de Session</h2>
+            <button class="options-close" onclick="toggleStatsOverlay()">Fermer</button>
+        </div>
+        <div id="stats-overlay-content"></div>
+    </div>
 
     <div id="reincarnation-overlay" class="hidden"></div>
 

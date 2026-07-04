@@ -104,6 +104,23 @@ class Player:
         self.chapitres_completees = []
         self.donjon_actif = None
         self.auto_supprimer = []
+        self.session_stats = {
+            "debut_session": None,
+            "kills": 0,
+            "degats_infliges": 0,
+            "coups_donnes": 0,
+            "plus_gros_coup": 0,
+            "mort": 0,
+            "kills_sans_mourir": 0,
+            "record_kills_sans_mourir": 0,
+            "plus_haut_ennemi": 0,
+            "xp_gagnee": 0,
+            "or_gagne": 0,
+            "niveaux_montes": 0,
+            "loots_par_rarete": {},
+            "orbes_obtenues": 0,
+            "meilleur_loot": None,
+        }
         self.hp = self.get_stats_effectives()["hp_max"]
 
     def _calculer_xp_max(self):

@@ -1,55 +1,55 @@
 {
   "player": {
-    "niveau": 34,
-    "xp": 3950,
-    "xp_max": 5034,
-    "points_stats": 56,
+    "niveau": 47,
+    "xp": 15369,
+    "xp_max": 30979,
+    "points_stats": 7,
     "stats": {
       "hp_max": 205,
       "atk": 80,
       "def": 5,
       "vit": 10,
-      "crit_chance": 5,
+      "crit_chance": 100,
       "crit_mult": 150,
       "esquive": 3,
-      "chance_loot": 50,
+      "chance_loot": 95,
       "contre": 5,
       "vitesse_attaque": 100,
       "niveau_sorts": 0
     },
-    "hp": 552,
-    "or": 134592,
+    "hp": 2337,
+    "or": 301538,
     "equipement": {
       "arme": {
         "slot": "arme",
         "rarete": "Mythique",
-        "niveau": 30,
-        "nom": "Hache Mythique",
+        "niveau": 80,
+        "nom": "Bâton Mythique",
         "mods": [
           {
             "nom": "Protection",
             "stat": "def",
-            "valeur": 30
+            "valeur": 86
+          },
+          {
+            "nom": "Fureur",
+            "stat": "crit_mult",
+            "valeur": 184
           },
           {
             "nom": "Hâte",
             "stat": "vitesse_attaque",
-            "valeur": 64
+            "valeur": 156
           },
           {
-            "nom": "Agilité",
-            "stat": "esquive",
-            "valeur": 25
+            "nom": "Robustesse",
+            "stat": "hp_max",
+            "valeur": 337
           },
           {
-            "nom": "Précision",
-            "stat": "crit_chance",
-            "valeur": 36
-          },
-          {
-            "nom": "Force",
-            "stat": "atk",
-            "valeur": 44
+            "nom": "Riposte",
+            "stat": "contre",
+            "valeur": 51
           }
         ],
         "corrompu": false,
@@ -96,29 +96,34 @@
       },
       "casque": {
         "slot": "casque",
-        "rarete": "Légendaire",
-        "niveau": 30,
-        "nom": "Heaume Légendaire",
+        "rarete": "Mythique",
+        "niveau": 110,
+        "nom": "Couronne Mythique",
         "mods": [
+          {
+            "nom": "Force",
+            "stat": "atk",
+            "valeur": 120
+          },
           {
             "nom": "Fortune",
             "stat": "chance_loot",
-            "valeur": 18
-          },
-          {
-            "nom": "Vitalité",
-            "stat": "vit",
-            "valeur": 14
+            "valeur": 96
           },
           {
             "nom": "Fureur",
             "stat": "crit_mult",
-            "valeur": 57
+            "valeur": 301
           },
           {
-            "nom": "Protection",
-            "stat": "def",
-            "valeur": 16
+            "nom": "Hâte",
+            "stat": "vitesse_attaque",
+            "valeur": 162
+          },
+          {
+            "nom": "Robustesse",
+            "stat": "hp_max",
+            "valeur": 575
           }
         ],
         "corrompu": false,
@@ -234,29 +239,34 @@
       },
       "ceinture": {
         "slot": "ceinture",
-        "rarete": "Légendaire",
-        "niveau": 49,
-        "nom": "Baudrier Légendaire",
+        "rarete": "Mythique",
+        "niveau": 110,
+        "nom": "Ceinture Mythique",
         "mods": [
           {
-            "nom": "Force",
-            "stat": "atk",
-            "valeur": 21
-          },
-          {
-            "nom": "Fortune",
-            "stat": "chance_loot",
-            "valeur": 49
+            "nom": "Vitalité",
+            "stat": "vit",
+            "valeur": 61
           },
           {
             "nom": "Fureur",
             "stat": "crit_mult",
-            "valeur": 35
+            "valeur": 479
           },
           {
-            "nom": "Vitalité",
-            "stat": "vit",
-            "valeur": 18
+            "nom": "Robustesse",
+            "stat": "hp_max",
+            "valeur": 142
+          },
+          {
+            "nom": "Fortune",
+            "stat": "chance_loot",
+            "valeur": 150
+          },
+          {
+            "nom": "Protection",
+            "stat": "def",
+            "valeur": 116
           }
         ],
         "corrompu": false,
@@ -266,29 +276,34 @@
       },
       "bottes": {
         "slot": "bottes",
-        "rarete": "Légendaire",
-        "niveau": 30,
-        "nom": "Greaves Légendaire",
+        "rarete": "Mythique",
+        "niveau": 111,
+        "nom": "Greaves Mythique",
         "mods": [
+          {
+            "nom": "Protection",
+            "stat": "def",
+            "valeur": 102
+          },
           {
             "nom": "Agilité",
             "stat": "esquive",
-            "valeur": 18
+            "valeur": 113
           },
           {
             "nom": "Robustesse",
             "stat": "hp_max",
-            "valeur": 120
+            "valeur": 487
           },
           {
-            "nom": "Vitalité",
-            "stat": "vit",
-            "valeur": 22
+            "nom": "Hâte",
+            "stat": "vitesse_attaque",
+            "valeur": 223
           },
           {
-            "nom": "Précision",
-            "stat": "crit_chance",
-            "valeur": 23
+            "nom": "Riposte",
+            "stat": "contre",
+            "valeur": 91
           }
         ],
         "corrompu": false,
@@ -319,7 +334,7 @@
           "corrompu": false,
           "orbe_type": "amelioration",
           "spell_type": null,
-          "quantite": 117
+          "quantite": 198
         },
         {
           "slot": "orbe",
@@ -330,7 +345,62 @@
           "corrompu": false,
           "orbe_type": "alteration",
           "spell_type": null,
-          "quantite": 57
+          "quantite": 73
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Épique",
+          "niveau": 2,
+          "nom": "Artéfact de Esquive Spectrale",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "esquive_spectrale",
+          "quantite": 1
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Berserker",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "berserker",
+          "quantite": 1
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Bouclier Magique",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "bouclier_magique",
+          "quantite": 1
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Exécution",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "execution",
+          "quantite": 1
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Frappe Astrale",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "frappe_astrale",
+          "quantite": 1
         },
         {
           "slot": "artefact",
@@ -344,108 +414,6 @@
           "quantite": 1
         },
         {
-          "slot": "ceinture",
-          "rarete": "Mythique",
-          "niveau": 1,
-          "nom": "Ceinture Mythique",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 15
-            },
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 24
-            },
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 83
-            },
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 5
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 21
-            },
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 9
-            },
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 46
-            }
-          ],
-          "corrompu": true,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "artefact",
-          "rarete": "Rare",
-          "niveau": 2,
-          "nom": "Artéfact de Hâte Temporelle",
-          "mods": [],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": "hate_temporelle",
-          "quantite": 1
-        },
-        {
-          "slot": "artefact",
-          "rarete": "Rare",
-          "niveau": 2,
-          "nom": "Artéfact de Exécution",
-          "mods": [],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": "execution",
-          "quantite": 1
-        },
-        {
-          "slot": "artefact",
-          "rarete": "Rare",
-          "niveau": 2,
-          "nom": "Artéfact de Exécution",
-          "mods": [],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": "execution",
-          "quantite": 1
-        },
-        {
-          "slot": "artefact",
-          "rarete": "Rare",
-          "niveau": 2,
-          "nom": "Artéfact de Esquive Spectrale",
-          "mods": [],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": "esquive_spectrale",
-          "quantite": 1
-        },
-        {
-          "slot": "artefact",
-          "rarete": "Rare",
-          "niveau": 2,
-          "nom": "Artéfact de Vol de Vie",
-          "mods": [],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": "vol_de_vie",
-          "quantite": 1
-        },
-        {
           "slot": "artefact",
           "rarete": "Rare",
           "niveau": 2,
@@ -457,2818 +425,14 @@
           "quantite": 1
         },
         {
-          "slot": "bottes",
-          "rarete": "Mythique",
-          "niveau": 30,
-          "nom": "Bottes Mythique",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 29
-            },
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 20
-            },
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 55
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 23
-            },
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 63
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Mythique",
-          "niveau": 59,
-          "nom": "Robe Mythique",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 43
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 54
-            },
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 111
-            },
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 194
-            },
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 41
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "artefact",
-          "rarete": "Épique",
-          "niveau": 2,
-          "nom": "Artéfact de Esquive Spectrale",
-          "mods": [],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": "esquive_spectrale",
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Épique",
-          "niveau": 49,
-          "nom": "Talisman Épique",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 13
-            },
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 22
-            },
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 13
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pendentif Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 21
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 25
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 33
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Diadème Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 16
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Dague Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Épique",
-          "niveau": 30,
-          "nom": "Cotte de mailles Épique",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 13
-            },
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 8
-            },
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 19
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        }
-      ],
-      [
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écharpe Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Rondache Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 29
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Sandales Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pavois Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 13
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Capuchon Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Capuchon Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Diadème Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Sandales Rare",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 10
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 17
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Talisman Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 11
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Cotte de mailles Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Capuchon Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 17
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Anneau Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Bottes Rare",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 40
-            },
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 16
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Robe Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Cotte de mailles Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 28
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Épique",
-          "niveau": 49,
-          "nom": "Signet Épique",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 17
-            },
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 12
-            },
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 14
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bague Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Anneau Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Sandales Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Collier Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        }
-      ],
-      [
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Greaves Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 17
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Amulette Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Robe Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Signet Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 15
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 32
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écharpe Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 14
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pavois Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Signet Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 47
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Capuchon Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Greaves Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Signet Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Rondache Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 47
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Robe Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 15
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Épique",
-          "niveau": 49,
-          "nom": "Collier Épique",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 20
-            },
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 25
-            },
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 16
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Robe Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 15
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Ceinture Rare",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 13
-            },
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Cuirasse Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 20
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Dague Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 15
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Dague Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        }
-      ],
-      [
-        {
-          "slot": "ceinture",
-          "rarete": "Épique",
-          "niveau": 49,
-          "nom": "Ceinture Épique",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 13
-            },
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 56
-            },
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 32
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Anneau Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 40
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 49
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Épique",
-          "niveau": 49,
-          "nom": "Hache Épique",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 14
-            },
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 32
-            },
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 12
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bague Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Greaves Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 23
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pendentif Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Diadème Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Couronne Rare",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 41
-            },
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 41
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pavois Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pendentif Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 11
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Couronne Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 14
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Rondache Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Talisman Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Greaves Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Dague Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 15
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottes Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 25
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bâton Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 17
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Heaume Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pavois Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 17
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        }
-      ],
-      [
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Couronne Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Talisman Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Plastron Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Couronne Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 23
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Rondache Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 15
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écharpe Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 12
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écharpe Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
           "slot": "artefact",
           "rarete": "Rare",
           "niveau": 2,
-          "nom": "Artéfact de Bouclier Magique",
+          "nom": "Artéfact de Régénération",
           "mods": [],
           "corrompu": false,
           "orbe_type": null,
-          "spell_type": "bouclier_magique",
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Cotte de mailles Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 18
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Cuirasse Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 44
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bouclier Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 12
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Pendentif Rare",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 17
-            },
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 15
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Cotte de mailles Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 50
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bâton Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Signet Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Cuirasse Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Dague Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bâton Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 58
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bouclier Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 27
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Masse Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 55
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        }
-      ],
-      [
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Talisman Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottes Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Épique",
-          "niveau": 49,
-          "nom": "Signet Épique",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 42
-            },
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 21
-            },
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 12
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écharpe Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Rondache Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 25
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "artefact",
-          "rarete": "Rare",
-          "niveau": 2,
-          "nom": "Artéfact de Boule de Feu",
-          "mods": [],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": "boule_feu",
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Signet Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 40
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Diadème Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Cotte de mailles Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Plastron Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 14
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Talisman Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 34
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bague Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Masse Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Amulette Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Dague Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 31
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écu Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pendentif Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 12
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Baudrier Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        }
-      ],
-      [
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottes Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Signet Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 11
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Écharpe Rare",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 13
-            },
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 58
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Robe Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Diadème Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 17
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Rondache Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 25
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bague Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pavois Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 14
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Amulette Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 17
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Sandales Rare",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 21
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 15
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Ceinture Rare",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 10
-            },
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 61
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Signet Rare",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 10
-            },
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 17
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Diadème Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 11
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Heaume Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Capuchon Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Ceinture Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Talisman Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 44
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Greaves Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 12
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Robe Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bouclier Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        }
-      ],
-      [
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottes Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écharpe Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Baudrier Rare",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 15
-            },
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 60
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Talisman Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écharpe Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 22
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bâton Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 15
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Masse Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Amulette Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 13
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écharpe Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 39
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Dague Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Diadème Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bague Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 44
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Greaves Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 13
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Dague Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 22
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Sandales Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 27
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Diadème Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 19
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Signet Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pendentif Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 17
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pavois Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        }
-      ],
-      [
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Ceinture Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 25
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Talisman Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Rondache Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Sandales Rare",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 41
-            },
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 16
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Amulette Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 11
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
+          "spell_type": "regeneration",
           "quantite": 1
         },
         {
@@ -3283,697 +447,63 @@
           "quantite": 1
         },
         {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Dague Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 48
-            }
-          ],
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Berserker",
+          "mods": [],
           "corrompu": false,
           "orbe_type": null,
-          "spell_type": null,
+          "spell_type": "berserker",
+          "quantite": 1
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Chaîne d'Éclairs",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "chaine_eclairs",
+          "quantite": 1
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Régénération",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "regeneration",
           "quantite": 1
         },
         {
           "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Anneau Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écu Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 11
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Heaume Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Greaves Commun",
+          "rarete": "Légendaire",
+          "niveau": 110,
+          "nom": "Signet Légendaire",
           "mods": [
             {
               "nom": "Robustesse",
               "stat": "hp_max",
-              "valeur": 56
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Collier Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 44
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pavois Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Hache Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
+              "valeur": 318
+            },
             {
               "nom": "Riposte",
               "stat": "contre",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Hache Commun",
-          "mods": [
+              "valeur": 50
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 124
+            },
             {
               "nom": "Protection",
               "stat": "def",
-              "valeur": 10
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Hache Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Talisman Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 28
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Hache Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        }
-      ],
-      [
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Talisman Commun",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 56
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Ceinture Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 38
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Heaume Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottines Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 21
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Baudrier Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Capuchon Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 17
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Rondache Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 12
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Pavois Rare",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 17
-            },
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 48
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Plastron Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bouclier Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Anneau Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Ceinture Rare",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 10
-            },
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 26
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Greaves Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 27
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pendentif Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bouclier Commun",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 11
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Rondache Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 24
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Heaume Commun",
-          "mods": [
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bouclier Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 5
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bâton Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Plastron Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 29
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        }
-      ],
-      [
-        {
-          "slot": "ceinture",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Ceinture Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bâton Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 31
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bouclier Commun",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Couronne Commun",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 14
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "armure",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Cuirasse Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 6
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "casque",
-          "rarete": "Rare",
-          "niveau": 49,
-          "nom": "Heaume Rare",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 18
-            },
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 56
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Écu Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 31
+              "valeur": 72
             }
           ],
           "corrompu": false,
@@ -3984,147 +514,28 @@
         {
           "slot": "amulette",
           "rarete": "Légendaire",
-          "niveau": 49,
-          "nom": "Talisman Légendaire",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 24
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 25
-            },
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 53
-            },
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 44
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bague Commun",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 8
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pavois Commun",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 21
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bouclier Commun",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 11
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "arme",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Hache Commun",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Anneau Commun",
-          "mods": [
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 9
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Pendentif Commun",
+          "niveau": 110,
+          "nom": "Amulette Légendaire",
           "mods": [
             {
               "nom": "Vitalité",
               "stat": "vit",
-              "valeur": 7
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1
-        },
-        {
-          "slot": "bottes",
-          "rarete": "Commun",
-          "niveau": 49,
-          "nom": "Bottes Commun",
-          "mods": [
+              "valeur": 65
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 145
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 250
+            },
             {
               "nom": "Protection",
               "stat": "def",
-              "valeur": 7
+              "valeur": 57
             }
           ],
           "corrompu": false,
@@ -4133,20 +544,62 @@
           "quantite": 1
         },
         {
-          "slot": "armure",
-          "rarete": "Rare",
+          "slot": "ceinture",
+          "rarete": "Légendaire",
           "niveau": 49,
-          "nom": "Cotte de mailles Rare",
+          "nom": "Baudrier Légendaire",
           "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 21
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 49
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 35
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 18
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Légendaire",
+          "niveau": 110,
+          "nom": "Écharpe Légendaire",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 55
+            },
             {
               "nom": "Précision",
               "stat": "crit_chance",
-              "valeur": 8
+              "valeur": 39
             },
             {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 12
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 190
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 99
             }
           ],
           "corrompu": false,
@@ -4157,32 +610,37 @@
       ]
     ],
     "orbes": [],
-    "kill_count": 1164,
-    "jetons": 46,
+    "kill_count": 1667,
+    "jetons": 44,
     "boss_donjon_battus": 5,
     "chapitres_completees": [
       1,
       2
     ],
-    "donjon_actif": null
+    "donjon_actif": null,
+    "auto_supprimer": [
+      "Commun",
+      "Rare",
+      "Épique"
+    ]
   },
   "enemy": {
-    "niveau": 49,
+    "niveau": 110,
     "boss": false,
-    "nom": "Bandit",
+    "nom": "Gargouille",
     "stats": {
-      "hp_max": 800,
-      "atk": 152,
-      "def": 51,
-      "vit": 104,
-      "crit_chance": 27,
-      "crit_mult": 274,
-      "esquive": 16,
+      "hp_max": 1715,
+      "atk": 335,
+      "def": 112,
+      "vit": 226,
+      "crit_chance": 57,
+      "crit_mult": 457,
+      "esquive": 34,
       "chance_loot": 0,
-      "contre": 16,
-      "vitesse_attaque": 176,
+      "contre": 34,
+      "vitesse_attaque": 298,
       "niveau_sorts": 0
     },
-    "hp": 146
+    "hp": 1715
   }
 }

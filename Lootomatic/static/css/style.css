@@ -53,18 +53,18 @@ header h1 {
     background: #16213e;
     border: 2px solid #533483;
     border-radius: 10px;
-    padding: 24px 30px;
+    padding: 30px 40px;
     z-index: 1000;
-    min-width: 420px;
-    max-width: 500px;
+    min-width: 540px;
+    max-width: 620px;
     box-shadow: 0 0 50px rgba(0,0,0,0.6);
 }
 
 #options-panel h3 {
     color: #e94560;
-    font-size: 0.95rem;
-    margin: 0 0 10px 0;
-    padding-bottom: 6px;
+    font-size: 1.05rem;
+    margin: 0 0 12px 0;
+    padding-bottom: 8px;
     border-bottom: 1px solid #0f3460;
 }
 
@@ -115,19 +115,20 @@ header h1 {
     background: #1a1a2e;
     color: #e0e0e0;
     border: 1px solid #374151;
-    padding: 6px 10px;
+    padding: 8px 12px;
     border-radius: 4px;
     flex: 1;
+    font-size: 0.9rem;
 }
 
 .options-row button {
     background: #0f3460;
     color: #e0e0e0;
     border: 1px solid #533483;
-    padding: 6px 14px;
+    padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.82rem;
+    font-size: 0.9rem;
 }
 
 .options-row button:hover {
@@ -646,12 +647,7 @@ h2 {
 
 .item-artefact {
     background: #0a0a0a;
-    border-color: #333;
     box-shadow: inset 0 0 8px rgba(100, 0, 150, 0.2);
-}
-
-.item-artefact .item-name {
-    color: #8b5cf6;
 }
 
 .boss-name {
@@ -1338,6 +1334,78 @@ h2 {
     margin-right: 6px;
     font-weight: bold;
     flex-shrink: 0;
+}
+
+/* ─── STATS OVERLAY ────────────────────────────────────────────────────────── */
+
+#stats-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #16213e;
+    border: 2px solid #533483;
+    border-radius: 10px;
+    padding: 24px 30px;
+    z-index: 1000;
+    min-width: 480px;
+    max-width: 550px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.6);
+}
+
+#stats-overlay-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.stats-category {
+    background: #1a1a2e;
+    border: 1px solid #0f3460;
+    border-radius: 6px;
+    padding: 10px 12px;
+}
+
+.stats-category h3 {
+    color: #e94560;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #0f3460;
+}
+
+.stat-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+    font-size: 0.78rem;
+}
+
+.stat-line .stat-key {
+    color: #888;
+}
+
+.stat-line .stat-val {
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.stat-line .stat-val.highlight {
+    color: #fbbf24;
+}
+
+#btn-stats-overlay {
+    background: #0f3460;
+    color: #e0e0e0;
+    border: 1px solid #533483;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+#btn-stats-overlay:hover {
+    background: #533483;
 }
 
 /* ─── AUTO-SUPPRESSION ─────────────────────────────────────────────────────── */

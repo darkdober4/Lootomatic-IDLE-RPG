@@ -730,6 +730,73 @@ async function claimSlotReward(slot) {
     }
 }
 
+// ─── STATS OVERLAY ──────────────────────────────────────────────────────────
+
+function toggleStatsOverlay() {
+    const overlay = document.getElementById("stats-overlay");
+    const wasHidden = overlay.classList.contains("hidden");
+    overlay.classList.toggle("hidden");
+    if (wasHidden) refreshStatsOverlay();
+}
+
+async function refreshStatsOverlay() {
+    try {
+        const res = await fetch("/api/session_stats");
+        const data = await res.json();
+        const container = document.getElementById("stats-overlay-content");
+
+        const rariteColors = {
+            "Commun": "#b0b0b0", "Rare": "#4a90d9", "Epique": "#a855f7",
+            "Épique": "#a855f7", "Legendaire": "#f59e0b", "Légendaire": "#f59e0b",
+            "Mythique": "#ef4444"
+        };
+
+        function line(key, val, highlight) {
+            return '<div class="stat-line"><span class="stat-key">' + key
+                + '</span><span class="stat-val' + (highlight ? ' highlight' : '')
+                + '">' + val + '</span></div>';
+        }
+
+        let html = '';
+
+        // Combat
+        const c = data.combat;
+        html += '<div class="stats-category"><h3>Combat</h3>';
+        html += line("Kills", c.kills, true);
+        html += line("Degats/coup moy.", c.degats_moyen);
+        html += '</div>';
+
+        // Loot
+        const l = data.loot;
+        html += '<div class="stats-category"><h3>Loot</h3>';
+        html += line("Or gagne", l.or_gagne, true);
+        html += line("Orbes obtenues", l.orbes_obtenues);
+        for (const [r, count] of Object.entries(l.par_rarete)) {
+            const col = rariteColors[r] || "#e0e0e0";
+            html += '<div class="stat-line"><span class="stat-key" style="color:' + col + '">'
+                + r + '</span><span class="stat-val">' + count + '</span></div>';
+        }
+        if (l.meilleur_loot) {
+            const col = rariteColors[l.meilleur_loot.rarete] || "#e0e0e0";
+            html += '<div class="stat-line"><span class="stat-key">Meilleur</span>'
+                + '<span class="stat-val highlight" style="color:' + col + '">'
+                + l.meilleur_loot.nom + '</span></div>';
+        }
+        html += '</div>';
+
+        // Records
+        const r = data.records;
+        html += '<div class="stats-category"><h3>Records</h3>';
+        html += line("Record kills sans mourir", r.record_kills_sans_mourir, true);
+        html += line("Plus haut ennemi", "Niv." + r.plus_haut_ennemi);
+        html += line("Plus gros coup", r.plus_gros_coup);
+        html += line("Morts", r.morts);
+        html += '</div>';
+
+        container.innerHTML = html;
+    } catch (e) {}
+}
+
 // ─── AUTO-SUPPRESSION ────────────────────────────────────────────────────────
 
 const AUTO_SUPPR_RARETES = ["Commun", "Rare", "Épique", "Légendaire", "Mythique"];

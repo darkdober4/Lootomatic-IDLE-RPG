@@ -23,6 +23,8 @@ def get_or_init_game():
         player = Player()
         enemy = Enemy(niveau=1)
         max_niveau_debloque = 1
+        import time
+        player.session_stats["debut_session"] = time.time()
     return player, enemy
 
 
@@ -364,12 +366,14 @@ def api_liste_sauvegardes():
 def api_new_game():
     global player, enemy, max_niveau_debloque, donjon_enemy
     from game.spells import spell_state
+    import time
     player = Player()
+    player.session_stats["debut_session"] = time.time()
     enemy = Enemy(niveau=1)
     max_niveau_debloque = 1
     donjon_enemy = None
     spell_state.reset()
-    return jsonify({"success": True, "message": "Nouvelle partie commencée !"})
+    return jsonify({"success": True, "message": "Nouvelle partie commencee !"})
 
 
 # ─── DONJON ───────────────────────────────────────────────────────────────────
@@ -961,6 +965,56 @@ def api_slot_machine_claim():
         "message": f"{item.nom} ajoute a l'inventaire !",
         "item": item.to_dict(),
         "jetons": p.jetons,
+    })
+
+
+# ─── STATISTIQUES DE SESSION ─────────────────────────────────────────────────
+
+@app.route("/api/session_stats")
+def api_session_stats():
+    import time
+    p, _ = get_or_init_game()
+    ss = p.session_stats
+    debut = ss.get("debut_session") or time.time()
+    duree = time.time() - debut
+    duree_min = max(duree / 60, 0.01)
+
+    dps = round(ss["degats_infliges"] / max(duree, 1), 1)
+    kills_min = round(ss["kills"] / duree_min, 1)
+    degats_moyen = round(ss["degats_infliges"] / max(ss["coups_donnes"], 1), 1)
+    temps_kill_moyen = round(duree / max(ss["kills"], 1), 1)
+
+    heures = int(duree // 3600)
+    minutes = int((duree % 3600) // 60)
+    secondes = int(duree % 60)
+    temps_str = f"{heures}h{minutes:02d}m{secondes:02d}s" if heures > 0 else f"{minutes}m{secondes:02d}s"
+
+    return jsonify({
+        "temps_jeu": temps_str,
+        "duree_secondes": round(duree),
+        "combat": {
+            "kills": ss["kills"],
+            "dps": dps,
+            "kills_par_min": kills_min,
+            "degats_moyen": degats_moyen,
+            "temps_kill_moyen": temps_kill_moyen,
+        },
+        "loot": {
+            "par_rarete": ss["loots_par_rarete"],
+            "or_gagne": ss["or_gagne"],
+            "orbes_obtenues": ss["orbes_obtenues"],
+            "meilleur_loot": ss["meilleur_loot"],
+        },
+        "progression": {
+            "xp_gagnee": ss["xp_gagnee"],
+            "niveaux_montes": ss["niveaux_montes"],
+        },
+        "records": {
+            "record_kills_sans_mourir": ss["record_kills_sans_mourir"],
+            "plus_haut_ennemi": ss["plus_haut_ennemi"],
+            "plus_gros_coup": ss["plus_gros_coup"],
+            "morts": ss["mort"],
+        },
     })
 
 

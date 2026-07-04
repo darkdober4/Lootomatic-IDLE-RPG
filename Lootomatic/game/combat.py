@@ -40,6 +40,11 @@ def tick_player_attack(player: Player, enemy: Enemy):
             else:
                 log.append(f"⚔️ Vous infligez {degats} dégâts à {enemy.nom}")
             enemy.hp -= degats
+            ss = player.session_stats
+            ss["degats_infliges"] += degats
+            ss["coups_donnes"] += 1
+            if degats > ss["plus_gros_coup"]:
+                ss["plus_gros_coup"] = degats
             process_lifesteal(player, degats, log)
             if random.random() * 100 < stats_e["contre"]:
                 contre_degats = calculer_degats(stats_e["atk"], def_j)
@@ -88,16 +93,30 @@ def _build_result(log, player, enemy):
     if enemy.hp <= 0 and player.hp <= 0:
         resultat = "defaite"
         perte_xp = player.mourir()
-        log.append(f"💀 Vous et {enemy.nom} êtes tombés en même temps ! -{perte_xp} XP")
+        player.session_stats["mort"] += 1
+        player.session_stats["kills_sans_mourir"] = 0
+        log.append(f"Vous et {enemy.nom} etes tombes en meme temps ! -{perte_xp} XP")
         recompenses = {"perte_xp": perte_xp}
 
     elif enemy.hp <= 0:
         resultat = "victoire"
         xp_gagne = enemy.recompense_xp()
         or_gagne = enemy.recompense_or()
+        niveau_avant = player.niveau
         player.ajouter_xp(xp_gagne)
         player.or_ += or_gagne
         player.kill_count += 1
+
+        ss = player.session_stats
+        ss["kills"] += 1
+        ss["xp_gagnee"] += xp_gagne
+        ss["or_gagne"] += or_gagne
+        ss["kills_sans_mourir"] += 1
+        if ss["kills_sans_mourir"] > ss["record_kills_sans_mourir"]:
+            ss["record_kills_sans_mourir"] = ss["kills_sans_mourir"]
+        if enemy.niveau > ss["plus_haut_ennemi"]:
+            ss["plus_haut_ennemi"] = enemy.niveau
+        ss["niveaux_montes"] += player.niveau - niveau_avant
 
         recompenses = {"xp": xp_gagne, "or": or_gagne}
 
@@ -119,6 +138,10 @@ def _build_result(log, player, enemy):
             player.ajouter_item(loot)
             loots_tombes.append(loot.to_dict())
             log.append(f"🎁 Loot : {loot.nom} ({loot.rarete})")
+            ss["loots_par_rarete"][loot.rarete] = ss["loots_par_rarete"].get(loot.rarete, 0) + 1
+            from config import RARITES as _R
+            if ss["meilleur_loot"] is None or _R.index(loot.rarete) > _R.index(ss["meilleur_loot"]["rarete"]):
+                ss["meilleur_loot"] = {"nom": loot.nom, "rarete": loot.rarete}
         if loots_tombes:
             recompenses["loots"] = loots_tombes
 
@@ -152,6 +175,7 @@ def _build_result(log, player, enemy):
                     player.ajouter_item(orbe_item)
                 orbes_tombes.append({"type": orbe_key, "nom": orbe_data["nom"]})
                 log.append(f"🔮 {orbe_data['nom']} obtenu(e) !")
+                ss["orbes_obtenues"] += 1
         if orbes_tombes:
             recompenses["orbes"] = orbes_tombes
 
@@ -204,7 +228,9 @@ def _build_result(log, player, enemy):
     elif player.hp <= 0:
         resultat = "defaite"
         perte_xp = player.mourir()
-        log.append(f"💀 Vous êtes mort ! -{perte_xp} XP. Résurrection...")
+        player.session_stats["mort"] += 1
+        player.session_stats["kills_sans_mourir"] = 0
+        log.append(f"Vous etes mort ! -{perte_xp} XP. Resurrection...")
         recompenses = {"perte_xp": perte_xp}
 
     return {
