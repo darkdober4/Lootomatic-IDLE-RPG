@@ -1,0 +1,285 @@
+{
+  "player": {
+    "niveau": 10,
+    "xp": 132,
+    "xp_max": 175,
+    "points_stats": 6,
+    "stats": {
+      "hp_max": 100,
+      "atk": 20,
+      "def": 5,
+      "vit": 10,
+      "crit_chance": 7,
+      "crit_mult": 150,
+      "esquive": 3,
+      "chance_loot": 50,
+      "contre": 5,
+      "vitesse_attaque": 100,
+      "niveau_sorts": 0
+    },
+    "hp": 37,
+    "or": 847,
+    "equipement": {
+      "arme": null,
+      "armure": {
+        "slot": "armure",
+        "rarete": "Rare",
+        "niveau": 4,
+        "nom": "Cuirasse Rare",
+        "mods": [
+          {
+            "nom": "Robustesse",
+            "stat": "hp_max",
+            "valeur": 7
+          },
+          {
+            "nom": "Fureur",
+            "stat": "crit_mult",
+            "valeur": 14
+          }
+        ],
+        "corrompu": false,
+        "orbe_type": null,
+        "spell_type": null,
+        "quantite": 1
+      },
+      "casque": {
+        "slot": "casque",
+        "rarete": "Rare",
+        "niveau": 4,
+        "nom": "Capuchon Rare",
+        "mods": [
+          {
+            "nom": "Précision",
+            "stat": "crit_chance",
+            "valeur": 4
+          },
+          {
+            "nom": "Robustesse",
+            "stat": "hp_max",
+            "valeur": 17
+          }
+        ],
+        "corrompu": true,
+        "orbe_type": null,
+        "spell_type": null,
+        "quantite": 1
+      },
+      "bouclier": {
+        "slot": "bouclier",
+        "rarete": "Épique",
+        "niveau": 3,
+        "nom": "Bouclier Épique",
+        "mods": [
+          {
+            "nom": "Robustesse",
+            "stat": "hp_max",
+            "valeur": 10
+          },
+          {
+            "nom": "Fureur",
+            "stat": "crit_mult",
+            "valeur": 19
+          },
+          {
+            "nom": "Agilité",
+            "stat": "esquive",
+            "valeur": 2
+          }
+        ],
+        "corrompu": false,
+        "orbe_type": null,
+        "spell_type": null,
+        "quantite": 1
+      },
+      "anneau": {
+        "slot": "anneau",
+        "rarete": "Commun",
+        "niveau": 4,
+        "nom": "Signet Commun",
+        "mods": [
+          {
+            "nom": "Riposte",
+            "stat": "contre",
+            "valeur": 2
+          }
+        ],
+        "corrompu": false,
+        "orbe_type": null,
+        "spell_type": null,
+        "quantite": 1
+      },
+      "amulette": {
+        "slot": "amulette",
+        "rarete": "Commun",
+        "niveau": 4,
+        "nom": "Pendentif Commun",
+        "mods": [
+          {
+            "nom": "Précision",
+            "stat": "crit_chance",
+            "valeur": 2
+          }
+        ],
+        "corrompu": false,
+        "orbe_type": null,
+        "spell_type": null,
+        "quantite": 1
+      },
+      "ceinture": {
+        "slot": "ceinture",
+        "rarete": "Commun",
+        "niveau": 6,
+        "nom": "Baudrier Commun",
+        "mods": [
+          {
+            "nom": "Riposte",
+            "stat": "contre",
+            "valeur": 5
+          }
+        ],
+        "corrompu": false,
+        "orbe_type": null,
+        "spell_type": null,
+        "quantite": 1
+      },
+      "bottes": null,
+      "artefact": {
+        "slot": "artefact",
+        "rarete": "Commun",
+        "niveau": 6,
+        "nom": "Artéfact de Bouclier Magique",
+        "mods": [],
+        "corrompu": false,
+        "orbe_type": null,
+        "spell_type": "bouclier_magique",
+        "quantite": 1
+      }
+    },
+    "inventaire": [
+      [
+        {
+          "slot": "orbe",
+          "rarete": "Commun",
+          "niveau": 1,
+          "nom": "Orbe d'Altération",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": "alteration",
+          "spell_type": null,
+          "quantite": 2
+        },
+        {
+          "slot": "orbe",
+          "rarete": "Commun",
+          "niveau": 1,
+          "nom": "Orbe d'Amélioration",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": "amelioration",
+          "spell_type": null,
+          "quantite": 5
+        },
+        {
+          "slot": "casque",
+          "rarete": "Commun",
+          "niveau": 6,
+          "nom": "Couronne Commun",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 1
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1
+        },
+        {
+          "slot": "armure",
+          "rarete": "Rare",
+          "niveau": 6,
+          "nom": "Cotte de mailles Rare",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 13
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 4
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Commun",
+          "niveau": 6,
+          "nom": "Baudrier Commun",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 1
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Rare",
+          "niveau": 6,
+          "nom": "Rondache Rare",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 6
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 3
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1
+        }
+      ]
+    ],
+    "orbes": [],
+    "kill_count": 34
+  },
+  "enemy": {
+    "niveau": 6,
+    "boss": false,
+    "nom": "Chauve-souris",
+    "stats": {
+      "hp_max": 155,
+      "atk": 23,
+      "def": 8,
+      "vit": 18,
+      "crit_chance": 5,
+      "crit_mult": 145,
+      "esquive": 3,
+      "chance_loot": 0,
+      "contre": 3,
+      "vitesse_attaque": 90,
+      "niveau_sorts": 0
+    },
+    "hp": 119
+  }
+}

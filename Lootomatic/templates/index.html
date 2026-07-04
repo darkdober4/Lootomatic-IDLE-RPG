@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lootomatic</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=12">
+</head>
+<body>
+    <header>
+        <button id="btn-options" onclick="toggleOptions()">⚙️ Options</button>
+        <h1>Lootomatic</h1>
+        <div class="header-info">
+            <button id="btn-donjon" onclick="toggleDonjon()">🏰 Donjon</button>
+            <button id="btn-info" onclick="toggleInfo()">❓ Aide</button>
+            <span id="or-display">💰 0</span>
+            <span id="kill-display">☠️ 0</span>
+            <span id="jeton-display">🪙 0</span>
+        </div>
+    </header>
+
+    <div id="info-panel" class="hidden">
+        <div class="info-content">
+            <h2>📊 Statistiques du Héros</h2>
+            <table class="info-table">
+                <tr><td>⚔️ ATQ</td><td>Dégâts infligés par attaque</td></tr>
+                <tr><td>🛡️ DÉF</td><td>Réduction des dégâts reçus (formule : DEF / (DEF+100))</td></tr>
+                <tr><td>❤️ PV Max</td><td>Points de vie maximum</td></tr>
+                <tr><td>💚 VIT</td><td>Chaque point = +5 PV Max</td></tr>
+                <tr><td>💥 Critique %</td><td>Chance d'infliger un coup critique</td></tr>
+                <tr><td>💥 Dégâts Crit. %</td><td>Multiplicateur de dégâts sur un critique (base 150%)</td></tr>
+                <tr><td>⚡ Esquive %</td><td>Chance d'esquiver une attaque ennemie</td></tr>
+                <tr><td>🎁 Chance Loot %</td><td>Chance de loot. 100% = 1 objet, 200% = 2 objets, etc.</td></tr>
+                <tr><td>🔄 Contre-attaque %</td><td>Chance de riposter après avoir reçu un coup</td></tr>
+                <tr><td>⏩ Vit. Attaque</td><td>Vitesse d'attaque. 100 = 1 coup/sec, 200 = 2 coups/sec</td></tr>
+                <tr><td>✨ Niveau Sorts</td><td>Augmente globalement le niveau des sorts</td></tr>
+            </table>
+
+            <h2>🔮 Orbes de Modification</h2>
+            <table class="info-table">
+                <tr><td>✨ Orbe d'Amélioration</td><td>+1 sur une stat aléatoire de l'objet. 10% corruption. Drop 15% (30% boss)</td></tr>
+                <tr><td>🔮 Orbe d'Altération</td><td>Ajoute un mod aléatoire. 25% rareté↑. 40% corruption. Mythique = auto-corruption. Drop 5% (10% boss)</td></tr>
+            </table>
+
+            <h2>✨ Artéfacts & Sorts</h2>
+            <p class="info-note">Les artéfacts sont des objets rares qui octroient un sort. Le niveau du sort dépend de la rareté :</p>
+            <table class="info-table">
+                <tr><td>Rare</td><td>Sort niveau 2 (×1.5 puissance)</td></tr>
+                <tr><td>Épique</td><td>Sort niveau 3 (×2.0 puissance)</td></tr>
+                <tr><td>Légendaire</td><td>Sort niveau 4 (×2.5 puissance)</td></tr>
+                <tr><td>Mythique</td><td>Sort niveau 5 (×3.0 puissance) — auto-corruption</td></tr>
+            </table>
+
+            <h3>🔥 Sorts Offensifs</h3>
+            <table class="info-table">
+                <tr><td>Boule de Feu</td><td>Dégâts purs (ignore DEF) toutes les 5 secondes</td></tr>
+                <tr><td>Chaîne d'Éclairs</td><td>15% chance ×1.5 dégâts par attaque</td></tr>
+                <tr><td>Poison</td><td>Dégâts sur la durée (5 ticks) au début du combat</td></tr>
+                <tr><td>Exécution</td><td>Dégâts massifs si ennemi sous 20% HP</td></tr>
+                <tr><td>Frappe Astrale</td><td>×3 dégâts sur le prochain coup, toutes les 8 secondes</td></tr>
+            </table>
+
+            <h3>🛡️ Sorts Défensifs</h3>
+            <table class="info-table">
+                <tr><td>Bouclier Magique</td><td>Absorbe les dégâts d'un coup quand HP &lt; 50%</td></tr>
+                <tr><td>Régénération</td><td>Heal %HP/tick pendant 5 ticks quand HP &lt; 30%</td></tr>
+                <tr><td>Esquive Spectrale</td><td>20% chance d'esquiver totalement quand touché</td></tr>
+                <tr><td>Renvoi de Sort</td><td>Renvoie 15% des dégâts reçus à l'ennemi (passif)</td></tr>
+            </table>
+
+            <h3>⚡ Sorts Utilitaires</h3>
+            <table class="info-table">
+                <tr><td>Vol de Vie</td><td>10% des dégâts infligés soignent le héros (passif)</td></tr>
+                <tr><td>Berserker</td><td>+50% ATQ / -25% DEF quand HP &lt; 25% (passif)</td></tr>
+                <tr><td>Hâte Temporelle</td><td>×2 vitesse d'attaque pendant 3 ticks, toutes les 12 secondes</td></tr>
+            </table>
+
+            <h2>🎯 Raretés des Objets</h2>
+            <table class="info-table">
+                <tr><td style="color:#b0b0b0">Commun (86.5%)</td><td>1 modificateur, puissance ×1.0</td></tr>
+                <tr><td style="color:#4a90d9">Rare (10%)</td><td>2 modificateurs, puissance ×1.5</td></tr>
+                <tr><td style="color:#a855f7">Épique (2%)</td><td>3 modificateurs, puissance ×2.0</td></tr>
+                <tr><td style="color:#f59e0b">Légendaire (1%)</td><td>4 modificateurs, puissance ×3.0</td></tr>
+                <tr><td style="color:#ef4444">Mythique (0.5%)</td><td>5 modificateurs, puissance ×5.0</td></tr>
+            </table>
+
+            <button class="info-close" onclick="toggleInfo()">✕ Fermer</button>
+        </div>
+    </div>
+
+    <div id="options-panel" class="hidden">
+        <div class="options-header">
+            <h2>Options</h2>
+            <button class="options-close" onclick="toggleOptions()">Fermer</button>
+        </div>
+        <div class="options-section">
+            <h3>Sauvegarde</h3>
+            <div class="options-row">
+                <input type="text" id="save-filename" placeholder="sauvegarde.json" value="sauvegarde.json">
+                <button onclick="sauvegarder()">Sauvegarder</button>
+                <button onclick="charger()">Charger</button>
+            </div>
+            <div id="save-list"></div>
+            <div id="options-message"></div>
+        </div>
+        <div class="options-section">
+            <h3>Auto-suppression apres chaque kill</h3>
+            <div id="auto-supprimer-grid"></div>
+        </div>
+        <div class="options-section">
+            <button id="btn-new-game" onclick="newGame()">Nouvelle Partie</button>
+        </div>
+    </div>
+
+    <main>
+        <section id="panel-stats">
+            <h2>Héros <span id="player-niveau">Niv. 1</span></h2>
+            <div class="hp-bar-container">
+                <div id="player-hp-bar" class="hp-bar"></div>
+                <span id="player-hp-text" class="hp-text">100 / 100</span>
+            </div>
+            <div class="xp-bar-container">
+                <div id="player-xp-bar" class="xp-bar"></div>
+                <span id="player-xp-text" class="xp-text">0 / 50 XP</span>
+            </div>
+            <div id="stats-list"></div>
+            <div id="points-stats-display"></div>
+            <button id="btn-alloc" onclick="toggleAlloc()">Allouer Points</button>
+            <div id="alloc-panel" class="hidden"></div>
+        </section>
+
+        <section id="panel-combat">
+            <div id="pro-tip"></div>
+            <div id="spell-display"></div>
+            <div id="combat-zone">
+                <div id="vs-indicator">⚔️ Combat en cours</div>
+            </div>
+            <div id="enemy-info">
+                <h2 id="enemy-name">Ennemi</h2>
+                <div class="hp-bar-container">
+                    <div id="enemy-hp-bar" class="hp-bar enemy-hp"></div>
+                    <span id="enemy-hp-text" class="hp-text">80 / 80</span>
+                </div>
+                <div id="enemy-stats-list"></div>
+            </div>
+            <div id="time-controls">
+                <button id="btn-prev-enemy" onclick="prevEnemy()" title="Ennemi précédent">◀ Précédent</button>
+                <button id="btn-skip-enemy" onclick="skipEnemy()" title="Passer à l'ennemi suivant">Suivant ▶</button>
+            </div>
+            <div id="log-container">
+                <div id="log-header" onclick="toggleLog()">
+                    📜 Log de Combat <span id="log-toggle">▼</span>
+                </div>
+                <div id="log-content"></div>
+            </div>
+        </section>
+
+        <section id="panel-inventory">
+            <h2>Équipement</h2>
+            <div id="equip-slots"></div>
+            <h2>Inventaire</h2>
+            <div id="inv-tabs"></div>
+            <div id="inv-grid"></div>
+
+            <div id="slot-machine">
+                <h2>Machine a Sous</h2>
+                <div class="slot-cost">1 jeton / spin — 3 identiques = Mythique, 2 = Legendaire</div>
+                <div id="slot-reels">
+                    <div class="slot-reel" id="reel-1"><span>?</span></div>
+                    <div class="slot-reel" id="reel-2"><span>?</span></div>
+                    <div class="slot-reel" id="reel-3"><span>?</span></div>
+                </div>
+                <div id="slot-result"></div>
+                <button id="btn-spin" onclick="spinSlotMachine()">Spin !</button>
+                <div id="slot-chooser" class="hidden">
+                    <div id="slot-chooser-buttons"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="reincarnation-overlay" class="hidden"></div>
+
+    <div id="donjon-overlay" class="hidden">
+        <div id="donjon-header">
+            <h2>🏰 Donjon <span id="donjon-chapitre"></span></h2>
+            <button id="btn-donjon-close" onclick="toggleDonjon()">✕ Fermer</button>
+            <button id="btn-donjon-exit" onclick="quitterDonjon()" class="hidden">Abandonner</button>
+        </div>
+        <div id="donjon-hud">
+            <div id="donjon-hp-bar-container">
+                <div id="donjon-hp-bar" class="hp-bar"></div>
+                <span id="donjon-hp-text" class="hp-text">0 / 0</span>
+            </div>
+            <span id="donjon-etage">Étage 0/20</span>
+            <span id="donjon-reliques"></span>
+        </div>
+        <div id="donjon-content">
+            <div id="donjon-map-container">
+                <svg id="donjon-map" viewBox="0 0 700 800"></svg>
+            </div>
+            <div id="donjon-room-panel" class="hidden">
+                <div id="donjon-room-header"></div>
+                <div id="donjon-room-content"></div>
+                <div id="donjon-room-actions"></div>
+            </div>
+            <div id="donjon-combat-panel" class="hidden">
+                <div id="donjon-enemy-info"></div>
+                <div id="donjon-combat-log"></div>
+            </div>
+        </div>
+        <div id="donjon-start-panel">
+            <h3>Entrer dans le Donjon</h3>
+            <p>Combattez à travers 20 étages, collectez des reliques et vainquez le boss !</p>
+            <div id="donjon-chapitre-select">
+                <label>Chapitre :</label>
+                <select id="donjon-chapitre-input">
+                    <option value="1">Chapitre 1 (Niv. 10)</option>
+                </select>
+            </div>
+            <button id="btn-donjon-start" onclick="startDonjon()">Commencer</button>
+        </div>
+    </div>
+
+    <script src="/static/js/dungeon.js?v=1"></script>
+    <script src="/static/js/game.js?v=12"></script>
+    <script src="/static/js/animations.js?v=12"></script>
+</body>
+</html>
