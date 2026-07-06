@@ -5,4 +5,5 @@
 Help me buy a new pc https://gofund.me/4f2d4ae1f
 
 Start the game with python on app.py
+
 *python app.py
