@@ -16,6 +16,11 @@ def sauvegarder(player, enemy, filename="sauvegarde.json"):
     return True
 
 
+def save_exists(filename="sauvegarde.json"):
+    path = os.path.join(SAVE_DIR, filename)
+    return os.path.exists(path)
+
+
 def charger(filename="sauvegarde.json"):
     from game.models import Player, Enemy
     path = os.path.join(SAVE_DIR, filename)

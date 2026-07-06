@@ -47,7 +47,7 @@ COUT_STATS = {
 XP_BASE = 50
 XP_CROISSANCE = 1.15
 
-PENALITE_MORT_XP = 0.15
+PENALITE_MORT_XP = 0.01
 
 BOSS_CHANCE = 0.05
 BOSS_MULT_STATS = 3.0
@@ -177,101 +177,105 @@ ORBE_TYPES = {
 }
 
 SORTS = {
-    "boule_feu": {
-        "nom": "Boule de Feu",
-        "categorie": "offensif",
-        "description": "Inflige des dégâts magiques purs (ignore la DEF)",
-        "trigger": "interval",
-        "interval_ticks": 5,
-        "base_value": 20,
-    },
-    "chaine_eclairs": {
-        "nom": "Chaîne d'Éclairs",
-        "categorie": "offensif",
-        "description": "Prochaine attaque ×1.5 dégâts",
-        "trigger": "chance",
-        "chance": 15,
-        "base_value": 150,
-    },
     "poison": {
         "nom": "Poison",
         "categorie": "offensif",
-        "description": "Dégâts sur la durée pendant 5 ticks",
+        "description": "L'ennemi perd des PV a chaque seconde pendant 5 secondes.",
         "trigger": "combat_start",
         "base_value": 5,
         "duration": 5,
     },
-    "execution": {
-        "nom": "Exécution",
+    "surge_flammes": {
+        "nom": "Surge de Flammes",
         "categorie": "offensif",
-        "description": "Dégâts massifs si ennemi sous 20% HP",
-        "trigger": "threshold_enemy",
-        "threshold": 20,
-        "base_value": 300,
-    },
-    "frappe_astrale": {
-        "nom": "Frappe Astrale",
-        "categorie": "offensif",
-        "description": "Prochain coup = dégâts ×3",
-        "trigger": "interval",
-        "interval_ticks": 8,
-        "base_value": 300,
-    },
-    "bouclier_magique": {
-        "nom": "Bouclier Magique",
-        "categorie": "defensif",
-        "description": "Absorbe les dégâts du prochain coup",
-        "trigger": "threshold_player",
-        "threshold": 50,
-        "base_value": 30,
-    },
-    "regeneration": {
-        "nom": "Régénération",
-        "categorie": "defensif",
-        "description": "Heal de X% HP max sur 5 ticks",
-        "trigger": "threshold_player",
-        "threshold": 30,
-        "base_value": 5,
-        "duration": 5,
-    },
-    "esquive_spectrale": {
-        "nom": "Esquive Spectrale",
-        "categorie": "defensif",
-        "description": "Prochaine attaque ennemie ratée à 100%",
-        "trigger": "chance_when_hit",
-        "chance": 20,
-        "base_value": 100,
-    },
-    "renvoi_sort": {
-        "nom": "Renvoi de Sort",
-        "categorie": "defensif",
-        "description": "Renvoie X% des dégâts reçus à l'ennemi",
-        "trigger": "passive",
-        "base_value": 15,
-    },
-    "vol_de_vie": {
-        "nom": "Vol de Vie",
-        "categorie": "utilitaire",
-        "description": "X% des dégâts infligés soignent le héros",
-        "trigger": "passive",
-        "base_value": 10,
-    },
-    "berserker": {
-        "nom": "Berserker",
-        "categorie": "utilitaire",
-        "description": "+50% ATQ mais -25% DEF quand HP < 25%",
-        "trigger": "passive_threshold",
-        "threshold": 25,
+        "description": "Frappe 3 fois, puis BOUM : une explosion de feu !",
+        "trigger": "stack_on_hit",
+        "stack_threshold": 3,
         "base_value": 50,
     },
-    "hate_temporelle": {
-        "nom": "Hâte Temporelle",
-        "categorie": "utilitaire",
-        "description": "×2 vitesse d'attaque pendant 3 ticks",
-        "trigger": "interval",
-        "interval_ticks": 12,
-        "base_value": 3,
+    "hemorragie": {
+        "nom": "Hemorragie",
+        "categorie": "offensif",
+        "description": "Frappe 4 fois, puis l'ennemi saigne et perd des PV pendant 3 secondes.",
+        "trigger": "stack_on_hit",
+        "stack_threshold": 4,
+        "base_value": 10,
         "duration": 3,
+    },
+    "gel_accumule": {
+        "nom": "Gel Accumule",
+        "categorie": "defensif",
+        "description": "Quand tu te fais taper 3 fois, l'ennemi est gele et rate sa prochaine attaque.",
+        "trigger": "stack_on_damage_taken",
+        "stack_threshold": 3,
+        "base_value": 0,
+    },
+    "vengeance": {
+        "nom": "Vengeance",
+        "categorie": "offensif",
+        "description": "Encaisse 5 coups, puis renvoie tous les degats recus d'un seul coup !",
+        "trigger": "stack_on_damage_taken",
+        "stack_threshold": 5,
+        "base_value": 0,
+    },
+    "chaine_eclairs": {
+        "nom": "Chaine d'Eclairs",
+        "categorie": "offensif",
+        "description": "Se charge tout seul. Quand c'est plein, ZAP : un eclair frappe l'ennemi !",
+        "trigger": "stack_auto",
+        "stack_threshold": 3,
+        "base_value": 30,
+    },
+    "vol_ame": {
+        "nom": "Vol d'Ame",
+        "categorie": "utilitaire",
+        "description": "Frappe 6 fois, puis tu voles la vie de l'ennemi a chaque coup pour le reste du combat.",
+        "trigger": "stack_on_hit",
+        "stack_threshold": 6,
+        "base_value": 5,
+    },
+    "lame_spectrale": {
+        "nom": "Lame Spectrale",
+        "categorie": "offensif",
+        "description": "Frappe 2 fois, puis ton prochain coup fait beaucoup plus mal !",
+        "trigger": "stack_on_hit",
+        "stack_threshold": 2,
+        "base_value": 200,
+    },
+    "marque_maudite": {
+        "nom": "Marque Maudite",
+        "categorie": "offensif",
+        "description": "Frappe 3 fois, puis tes prochains coups font beaucoup plus mal !",
+        "trigger": "stack_on_hit",
+        "stack_threshold": 3,
+        "base_value": 50,
+        "buff_hits": 5,
+    },
+    "peau_fer": {
+        "nom": "Peau de Fer",
+        "categorie": "defensif",
+        "description": "Quand tu te fais taper 4 fois, un bouclier magique te protege du prochain coup.",
+        "trigger": "stack_on_damage_taken",
+        "stack_threshold": 4,
+        "base_value": 100,
+    },
+    "distorsion": {
+        "nom": "Distorsion",
+        "categorie": "utilitaire",
+        "description": "Se charge tout seul. Quand c'est plein, tu attaques 2 fois plus vite pendant quelques secondes !",
+        "trigger": "stack_auto",
+        "stack_threshold": 5,
+        "base_value": 0,
+        "duration": 3,
+    },
+    "execution": {
+        "nom": "Execution",
+        "categorie": "offensif",
+        "description": "Frappe 6 fois. Si l'ennemi est presque mort, TU LE FINIS avec un coup gigantesque !",
+        "trigger": "stack_on_hit",
+        "stack_threshold": 6,
+        "base_value": 500,
+        "enemy_hp_threshold": 30,
     },
 }
 
@@ -373,7 +377,7 @@ PRO_TIPS = [
     "Un objet monte au Mythique par orbe d'alteration est automatiquement corrompu.",
     "Les boss ont 5% de chance d'apparaitre a chaque ennemi.",
     "L'orbe d'Amelioration a 10% de risque de corrompre l'objet.",
-    "Les artefacts donnent des sorts, leur niveau depend de la rarete.",
+    "Les artefacts donnent des sorts a stacks : chaque coup ou degat recu accumule des stacks, l'effet explose au seuil.",
     "Le donjon rapporte 5 a 10 jetons par chapitre complete.",
     "La machine a sous donne du Legendaire minimum en cas de gain.",
     "La Vitesse d'Attaque du joueur et de l'ennemi sont independantes.",
@@ -381,7 +385,7 @@ PRO_TIPS = [
     "Les objets Corrompus ne peuvent plus etre modifies par des orbes.",
     "La DEF reduit les degats selon la formule : DEF / (DEF + 100).",
     "Passer a l'ennemi suivant vous soigne integralement — soin gratuit quand bas en PV.",
-    "La mort fait perdre 15% de l'XP actuelle, pas de l'XP max. Plus proche du level-up, plus la perte est grosse.",
+    "La mort fait perdre 1% de l'XP actuelle. Les PV sont remis au max a chaque victoire et a chaque mort.",
     "Battre un boss de donjon pour la 1ere fois reincarne au niv.1, mais +1 point de stat permanent par niveau a chaque reincarnation.",
     "L'orbe d'Amelioration n'augmente qu'UN SEUL mod aleatoire de +1, pas tous les mods de l'objet.",
     "Les camps dans le donjon restaurent 100% des PV. Ils n'apparaissent pas dans les 3 premiers etages.",
@@ -392,3 +396,17 @@ SLOT_MACHINE_SLOTS_CHOIX = [
     "arme", "armure", "casque", "bouclier",
     "anneau", "amulette", "ceinture", "bottes",
 ]
+
+# ─── CHAUDRON MAGIQUE ────────────────────────────────────────────────────────
+
+CHAUDRON_ITEMS_REQUIS = 3
+CHAUDRON_COUT_OR = 50
+CHAUDRON_COUT_PAR_RARETE = {
+    "Commun": 0,
+    "Rare": 25,
+    "Épique": 75,
+    "Légendaire": 200,
+    "Mythique": 500,
+}
+
+CHAUDRON_RARITE_POIDS = [50, 25, 15, 8, 2]

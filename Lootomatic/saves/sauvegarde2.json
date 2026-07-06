@@ -1,0 +1,109 @@
+{
+  "player": {
+    "niveau": 2,
+    "xp": 10,
+    "xp_max": 57,
+    "points_stats": 2,
+    "stats": {
+      "hp_max": 100,
+      "atk": 10,
+      "def": 5,
+      "vit": 10,
+      "crit_chance": 5,
+      "crit_mult": 150,
+      "esquive": 3,
+      "chance_loot": 50,
+      "contre": 5,
+      "vitesse_attaque": 100,
+      "niveau_sorts": 0
+    },
+    "hp": 38,
+    "or": 48,
+    "equipement": {
+      "arme": null,
+      "armure": null,
+      "casque": null,
+      "bouclier": null,
+      "anneau": null,
+      "amulette": null,
+      "ceinture": null,
+      "bottes": null,
+      "artefact": null
+    },
+    "inventaire": [
+      [
+        {
+          "slot": "orbe",
+          "rarete": "Commun",
+          "niveau": 1,
+          "nom": "Orbe d'Amélioration",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": "amelioration",
+          "spell_type": null,
+          "quantite": 1
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Commun",
+          "niveau": 2,
+          "nom": "Bottines Commun",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 1
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Commun",
+          "niveau": 3,
+          "nom": "Anneau Commun",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 4
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1
+        }
+      ]
+    ],
+    "orbes": [],
+    "kill_count": 3,
+    "jetons": 0,
+    "boss_donjon_battus": 0,
+    "chapitres_completees": [],
+    "donjon_actif": null,
+    "auto_supprimer": []
+  },
+  "enemy": {
+    "niveau": 4,
+    "boss": false,
+    "nom": "Gobelin",
+    "stats": {
+      "hp_max": 125,
+      "atk": 17,
+      "def": 6,
+      "vit": 14,
+      "crit_chance": 4,
+      "crit_mult": 139,
+      "esquive": 2,
+      "chance_loot": 0,
+      "contre": 2,
+      "vitesse_attaque": 86,
+      "niveau_sorts": 0
+    },
+    "hp": 44
+  }
+}

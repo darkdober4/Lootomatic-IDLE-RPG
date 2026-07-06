@@ -12,6 +12,7 @@
         <h1>Lootomatic</h1>
         <div class="header-info">
             <button id="btn-donjon" onclick="toggleDonjon()">🏰 Donjon</button>
+            <button id="btn-chaudron" onclick="toggleChaudron()"><span class="chaudron-icon">⚗</span> Chaudron</button>
             <button id="btn-stats-overlay" onclick="toggleStatsOverlay()">Stats</button>
             <button id="btn-info" onclick="toggleInfo()">❓ Aide</button>
             <span id="or-display">💰 0</span>
@@ -100,6 +101,7 @@
                 <input type="text" id="save-filename" placeholder="sauvegarde.json" value="sauvegarde.json">
                 <button onclick="sauvegarder()">Sauvegarder</button>
                 <button onclick="charger()">Charger</button>
+                <button onclick="openSavesFolder()">Ouvrir le dossier</button>
             </div>
             <div id="save-list"></div>
             <div id="options-message"></div>
@@ -161,6 +163,27 @@
             <div id="equip-slots"></div>
             <h2>Inventaire</h2>
             <div id="inv-tabs"></div>
+            <div id="inv-filter-bar">
+                <select id="inv-filter-stat">
+                    <option value="">-- Filtrer par stat --</option>
+                    <option value="atk">ATQ</option>
+                    <option value="hp_max">PV Max</option>
+                    <option value="def">DEF</option>
+                    <option value="vit">VIT</option>
+                    <option value="crit_chance">Critique %</option>
+                    <option value="crit_mult">Degats Crit. %</option>
+                    <option value="esquive">Esquive %</option>
+                    <option value="chance_loot">Chance Loot %</option>
+                    <option value="contre">Contre-attaque %</option>
+                    <option value="vitesse_attaque">Vit. Attaque</option>
+                </select>
+                <select id="inv-sort-mode">
+                    <option value="">-- Trier par --</option>
+                    <option value="rarete">Rarete</option>
+                    <option value="stat">Valeur de la stat</option>
+                    <option value="niveau">Niveau</option>
+                </select>
+            </div>
             <div id="inv-grid"></div>
 
             <div id="slot-machine">
@@ -228,6 +251,45 @@
                 </select>
             </div>
             <button id="btn-donjon-start" onclick="startDonjon()">Commencer</button>
+        </div>
+    </div>
+
+    <!-- CHAUDRON MAGIQUE -->
+    <div id="chaudron-overlay" class="hidden">
+        <div class="chaudron-panel">
+            <div class="chaudron-header">
+                <h2>Chaudron Magique</h2>
+                <button class="chaudron-close" onclick="toggleChaudron()">Fermer</button>
+            </div>
+            <p class="chaudron-desc">Place 3 objets dans le chaudron pour en obtenir un nouveau aleatoire. Coute de l'or.</p>
+            <div id="chaudron-slots">
+                <div class="chaudron-slot" id="chaudron-slot-0">
+                    <span class="chaudron-slot-label">Objet 1</span>
+                </div>
+                <div class="chaudron-slot" id="chaudron-slot-1">
+                    <span class="chaudron-slot-label">Objet 2</span>
+                </div>
+                <div class="chaudron-slot" id="chaudron-slot-2">
+                    <span class="chaudron-slot-label">Objet 3</span>
+                </div>
+            </div>
+            <div class="chaudron-filter-row">
+                <label>Filtrer :</label>
+                <select id="chaudron-filter-rarete" onchange="renderChaudron()">
+                    <option value="">Toutes les raretes</option>
+                    <option value="Commun">Commun</option>
+                    <option value="Rare">Rare</option>
+                    <option value="Épique">Épique</option>
+                    <option value="Légendaire">Légendaire</option>
+                    <option value="Mythique">Mythique</option>
+                </select>
+            </div>
+            <div id="chaudron-inventory"></div>
+            <div class="chaudron-footer">
+                <span id="chaudron-cost">Cout : 50 or</span>
+                <button id="chaudron-fondre-btn" onclick="chaudronFondre()" disabled>Fondre !</button>
+            </div>
+            <div id="chaudron-result"></div>
         </div>
     </div>
 

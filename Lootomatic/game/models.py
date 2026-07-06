@@ -8,7 +8,7 @@ from config import (
     OR_BASE, OR_PAR_NIVEAU, OR_BOSS_MULT,
     RARITES, RARITE_POIDS, RARITE_MULT, MODIFICATEURS,
     MODS_MAX_PAR_OBJET, TYPES_OBJETS, SLOTS_EQUIPEMENT,
-    CAPACITE_COFFRE, COUT_STATS, VIT_HP_BONUS,
+    CAPACITE_COFFRE, COUT_STATS, VIT_HP_BONUS, SORTS,
 )
 
 
@@ -27,6 +27,7 @@ class Item:
         self.orbe_type = None
         self.spell_type = None
         self.quantite = 1
+        self.locked = False
 
     @staticmethod
     def _roll_rarete():
@@ -70,6 +71,7 @@ class Item:
             "orbe_type": self.orbe_type,
             "spell_type": self.spell_type,
             "quantite": self.quantite,
+            "locked": self.locked,
         }
 
     @classmethod
@@ -84,6 +86,23 @@ class Item:
         item.orbe_type = data.get("orbe_type", None)
         item.spell_type = data.get("spell_type", None)
         item.quantite = data.get("quantite", 1)
+        item.locked = data.get("locked", False)
+        if item.slot == "artefact" and item.spell_type and item.spell_type not in SORTS:
+            remap = {
+                "boule_feu": "surge_flammes",
+                "frappe_astrale": "lame_spectrale",
+                "bouclier_magique": "peau_fer",
+                "regeneration": "vol_ame",
+                "esquive_spectrale": "gel_accumule",
+                "renvoi_sort": "vengeance",
+                "vol_de_vie": "vol_ame",
+                "berserker": "marque_maudite",
+                "hate_temporelle": "distorsion",
+            }
+            new_type = remap.get(item.spell_type)
+            if new_type:
+                item.spell_type = new_type
+                item.nom = f"Artefact de {SORTS[new_type]['nom']}"
         return item
 
 

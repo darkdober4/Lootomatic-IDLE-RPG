@@ -36,18 +36,24 @@ def index():
 @app.route("/api/state")
 def api_state():
     p, e = get_or_init_game()
-    from game.spells import get_active_spells
+    from game.spells import get_active_spells, spell_state
     from config import SORTS, RARITE_SORT_NIVEAU
     active_spells = get_active_spells(p)
     spell_info = None
     if active_spells:
         s = active_spells[0]
+        trigger = s["data"]["trigger"]
+        stacks_current = spell_state.get_stacks(s["key"])
+        stacks_max = s["data"].get("stack_threshold", 0)
         spell_info = {
             "nom": s["data"]["nom"],
             "categorie": s["data"]["categorie"],
             "description": s["data"]["description"],
             "niveau": s["niveau"],
             "value": s["value"],
+            "trigger": trigger,
+            "stacks_current": stacks_current,
+            "stacks_max": stacks_max,
         }
     return jsonify({
         "player": {
@@ -98,6 +104,7 @@ def api_combat_tick():
     if resultat["resultat"] in ("victoire", "defaite"):
         spell_state.reset()
         if resultat["resultat"] == "victoire":
+            p.hp = p.get_stats_effectives()["hp_max"]
             if e.niveau >= max_niveau_debloque:
                 max_niveau_debloque = e.niveau + 1
                 enemy = Enemy(niveau=max_niveau_debloque)
@@ -121,6 +128,7 @@ def api_enemy_tick():
     if resultat["resultat"] in ("victoire", "defaite"):
         spell_state.reset()
         if resultat["resultat"] == "victoire":
+            p.hp = p.get_stats_effectives()["hp_max"]
             if e.niveau >= max_niveau_debloque:
                 max_niveau_debloque = e.niveau + 1
                 enemy = Enemy(niveau=max_niveau_debloque)
@@ -231,6 +239,8 @@ def api_delete_item():
     coffre = p.inventaire[coffre_idx]
     if item_idx >= len(coffre):
         return jsonify({"success": False, "message": "Objet invalide"})
+    if coffre[item_idx].locked:
+        return jsonify({"success": False, "message": "Objet verrouille, deverrouillez-le d'abord"})
     item = coffre.pop(item_idx)
     _consolider_inventaire(p)
     return jsonify({
@@ -246,19 +256,45 @@ def api_delete_batch():
     data = request.get_json()
     rarete = data.get("rarete")
     count = 0
+    locked_skipped = 0
     for coffre in p.inventaire:
         items_a_garder = []
         for item in coffre:
-            if rarete and item.rarete == rarete and item.slot not in ("orbe", "artefact"):
+            if rarete and item.rarete == rarete and item.slot not in ("orbe", "artefact") and not item.locked:
                 count += 1
             else:
+                if rarete and item.rarete == rarete and item.locked:
+                    locked_skipped += 1
                 items_a_garder.append(item)
         coffre.clear()
         coffre.extend(items_a_garder)
     _consolider_inventaire(p)
+    msg = f"{count} objet(s) {rarete} supprime(s)"
+    if locked_skipped > 0:
+        msg += f" ({locked_skipped} verrouille(s) ignore(s))"
     return jsonify({
         "success": True,
-        "message": f"{count} objet(s) {rarete} supprime(s)",
+        "message": msg,
+    })
+
+
+@app.route("/api/toggle_lock", methods=["POST"])
+def api_toggle_lock():
+    p, _ = get_or_init_game()
+    data = request.get_json()
+    coffre_idx = data.get("coffre_idx", 0)
+    item_idx = data.get("item_idx", 0)
+    if coffre_idx >= len(p.inventaire):
+        return jsonify({"success": False, "message": "Coffre invalide"})
+    coffre = p.inventaire[coffre_idx]
+    if item_idx >= len(coffre):
+        return jsonify({"success": False, "message": "Objet invalide"})
+    item = coffre[item_idx]
+    item.locked = not item.locked
+    return jsonify({
+        "success": True,
+        "locked": item.locked,
+        "message": f"{item.nom} {'verrouille' if item.locked else 'deverrouille'}",
     })
 
 
@@ -340,8 +376,18 @@ def api_sauvegarder():
     p, e = get_or_init_game()
     data = request.get_json() or {}
     filename = data.get("filename", "sauvegarde.json")
+    confirm = data.get("confirm_overwrite", False)
+
+    from game.save import save_exists
+    if save_exists(filename) and not confirm:
+        return jsonify({
+            "success": False,
+            "exists": True,
+            "message": f"La sauvegarde '{filename}' existe deja. Ecraser ?",
+        })
+
     sauvegarder(p, e, filename)
-    return jsonify({"success": True, "message": f"Sauvegardé : {filename}"})
+    return jsonify({"success": True, "message": f"Sauvegarde : {filename}"})
 
 
 @app.route("/api/charger", methods=["POST"])
@@ -360,6 +406,15 @@ def api_charger():
 @app.route("/api/sauvegardes")
 def api_liste_sauvegardes():
     return jsonify({"fichiers": liste_sauvegardes()})
+
+
+@app.route("/api/open_saves_folder", methods=["POST"])
+def api_open_saves_folder():
+    import subprocess
+    from game.save import SAVE_DIR
+    os.makedirs(SAVE_DIR, exist_ok=True)
+    subprocess.Popen(["explorer", SAVE_DIR])
+    return jsonify({"success": True})
 
 
 @app.route("/api/new_game", methods=["POST"])
@@ -965,6 +1020,84 @@ def api_slot_machine_claim():
         "message": f"{item.nom} ajoute a l'inventaire !",
         "item": item.to_dict(),
         "jetons": p.jetons,
+    })
+
+
+# ─── CHAUDRON MAGIQUE ────────────────────────────────────────────────────────
+
+@app.route("/api/chaudron/fondre", methods=["POST"])
+def api_chaudron_fondre():
+    p, _ = get_or_init_game()
+    data = request.get_json()
+    items_input = data.get("items", [])
+
+    from config import CHAUDRON_ITEMS_REQUIS, CHAUDRON_COUT_OR, CHAUDRON_COUT_PAR_RARETE
+
+    if len(items_input) != CHAUDRON_ITEMS_REQUIS:
+        return jsonify({"success": False, "message": f"Il faut exactement {CHAUDRON_ITEMS_REQUIS} objets."})
+
+    items_to_remove = []
+    total_cout = CHAUDRON_COUT_OR
+    from config import RARITES
+    input_raretes = []
+    for entry in items_input:
+        c = entry.get("coffre_idx", 0)
+        i = entry.get("item_idx", 0)
+        if c >= len(p.inventaire):
+            return jsonify({"success": False, "message": "Coffre invalide."})
+        if i >= len(p.inventaire[c]):
+            return jsonify({"success": False, "message": "Objet invalide."})
+        item = p.inventaire[c][i]
+        if item.locked:
+            return jsonify({"success": False, "message": f"{item.nom} est verrouille."})
+        if item.slot in ("orbe", "artefact"):
+            return jsonify({"success": False, "message": "Les orbes et artefacts ne peuvent pas etre fondus."})
+        total_cout += CHAUDRON_COUT_PAR_RARETE.get(item.rarete, 0)
+        input_raretes.append(item.rarete)
+        items_to_remove.append((c, i))
+
+    if p.or_ < total_cout:
+        return jsonify({"success": False, "message": f"Pas assez d'or ! Il faut {total_cout} or."})
+
+    p.or_ -= total_cout
+
+    items_to_remove.sort(key=lambda x: x[1], reverse=True)
+    items_to_remove.sort(key=lambda x: x[0], reverse=True)
+    for c, i in items_to_remove:
+        p.inventaire[c].pop(i)
+
+    _consolider_inventaire(p)
+
+    import random as _r
+    avg_idx = sum(RARITES.index(r) for r in input_raretes) / len(input_raretes)
+    base = round(avg_idx)
+    offsets = [-1, 0, 1, 2, 3]
+    weights = [3, 27, 40, 20, 10]
+    valid_offsets = []
+    valid_weights = []
+    for off, w in zip(offsets, weights):
+        target = base + off
+        if 0 <= target < len(RARITES):
+            valid_offsets.append(off)
+            valid_weights.append(w)
+    total_w = sum(valid_weights)
+    roll = _r.uniform(0, total_w)
+    cumul = 0
+    rarete_chaudron = RARITES[base]
+    for off, w in zip(valid_offsets, valid_weights):
+        cumul += w
+        if roll <= cumul:
+            rarete_chaudron = RARITES[base + off]
+            break
+
+    new_item = Item(niveau=p.niveau, rarete=rarete_chaudron)
+    p.ajouter_item(new_item)
+
+    return jsonify({
+        "success": True,
+        "message": f"Le chaudron bouillonne... {new_item.nom} ({new_item.rarete}) en sort !",
+        "cout": total_cout,
+        "item": new_item.to_dict(),
     })
 
 

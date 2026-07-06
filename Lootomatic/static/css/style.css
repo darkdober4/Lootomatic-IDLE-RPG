@@ -148,6 +148,16 @@ header h1 {
     color: #888;
 }
 
+.save-item {
+    color: #4a90d9;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.save-item:hover {
+    color: #c084fc;
+}
+
 #btn-new-game {
     background: #1a1a2e;
     border: 1px solid #7f1d1d;
@@ -333,10 +343,7 @@ h2 {
     border: 1px solid #533483;
     border-radius: 4px;
     padding: 6px 12px;
-}
-
-.spell-icon {
-    font-size: 1.2rem;
+    flex-wrap: wrap;
 }
 
 .spell-name {
@@ -349,6 +356,38 @@ h2 {
     color: #888;
     font-size: 0.75rem;
     margin-left: auto;
+}
+
+.stack-bar-container {
+    width: 100%;
+    height: 14px;
+    background: #1a1a2e;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #533483;
+}
+
+.stack-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7c3aed, #c084fc);
+    border-radius: 2px;
+    transition: width 0.2s ease;
+}
+
+.stack-bar-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 2px #000;
 }
 
 #combat-zone {
@@ -484,6 +523,27 @@ h2 {
     border-color: #e94560;
 }
 
+#inv-filter-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+#inv-filter-bar select {
+    background: #1a1a2e;
+    color: #aaa;
+    border: 1px solid #0f3460;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    flex: 1;
+}
+
+#inv-filter-bar select:hover {
+    border-color: #533483;
+}
+
 #inv-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -496,7 +556,7 @@ h2 {
     border-radius: 3px;
     padding: 4px;
     min-height: 50px;
-    font-size: 0.68rem;
+    font-size: 0.82rem;
     text-align: center;
     cursor: pointer;
     display: flex;
@@ -528,6 +588,47 @@ h2 {
     color: #fff;
     background: #ef4444;
     border-radius: 2px;
+}
+
+.btn-lock {
+    position: absolute;
+    top: 2px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 0.65rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s;
+    padding: 0 3px;
+}
+
+.inv-slot:hover .btn-lock {
+    opacity: 1;
+}
+
+.locked-item .btn-lock {
+    opacity: 1;
+}
+
+.locked-item {
+    border: 1px solid #f59e0b;
+    box-shadow: 0 0 4px rgba(245, 158, 11, 0.3);
+}
+
+@keyframes rainbow {
+    0%   { color: #ef4444; }
+    16%  { color: #f59e0b; }
+    33%  { color: #eab308; }
+    50%  { color: #22c55e; }
+    66%  { color: #3b82f6; }
+    83%  { color: #a855f7; }
+    100% { color: #ef4444; }
+}
+
+.rainbow-name {
+    animation: rainbow 3s linear infinite;
+    font-weight: bold;
 }
 
 #batch-delete-panel {
@@ -1574,4 +1675,266 @@ h2 {
     background: #533483;
     color: #fff;
     border-color: #a855f7;
+}
+
+/* ─── CHAUDRON MAGIQUE ─────────────────────────────────────────────── */
+
+#chaudron-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chaudron-overlay.hidden {
+    display: none;
+}
+
+.chaudron-panel {
+    background: #16213e;
+    border: 2px solid #533483;
+    border-radius: 8px;
+    padding: 24px;
+    width: 520px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.chaudron-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.chaudron-header h2 {
+    color: #a855f7;
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.chaudron-close {
+    background: #1a1a2e;
+    border: 1px solid #533483;
+    color: #888;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chaudron-close:hover {
+    color: #fff;
+    border-color: #a855f7;
+}
+
+.chaudron-desc {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+#chaudron-slots {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.chaudron-slot {
+    width: 150px;
+    min-height: 70px;
+    background: #1a1a2e;
+    border: 2px dashed #0f3460;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    text-align: center;
+    gap: 6px;
+}
+
+.chaudron-slot.filled {
+    border: 2px solid #a855f7;
+    background: #1e1040;
+}
+
+.chaudron-slot-label {
+    color: #555;
+    font-size: 0.8rem;
+}
+
+.chaudron-remove {
+    background: none;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.chaudron-remove:hover {
+    background: #ef4444;
+    color: #fff;
+}
+
+.chaudron-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.chaudron-filter-row label {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.chaudron-filter-row select {
+    background: #1a1a2e;
+    border: 1px solid #0f3460;
+    color: #ccc;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+#chaudron-inventory {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    padding: 8px;
+    background: #0f1629;
+    border-radius: 4px;
+}
+
+.chaudron-inv-item {
+    padding: 4px 8px;
+    background: #1a1a2e;
+    border: 1px solid #0f3460;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.75rem;
+}
+
+.chaudron-inv-item:hover {
+    border-color: #a855f7;
+    background: #1e1040;
+}
+
+.chaudron-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid #0f3460;
+}
+
+#chaudron-cost {
+    color: #f59e0b;
+    font-weight: bold;
+}
+
+#chaudron-fondre-btn {
+    background: #533483;
+    border: 1px solid #a855f7;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#chaudron-fondre-btn:disabled {
+    background: #1a1a2e;
+    border-color: #333;
+    color: #555;
+    cursor: not-allowed;
+}
+
+#chaudron-fondre-btn:not(:disabled):hover {
+    background: #a855f7;
+}
+
+#chaudron-result {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.chaudron-success {
+    color: #22c55e;
+    font-weight: bold;
+    padding: 8px;
+    background: #0a2e1a;
+    border-radius: 4px;
+}
+
+.chaudron-popup {
+    background: #1e1040;
+    border: 2px solid #a855f7;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    animation: chaudron-pop 0.3s ease;
+}
+
+@keyframes chaudron-pop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.chaudron-popup-title {
+    color: #22c55e;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.chaudron-rarete {
+    color: #888;
+    font-size: 0.8rem;
+    margin: 4px 0 8px;
+}
+
+.chaudron-mod {
+    color: #c084fc;
+    font-size: 0.85rem;
+    padding: 2px 0;
+}
+
+.chaudron-error {
+    color: #ef4444;
+    padding: 8px;
+    background: #2e0a0a;
+    border-radius: 4px;
+}
+
+#btn-chaudron {
+    background: #1a1a2e;
+    border: 1px solid #a855f7;
+    color: #a855f7;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.chaudron-icon {
+    font-size: 1.1rem;
+    vertical-align: middle;
+    margin-right: 2px;
+}
+
+#btn-chaudron:hover {
+    background: #533483;
+    color: #fff;
 }

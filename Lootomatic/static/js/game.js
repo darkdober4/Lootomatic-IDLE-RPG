@@ -35,18 +35,18 @@ const SLOT_ICONS = {
 };
 
 const SORTS_INFO = {
-    boule_feu: { nom: "Boule de Feu", desc: "Dégâts purs (ignore DEF) toutes les 5s" },
-    chaine_eclairs: { nom: "Chaîne d'Éclairs", desc: "15% chance ×1.5 dégâts par attaque" },
-    poison: { nom: "Poison", desc: "DoT pendant 5 ticks au début du combat" },
-    execution: { nom: "Exécution", desc: "Dégâts massifs si ennemi < 20% HP" },
-    frappe_astrale: { nom: "Frappe Astrale", desc: "×3 dégâts toutes les 8s" },
-    bouclier_magique: { nom: "Bouclier Magique", desc: "Absorbe un coup si HP < 50%" },
-    regeneration: { nom: "Régénération", desc: "Heal %HP/tick si HP < 30%" },
-    esquive_spectrale: { nom: "Esquive Spectrale", desc: "20% esquive totale quand touché" },
-    renvoi_sort: { nom: "Renvoi de Sort", desc: "Renvoie %dégâts reçus à l'ennemi" },
-    vol_de_vie: { nom: "Vol de Vie", desc: "%dégâts infligés → heal" },
-    berserker: { nom: "Berserker", desc: "+50% ATQ / -25% DEF si HP < 25%" },
-    hate_temporelle: { nom: "Hâte Temporelle", desc: "×2 vitesse pendant 3 ticks / 12s" },
+    poison: { nom: "Poison", desc: "L'ennemi perd des PV a chaque seconde pendant 5 secondes." },
+    surge_flammes: { nom: "Surge de Flammes", desc: "Frappe 3 fois, puis BOUM : une explosion de feu !" },
+    hemorragie: { nom: "Hemorragie", desc: "Frappe 4 fois, puis l'ennemi saigne et perd des PV pendant 3 secondes." },
+    gel_accumule: { nom: "Gel Accumule", desc: "Quand tu te fais taper 3 fois, l'ennemi est gele et rate sa prochaine attaque." },
+    vengeance: { nom: "Vengeance", desc: "Encaisse 5 coups, puis renvoie tous les degats recus d'un seul coup !" },
+    chaine_eclairs: { nom: "Chaine d'Eclairs", desc: "Se charge tout seul. Quand c'est plein, ZAP : un eclair frappe l'ennemi !" },
+    vol_ame: { nom: "Vol d'Ame", desc: "Frappe 6 fois, puis tu voles la vie de l'ennemi a chaque coup pour le reste du combat." },
+    lame_spectrale: { nom: "Lame Spectrale", desc: "Frappe 2 fois, puis ton prochain coup fait beaucoup plus mal !" },
+    marque_maudite: { nom: "Marque Maudite", desc: "Frappe 3 fois, puis tes prochains coups font beaucoup plus mal !" },
+    peau_fer: { nom: "Peau de Fer", desc: "Quand tu te fais taper 4 fois, un bouclier magique te protege du prochain coup." },
+    distorsion: { nom: "Distorsion", desc: "Se charge tout seul. Quand c'est plein, tu attaques 2 fois plus vite pendant quelques secondes !" },
+    execution: { nom: "Execution", desc: "Frappe 6 fois. Si l'ennemi est presque mort, TU LE FINIS avec un coup gigantesque !" },
 };
 
 const ORBE_DESCRIPTIONS = {
@@ -97,6 +97,16 @@ function updateHP(data) {
     pText.textContent = `${data.player_hp} / ${pHpMax}`;
     eBar.style.width = Math.max(0, (data.enemy_hp / eHpMax) * 100) + "%";
     eText.textContent = `${Math.max(0, data.enemy_hp)} / ${eHpMax}`;
+
+    if (data.spell_stacks) {
+        const ss = data.spell_stacks;
+        const fill = document.querySelector(".stack-bar-fill");
+        const text = document.querySelector(".stack-bar-text");
+        if (fill && text && ss.max > 0) {
+            fill.style.width = (ss.current / ss.max * 100) + "%";
+            text.textContent = `${ss.current}/${ss.max}`;
+        }
+    }
 }
 
 function renderAll() {
@@ -124,11 +134,18 @@ function renderSpellDisplay() {
         container.innerHTML = '<div class="spell-none">Aucun sort actif</div>';
         return;
     }
-    const catIcon = spell.categorie === "offensif" ? "🔥" : spell.categorie === "defensif" ? "🛡️" : "⚡";
+    let stackHtml = "";
+    if (spell.stacks_max > 0) {
+        const pct = (spell.stacks_current / spell.stacks_max * 100);
+        stackHtml = `<div class="stack-bar-container">
+            <div class="stack-bar-fill" style="width:${pct}%"></div>
+            <span class="stack-bar-text">${spell.stacks_current}/${spell.stacks_max}</span>
+        </div>`;
+    }
     container.innerHTML = `<div class="spell-active">
-        <span class="spell-icon">${catIcon}</span>
         <span class="spell-name">${spell.nom}</span>
         <span class="spell-level">Niv.${spell.niveau}</span>
+        ${stackHtml}
     </div>`;
 }
 
@@ -150,13 +167,10 @@ function renderPlayerStats() {
     list.innerHTML = "";
     const eff = p.stats_effectives;
     for (const [key, label] of Object.entries(STAT_LABELS)) {
-        const base = p.stats[key] || 0;
         const total = eff[key] || 0;
-        const bonus = total - base;
-        const bonusStr = bonus > 0 ? ` (+${bonus})` : "";
         const row = document.createElement("div");
         row.className = "stat-row";
-        row.innerHTML = `<span class="stat-label">${label}</span><span class="stat-value">${base}${bonusStr}</span>`;
+        row.innerHTML = `<span class="stat-label">${label}</span><span class="stat-value">${total}</span>`;
         list.appendChild(row);
     }
 
@@ -216,6 +230,13 @@ function renderEquipment() {
     }
 }
 
+function getItemStatValue(item, stat) {
+    for (const mod of item.mods) {
+        if (mod.stat === stat) return mod.valeur;
+    }
+    return 0;
+}
+
 function renderInventory() {
     const inv = gameState.player.inventaire;
     const tabsContainer = document.getElementById("inv-tabs");
@@ -230,25 +251,59 @@ function renderInventory() {
 
     renderBatchDelete();
 
+    const filterStat = document.getElementById("inv-filter-stat").value;
+    const sortMode = document.getElementById("inv-sort-mode").value;
+
+    tabsContainer.style.display = filterStat ? "none" : "flex";
+
+    let entries = [];
+    if (filterStat) {
+        inv.forEach((coffre, ci) => {
+            coffre.forEach((item, ii) => {
+                if (getItemStatValue(item, filterStat) > 0) {
+                    entries.push({ item, coffreIdx: ci, origIdx: ii });
+                }
+            });
+        });
+    } else {
+        const rawCoffre = inv[currentTab] || [];
+        rawCoffre.forEach((item, i) => {
+            entries.push({ item, coffreIdx: currentTab, origIdx: i });
+        });
+    }
+
+    if (sortMode === "rarete") {
+        const rareteOrder = { "Commun": 0, "Rare": 1, "Épique": 2, "Légendaire": 3, "Mythique": 4 };
+        entries.sort((a, b) => (rareteOrder[b.item.rarete] || 0) - (rareteOrder[a.item.rarete] || 0));
+    } else if (sortMode === "stat" && filterStat) {
+        entries.sort((a, b) => getItemStatValue(b.item, filterStat) - getItemStatValue(a.item, filterStat));
+    } else if (sortMode === "niveau") {
+        entries.sort((a, b) => b.item.niveau - a.item.niveau);
+    }
+
     const grid = document.getElementById("inv-grid");
     grid.innerHTML = "";
-    const coffre = inv[currentTab] || [];
-    coffre.forEach((item, i) => {
+    entries.forEach(({ item, coffreIdx, origIdx }) => {
         const div = document.createElement("div");
         const isOrbe = item.slot === "orbe";
-        const isSelectedOrbe = selectedOrbe && selectedOrbe.coffre === currentTab && selectedOrbe.idx === i;
+        const isSelectedOrbe = selectedOrbe && selectedOrbe.coffre === coffreIdx && selectedOrbe.idx === origIdx;
         const isArtefact = item.slot === "artefact";
         div.className = "inv-slot"
             + (item.corrompu ? " corrupted" : "")
+            + (item.locked ? " locked-item" : "")
             + (isOrbe ? " orbe-item" : "")
             + (isArtefact ? " item-artefact" : "")
             + (isSelectedOrbe ? " orbe-selected" : "");
         const icon = SLOT_ICONS[item.slot] || "📦";
         let label = icon + " " + item.nom;
         if (isOrbe && item.quantite > 1) label += ` x${item.quantite}`;
-        div.innerHTML = `<span class="item-name rarity-${item.rarete}">${label}</span>`
+        const nameClass = item.locked ? "item-name rainbow-name" : `item-name rarity-${item.rarete}`;
+        const lockIcon = item.locked ? "🔒" : "🔓";
+        const lockTitle = item.locked ? "Deverrouiller" : "Verrouiller";
+        div.innerHTML = `<span class="${nameClass}">${label}</span>`
             + (item.corrompu ? '<span class="corrupt-badge">⚠️</span>' : '')
-            + `<button class="btn-delete" onclick="event.stopPropagation();deleteItem(${currentTab},${i})" title="Supprimer">✕</button>`;
+            + `<button class="btn-lock" onclick="event.stopPropagation();toggleLock(${coffreIdx},${origIdx})" title="${lockTitle}">${lockIcon}</button>`
+            + `<button class="btn-delete" onclick="event.stopPropagation();deleteItem(${coffreIdx},${origIdx})" title="Supprimer">✕</button>`;
         div.addEventListener("mouseenter", (ev) => showTooltip(ev, item));
         div.addEventListener("mouseleave", hideTooltip);
         div.addEventListener("click", () => {
@@ -256,18 +311,19 @@ function renderInventory() {
                 if (isSelectedOrbe) {
                     selectedOrbe = null;
                 } else {
-                    selectedOrbe = { coffre: currentTab, idx: i };
+                    selectedOrbe = { coffre: coffreIdx, idx: origIdx };
                 }
                 renderInventory();
             } else if (selectedOrbe) {
-                utiliserOrbe(currentTab, i);
+                utiliserOrbe(coffreIdx, origIdx);
             } else {
-                equiper(currentTab, i);
+                equiper(coffreIdx, origIdx);
             }
         });
         grid.appendChild(div);
     });
-    for (let i = coffre.length; i < 20; i++) {
+    const displayed = entries.length;
+    for (let i = displayed; i < 20; i++) {
         const div = document.createElement("div");
         div.className = "inv-slot";
         div.innerHTML = `<span style="color:#333">—</span>`;
@@ -442,17 +498,35 @@ async function loadSaveList() {
     const res = await fetch("/api/sauvegardes");
     const data = await res.json();
     const list = document.getElementById("save-list");
-    list.textContent = data.fichiers.length > 0 ? "Sauvegardes : " + data.fichiers.join(", ") : "Aucune sauvegarde";
+    if (data.fichiers.length === 0) {
+        list.innerHTML = '<span style="color:#555">Aucune sauvegarde</span>';
+        return;
+    }
+    list.innerHTML = "Sauvegardes : " + data.fichiers.map(f =>
+        `<span class="save-item" onclick="document.getElementById('save-filename').value='${f}'">${f}</span>`
+    ).join(", ");
 }
 
-async function sauvegarder() {
+async function openSavesFolder() {
+    await fetch("/api/open_saves_folder", { method: "POST" });
+}
+
+async function sauvegarder(confirm_overwrite) {
     const filename = document.getElementById("save-filename").value || "sauvegarde.json";
     const res = await fetch("/api/sauvegarder", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ filename }),
+        body: JSON.stringify({ filename, confirm_overwrite }),
     });
     const data = await res.json();
+    if (data.exists) {
+        if (confirm(data.message)) {
+            await sauvegarder(true);
+        } else {
+            document.getElementById("options-message").textContent = "Sauvegarde annulee.";
+        }
+        return;
+    }
     document.getElementById("options-message").textContent = data.message;
     loadSaveList();
 }
@@ -496,6 +570,17 @@ async function prevEnemy() {
     await fetchState();
 }
 
+async function toggleLock(coffreIdx, itemIdx) {
+    const res = await fetch("/api/toggle_lock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ coffre_idx: coffreIdx, item_idx: itemIdx }),
+    });
+    const data = await res.json();
+    addLogLine(data.message);
+    await fetchState();
+}
+
 async function deleteItem(coffreIdx, itemIdx) {
     if (!confirm("Supprimer cet objet ?")) return;
     const res = await fetch("/api/delete_item", {
@@ -504,7 +589,7 @@ async function deleteItem(coffreIdx, itemIdx) {
         body: JSON.stringify({ coffre_idx: coffreIdx, item_idx: itemIdx }),
     });
     const data = await res.json();
-    addLogLine("🗑️ " + data.message);
+    addLogLine(data.message);
     await fetchState();
 }
 
@@ -853,6 +938,133 @@ async function fetchProTip() {
     } catch (e) {}
 }
 
+// ─── CHAUDRON MAGIQUE ────────────────────────────────────────────────────
+
+let chaudronSelected = [];
+const CHAUDRON_COUT_BASE = 50;
+const CHAUDRON_COUT_RARETE = { "Commun": 0, "Rare": 25, "Épique": 75, "Légendaire": 200, "Mythique": 500 };
+
+function toggleChaudron() {
+    const overlay = document.getElementById("chaudron-overlay");
+    overlay.classList.toggle("hidden");
+    if (!overlay.classList.contains("hidden")) {
+        chaudronSelected = [];
+        renderChaudron();
+    }
+}
+
+function renderChaudron() {
+    for (let i = 0; i < 3; i++) {
+        const slot = document.getElementById(`chaudron-slot-${i}`);
+        const sel = chaudronSelected[i];
+        if (sel) {
+            const item = sel.item;
+            const icon = SLOT_ICONS[item.slot] || "";
+            slot.innerHTML = `<span class="item-name rarity-${item.rarete}">${icon} ${item.nom}</span>
+                <button class="chaudron-remove" onclick="chaudronRemove(${i})">Retirer</button>`;
+            slot.classList.add("filled");
+        } else {
+            slot.innerHTML = `<span class="chaudron-slot-label">Objet ${i + 1}</span>`;
+            slot.classList.remove("filled");
+        }
+    }
+
+    let cout = CHAUDRON_COUT_BASE;
+    chaudronSelected.forEach(s => {
+        if (s) cout += (CHAUDRON_COUT_RARETE[s.item.rarete] || 0);
+    });
+    document.getElementById("chaudron-cost").textContent = `Cout : ${cout} or`;
+    document.getElementById("chaudron-fondre-btn").disabled = chaudronSelected.filter(Boolean).length < 3;
+    document.getElementById("chaudron-result").innerHTML = "";
+
+    const filterRarete = document.getElementById("chaudron-filter-rarete").value;
+    const inv = document.getElementById("chaudron-inventory");
+    inv.innerHTML = "";
+    const p = gameState.player;
+    p.inventaire.forEach((coffre, ci) => {
+        coffre.forEach((item, ii) => {
+            if (item.slot === "orbe" || item.slot === "artefact") return;
+            if (item.locked) return;
+            if (filterRarete && item.rarete !== filterRarete) return;
+            const isUsed = chaudronSelected.some(s => s && s.coffre === ci && s.idx === ii);
+            if (isUsed) return;
+            const div = document.createElement("div");
+            div.className = "chaudron-inv-item";
+            const icon = SLOT_ICONS[item.slot] || "";
+            div.innerHTML = `<span class="item-name rarity-${item.rarete}">${icon} ${item.nom}</span>`;
+            div.onclick = () => chaudronAdd(ci, ii, item);
+            inv.appendChild(div);
+        });
+    });
+}
+
+function chaudronAdd(coffre, idx, item) {
+    if (chaudronSelected.filter(Boolean).length >= 3) return;
+    const slot = chaudronSelected.indexOf(undefined);
+    const emptySlot = chaudronSelected.length < 3 ? chaudronSelected.length : slot;
+    if (emptySlot < 0 || emptySlot >= 3) {
+        for (let i = 0; i < 3; i++) {
+            if (!chaudronSelected[i]) { chaudronSelected[i] = { coffre, idx, item }; break; }
+        }
+    } else {
+        chaudronSelected[emptySlot] = { coffre, idx, item };
+    }
+    while (chaudronSelected.length < 3) chaudronSelected.push(undefined);
+    renderChaudron();
+}
+
+function chaudronRemove(slotIdx) {
+    chaudronSelected[slotIdx] = undefined;
+    renderChaudron();
+}
+
+async function chaudronFondre() {
+    const items = chaudronSelected.filter(Boolean).map(s => ({
+        coffre_idx: s.coffre,
+        item_idx: s.idx,
+    }));
+    const res = await fetch("/api/chaudron/fondre", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items }),
+    });
+    const data = await res.json();
+    const resultDiv = document.getElementById("chaudron-result");
+    if (data.success) {
+        const item = data.item;
+        const icon = SLOT_ICONS[item.slot] || "";
+        const modsHtml = item.mods.map(m =>
+            `<div class="chaudron-mod">+${m.valeur} ${m.nom}</div>`
+        ).join("");
+        addLogLine(data.message);
+        chaudronSelected = [];
+        await fetchState();
+        renderChaudron();
+        document.getElementById("chaudron-result").innerHTML = `
+            <div class="chaudron-popup">
+                <div class="chaudron-popup-title">Objet obtenu !</div>
+                <div class="item-name rarity-${item.rarete}" style="font-size:1.1rem">${icon} ${item.nom}</div>
+                <div class="chaudron-rarete">${item.rarete}</div>
+                ${modsHtml}
+            </div>`;
+    } else {
+        resultDiv.innerHTML = `<div class="chaudron-error">${data.message}</div>`;
+    }
+}
+
+document.addEventListener("keydown", (e) => {
+    if (e.code === "Space") {
+        const overlay = document.getElementById("chaudron-overlay");
+        if (overlay && !overlay.classList.contains("hidden")) {
+            const btn = document.getElementById("chaudron-fondre-btn");
+            if (btn && !btn.disabled) {
+                e.preventDefault();
+                chaudronFondre();
+            }
+        }
+    }
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
     await fetchState();
     addLogLine("Bienvenue dans Lootomatic !");
@@ -860,4 +1072,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateTickSpeed();
     fetchProTip();
     setInterval(fetchProTip, 10000);
+
+    const filterSelect = document.getElementById("inv-filter-stat");
+    const sortSelect = document.getElementById("inv-sort-mode");
+    if (filterSelect) filterSelect.addEventListener("change", () => renderInventory());
+    if (sortSelect) sortSelect.addEventListener("change", () => renderInventory());
 });

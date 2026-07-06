@@ -3,8 +3,9 @@ from game.models import Player, Enemy, Item
 from game.spells import (
     spell_state, process_spells_before_player_attack,
     get_player_attack_multiplier, get_hate_speed_bonus,
-    process_spells_on_player_hit, should_spectral_dodge,
+    process_spells_on_player_hit, is_enemy_frozen,
     get_passive_modifiers, process_lifesteal, process_execution,
+    get_active_spells, accumulate_stacks_on_hit,
 )
 
 
@@ -36,10 +37,12 @@ def tick_player_attack(player: Player, enemy: Enemy):
             degats = int(calculer_degats(atq_j, stats_e["def"]) * mult)
             if random.random() * 100 < stats_j["crit_chance"]:
                 degats = int(degats * stats_j["crit_mult"] / 100)
-                log.append(f"💥 CRITIQUE ! Vous infligez {degats} dégâts à {enemy.nom}")
+                log.append(f"CRITIQUE ! Vous infligez {degats} degats a {enemy.nom}")
             else:
-                log.append(f"⚔️ Vous infligez {degats} dégâts à {enemy.nom}")
+                log.append(f"Vous infligez {degats} degats a {enemy.nom}")
             enemy.hp -= degats
+            for sort in get_active_spells(player):
+                accumulate_stacks_on_hit(sort["key"], sort, player, enemy, log)
             ss = player.session_stats
             ss["degats_infliges"] += degats
             ss["coups_donnes"] += 1
@@ -64,24 +67,24 @@ def tick_enemy_attack(player: Player, enemy: Enemy):
     def_j = int(stats_j["def"] * mods["def_mult"])
 
     if enemy.hp > 0 and player.hp > 0:
-        if should_spectral_dodge():
-            log.append(f"👻 Esquive Spectrale ! Attaque de {enemy.nom} évitée")
+        if is_enemy_frozen():
+            log.append(f"{enemy.nom} est gele ! Attaque annulee")
         elif random.random() * 100 < stats_j["esquive"]:
-            log.append(f"⚡ Vous esquivez l'attaque de {enemy.nom} !")
+            log.append(f"Vous esquivez l'attaque de {enemy.nom} !")
         else:
             degats = calculer_degats(stats_e["atk"], def_j)
             if random.random() * 100 < stats_e["crit_chance"]:
                 degats = int(degats * stats_e["crit_mult"] / 100)
-                log.append(f"💥 {enemy.nom} CRITIQUE ! {degats} dégâts sur vous")
+                log.append(f"{enemy.nom} CRITIQUE ! {degats} degats sur vous")
             else:
-                log.append(f"🗡️ {enemy.nom} vous inflige {degats} dégâts")
+                log.append(f"{enemy.nom} vous inflige {degats} degats")
             absorbed = process_spells_on_player_hit(player, enemy, degats, log)
             degats_reels = degats - absorbed
             player.hp -= degats_reels
             if random.random() * 100 < stats_j["contre"]:
                 contre_degats = calculer_degats(atq_j, stats_e["def"])
                 enemy.hp -= contre_degats
-                log.append(f"🔄 Vous contre-attaquez ! {contre_degats} dégâts")
+                log.append(f"Vous contre-attaquez ! {contre_degats} degats")
 
     return _build_result(log, player, enemy)
 
@@ -172,6 +175,7 @@ def _build_result(log, player, enemy):
                     orbe_item.orbe_type = orbe_key
                     orbe_item.spell_type = None
                     orbe_item.quantite = 1
+                    orbe_item.locked = False
                     player.ajouter_item(orbe_item)
                 orbes_tombes.append({"type": orbe_key, "nom": orbe_data["nom"]})
                 log.append(f"🔮 {orbe_data['nom']} obtenu(e) !")
@@ -199,6 +203,7 @@ def _build_result(log, player, enemy):
             art.corrompu = False
             art.orbe_type = None
             art.quantite = 1
+            art.locked = False
             if enemy.boss:
                 idx = RARITES.index(art.rarete)
                 if idx < len(RARITES) - 1:
@@ -233,6 +238,16 @@ def _build_result(log, player, enemy):
         log.append(f"Vous etes mort ! -{perte_xp} XP. Resurrection...")
         recompenses = {"perte_xp": perte_xp}
 
+    spell_stacks = None
+    active_spells = get_active_spells(player)
+    if active_spells:
+        s = active_spells[0]
+        spell_stacks = {
+            "key": s["key"],
+            "current": spell_state.get_stacks(s["key"]),
+            "max": s["data"].get("stack_threshold", 0),
+        }
+
     return {
         "log": log,
         "resultat": resultat,
@@ -241,4 +256,5 @@ def _build_result(log, player, enemy):
         "player_hp_max": player.get_stats_effectives()["hp_max"],
         "enemy_hp": max(0, enemy.hp),
         "enemy_hp_max": enemy.stats["hp_max"],
+        "spell_stacks": spell_stacks,
     }
