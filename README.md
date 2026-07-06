@@ -3,3 +3,6 @@
     Farm des ennemis, equipe 9 slots d'equipement, modifie tes objets avec des orbes, et enchaîne les donjons pour te reincarner
     plus fort a chaque boss vaincu.
 Help me buy a new pc https://gofund.me/4f2d4ae1f
+
+Start the game with python on app.py
+python app.py
