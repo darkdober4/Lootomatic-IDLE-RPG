@@ -390,6 +390,7 @@ PRO_TIPS = [
     "L'orbe d'Amelioration n'augmente qu'UN SEUL mod aleatoire de +1, pas tous les mods de l'objet.",
     "Les camps dans le donjon restaurent 100% des PV. Ils n'apparaissent pas dans les 3 premiers etages.",
     "La malediction dans le donjon reduit vos PV max de 5 a 15% de facon permanente pour toute la run.",
+    "Le Critique et la Contre-attaque depassent 100% ? Chaque point en trop se transforme en +1 ATQ. Rien ne se perd !",
 ]
 
 SLOT_MACHINE_SLOTS_CHOIX = [
@@ -410,3 +411,16 @@ CHAUDRON_COUT_PAR_RARETE = {
 }
 
 CHAUDRON_RARITE_POIDS = [50, 25, 15, 8, 2]
+
+# ─── ENCHANTEMENT ─────────────────────────────────────────────────────────────
+
+ENCHANT_MAX = 10
+ENCHANT_COUT_OR = {
+    0: 100, 1: 200, 2: 400, 3: 800, 4: 1500,
+    5: 3000, 6: 5000, 7: 8000, 8: 12000, 9: 20000,
+}
+ENCHANT_CHANCE_REUSSITE = {
+    0: 100, 1: 90, 2: 80, 3: 70, 4: 55,
+    5: 40, 6: 30, 7: 20, 8: 15, 9: 10,
+}
+ENCHANT_BONUS_PCT = 10

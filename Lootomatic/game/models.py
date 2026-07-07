@@ -9,6 +9,7 @@ from config import (
     RARITES, RARITE_POIDS, RARITE_MULT, MODIFICATEURS,
     MODS_MAX_PAR_OBJET, TYPES_OBJETS, SLOTS_EQUIPEMENT,
     CAPACITE_COFFRE, COUT_STATS, VIT_HP_BONUS, SORTS,
+    ENCHANT_BONUS_PCT,
 )
 
 
@@ -28,6 +29,7 @@ class Item:
         self.spell_type = None
         self.quantite = 1
         self.locked = False
+        self.enchant_level = 0
 
     @staticmethod
     def _roll_rarete():
@@ -72,6 +74,7 @@ class Item:
             "spell_type": self.spell_type,
             "quantite": self.quantite,
             "locked": self.locked,
+            "enchant_level": self.enchant_level,
         }
 
     @classmethod
@@ -87,6 +90,7 @@ class Item:
         item.spell_type = data.get("spell_type", None)
         item.quantite = data.get("quantite", 1)
         item.locked = data.get("locked", False)
+        item.enchant_level = data.get("enchant_level", 0)
         if item.slot == "artefact" and item.spell_type and item.spell_type not in SORTS:
             remap = {
                 "boule_feu": "surge_flammes",
@@ -178,12 +182,19 @@ class Player:
         for slot, item in self.equipement.items():
             if item is None:
                 continue
+            enchant_mult = 1 + item.enchant_level * ENCHANT_BONUS_PCT / 100
             for mod in item.mods:
                 stat = mod["stat"]
                 if stat in stats:
-                    stats[stat] += mod["valeur"]
+                    stats[stat] += int(mod["valeur"] * enchant_mult)
         stats["hp_max"] += stats.get("vit", 0) * VIT_HP_BONUS
         stats["esquive"] = min(stats.get("esquive", 0), 30)
+        if stats.get("crit_chance", 0) > 100:
+            stats["atk"] += stats["crit_chance"] - 100
+            stats["crit_chance"] = 100
+        if stats.get("contre", 0) > 100:
+            stats["atk"] += stats["contre"] - 100
+            stats["contre"] = 100
         return stats
 
     def ajouter_item(self, item):

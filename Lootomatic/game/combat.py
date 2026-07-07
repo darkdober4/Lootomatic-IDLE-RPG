@@ -176,6 +176,7 @@ def _build_result(log, player, enemy):
                     orbe_item.spell_type = None
                     orbe_item.quantite = 1
                     orbe_item.locked = False
+                    orbe_item.enchant_level = 0
                     player.ajouter_item(orbe_item)
                 orbes_tombes.append({"type": orbe_key, "nom": orbe_data["nom"]})
                 log.append(f"🔮 {orbe_data['nom']} obtenu(e) !")
@@ -204,6 +205,7 @@ def _build_result(log, player, enemy):
             art.orbe_type = None
             art.quantite = 1
             art.locked = False
+            art.enchant_level = 0
             if enemy.boss:
                 idx = RARITES.index(art.rarete)
                 if idx < len(RARITES) - 1:

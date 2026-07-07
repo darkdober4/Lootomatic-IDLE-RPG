@@ -298,6 +298,57 @@ def api_toggle_lock():
     })
 
 
+@app.route("/api/enchant", methods=["POST"])
+def api_enchant():
+    import random as _r
+    p, _ = get_or_init_game()
+    data = request.get_json()
+
+    from config import ENCHANT_MAX, ENCHANT_COUT_OR, ENCHANT_CHANCE_REUSSITE
+
+    slot = data.get("slot")
+    if slot and slot in p.equipement and p.equipement[slot] is not None:
+        item = p.equipement[slot]
+    else:
+        coffre_idx = data.get("coffre_idx", 0)
+        item_idx = data.get("item_idx", 0)
+        if coffre_idx >= len(p.inventaire):
+            return jsonify({"success": False, "message": "Coffre invalide"})
+        coffre = p.inventaire[coffre_idx]
+        if item_idx >= len(coffre):
+            return jsonify({"success": False, "message": "Objet invalide"})
+        item = coffre[item_idx]
+    if item.slot in ("orbe", "artefact"):
+        return jsonify({"success": False, "message": "Les orbes et artefacts ne peuvent pas etre enchantes."})
+    if item.enchant_level >= ENCHANT_MAX:
+        return jsonify({"success": False, "message": f"Niveau max (+{ENCHANT_MAX}) atteint !"})
+
+    cout = ENCHANT_COUT_OR.get(item.enchant_level, 99999)
+    if p.or_ < cout:
+        return jsonify({"success": False, "message": f"Pas assez d'or ! Il faut {cout} or."})
+
+    p.or_ -= cout
+    chance = ENCHANT_CHANCE_REUSSITE.get(item.enchant_level, 0)
+
+    if _r.random() * 100 < chance:
+        item.enchant_level += 1
+        return jsonify({
+            "success": True,
+            "reussi": True,
+            "message": f"Enchantement reussi ! {item.nom} passe a +{item.enchant_level}",
+            "enchant_level": item.enchant_level,
+        })
+    else:
+        item.enchant_level = 0
+        item.corrompu = True
+        return jsonify({
+            "success": True,
+            "reussi": False,
+            "message": f"Echec ! {item.nom} est CORROMPU et perd tous ses niveaux d'enchantement !",
+            "enchant_level": 0,
+        })
+
+
 @app.route("/api/utiliser_orbe", methods=["POST"])
 def api_utiliser_orbe():
     p, _ = get_or_init_game()

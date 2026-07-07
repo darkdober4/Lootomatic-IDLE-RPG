@@ -219,7 +219,10 @@ function renderEquipment() {
         const div = document.createElement("div");
         div.className = "equip-slot";
         if (item) {
-            div.innerHTML = `<span class="slot-label">${SLOT_LABELS[slot] || slot}</span><span class="item-name rarity-${item.rarete}">${item.nom}</span>`;
+            const enchantLabel = item.enchant_level > 0 ? ` <span class="enchant-badge">+${item.enchant_level}</span>` : "";
+            const canEnchant = item.slot !== "artefact" && item.slot !== "orbe" && item.enchant_level < 10;
+            const enchantBtn = canEnchant ? `<button class="btn-enchant" onclick="event.stopPropagation();enchantEquipped('${slot}')" title="Enchanter">+</button>` : "";
+            div.innerHTML = `<span class="slot-label">${SLOT_LABELS[slot] || slot}</span><span class="item-name rarity-${item.rarete}">${item.nom}${enchantLabel}</span>${enchantBtn}`;
             div.addEventListener("mouseenter", (ev) => showTooltip(ev, item));
             div.addEventListener("mouseleave", hideTooltip);
             div.addEventListener("click", () => desequiper(slot));
@@ -300,8 +303,12 @@ function renderInventory() {
         const nameClass = item.locked ? "item-name rainbow-name" : `item-name rarity-${item.rarete}`;
         const lockIcon = item.locked ? "🔒" : "🔓";
         const lockTitle = item.locked ? "Deverrouiller" : "Verrouiller";
-        div.innerHTML = `<span class="${nameClass}">${label}</span>`
-            + (item.corrompu ? '<span class="corrupt-badge">⚠️</span>' : '')
+        const enchantLabel = item.enchant_level > 0 ? ` <span class="enchant-badge">+${item.enchant_level}</span>` : "";
+        const canEnchant = !isOrbe && !isArtefact && !item.corrompu && item.enchant_level < 10;
+        const enchantBtn = canEnchant ? `<button class="btn-enchant-inv" onclick="event.stopPropagation();enchantItem(${coffreIdx},${origIdx})" title="Enchanter">+</button>` : "";
+        div.innerHTML = `<span class="${nameClass}">${label}${enchantLabel}</span>`
+            + (item.corrompu ? '<span class="corrupt-badge">CORROMPU</span>' : '')
+            + enchantBtn
             + `<button class="btn-lock" onclick="event.stopPropagation();toggleLock(${coffreIdx},${origIdx})" title="${lockTitle}">${lockIcon}</button>`
             + `<button class="btn-delete" onclick="event.stopPropagation();deleteItem(${coffreIdx},${origIdx})" title="Supprimer">✕</button>`;
         div.addEventListener("mouseenter", (ev) => showTooltip(ev, item));
@@ -346,10 +353,13 @@ function buildItemTooltipHTML(item) {
             html += `<div style="color:#aaa;font-size:0.72rem">${sort.desc}</div>`;
         }
     } else {
-        html += `<div class="tooltip-slot">${SLOT_LABELS[item.slot] || item.slot} • ${item.rarete} • Niv.${item.niveau}</div>`;
-        if (item.corrompu) html += `<div style="color:#f59e0b">⚠️ CORROMPU</div>`;
+        const enchantStr = item.enchant_level > 0 ? ` • <span style="color:#f59e0b">+${item.enchant_level}</span>` : "";
+        html += `<div class="tooltip-slot">${SLOT_LABELS[item.slot] || item.slot} • ${item.rarete} • Niv.${item.niveau}${enchantStr}</div>`;
+        if (item.corrompu) html += `<div style="color:#f59e0b">CORROMPU</div>`;
         item.mods.forEach(mod => {
-            html += `<div class="tooltip-mod">+${mod.valeur} ${STAT_LABELS[mod.stat] || mod.stat}</div>`;
+            const bonus = item.enchant_level > 0 ? Math.floor(mod.valeur * (1 + item.enchant_level * 0.1)) : mod.valeur;
+            const bonusStr = bonus !== mod.valeur ? ` <span style="color:#f59e0b">(${bonus})</span>` : "";
+            html += `<div class="tooltip-mod">+${mod.valeur} ${STAT_LABELS[mod.stat] || mod.stat}${bonusStr}</div>`;
         });
     }
     return html;
@@ -567,6 +577,28 @@ async function prevEnemy() {
     const res = await fetch("/api/prev_enemy", { method: "POST" });
     const data = await res.json();
     addLogLine("◀ " + data.message);
+    await fetchState();
+}
+
+async function enchantItem(coffreIdx, itemIdx) {
+    const res = await fetch("/api/enchant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ coffre_idx: coffreIdx, item_idx: itemIdx }),
+    });
+    const data = await res.json();
+    addLogLine(data.message);
+    await fetchState();
+}
+
+async function enchantEquipped(slot) {
+    const res = await fetch("/api/enchant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slot }),
+    });
+    const data = await res.json();
+    addLogLine(data.message);
     await fetchState();
 }
 
@@ -936,6 +968,92 @@ async function fetchProTip() {
             }, 300);
         }
     } catch (e) {}
+}
+
+// ─── ENCHANTEMENT ────────────────────────────────────────────────────────
+
+let enchantSelectedItem = null;
+const ENCHANT_COUT = { 0:100, 1:200, 2:400, 3:800, 4:1500, 5:3000, 6:5000, 7:8000, 8:12000, 9:20000 };
+const ENCHANT_CHANCE = { 0:100, 1:90, 2:80, 3:70, 4:55, 5:40, 6:30, 7:20, 8:15, 9:10 };
+
+function toggleEnchant() {
+    const overlay = document.getElementById("enchant-overlay");
+    overlay.classList.toggle("hidden");
+    if (!overlay.classList.contains("hidden")) {
+        enchantSelectedItem = null;
+        renderEnchant();
+    }
+}
+
+function renderEnchant() {
+    document.getElementById("enchant-result").innerHTML = "";
+    const selDiv = document.getElementById("enchant-selected-item");
+    const infoDiv = document.getElementById("enchant-info");
+    const btn = document.getElementById("enchant-btn");
+
+    if (!enchantSelectedItem) {
+        selDiv.innerHTML = '<span style="color:#555">Clique sur un objet ci-dessous</span>';
+        infoDiv.innerHTML = "";
+        btn.disabled = true;
+    } else {
+        const item = enchantSelectedItem.item;
+        const icon = SLOT_ICONS[item.slot] || "";
+        const enchStr = item.enchant_level > 0 ? ` <span class="enchant-badge">+${item.enchant_level}</span>` : "";
+        selDiv.innerHTML = `<span class="item-name rarity-${item.rarete}">${icon} ${item.nom}${enchStr}</span>`;
+        const cout = ENCHANT_COUT[item.enchant_level] || 0;
+        const chance = ENCHANT_CHANCE[item.enchant_level] || 0;
+        const nextLevel = item.enchant_level + 1;
+        infoDiv.innerHTML = `
+            <div class="enchant-stat">+${item.enchant_level} vers +${nextLevel}</div>
+            <div class="enchant-stat">Cout : <span style="color:#f59e0b">${cout} or</span></div>
+            <div class="enchant-stat">Chance : <span style="color:${chance >= 50 ? '#22c55e' : '#ef4444'}">${chance}%</span></div>
+            <div class="enchant-stat" style="color:#ef4444;font-size:0.75rem">Echec = corruption de l'objet !</div>`;
+        btn.disabled = false;
+    }
+
+    const inv = document.getElementById("enchant-inventory");
+    inv.innerHTML = "";
+    const p = gameState.player;
+    p.inventaire.forEach((coffre, ci) => {
+        coffre.forEach((item, ii) => {
+            if (item.slot === "orbe" || item.slot === "artefact") return;
+            if (item.corrompu) return;
+            if (item.enchant_level >= 10) return;
+            const isSelected = enchantSelectedItem && enchantSelectedItem.coffre === ci && enchantSelectedItem.idx === ii;
+            const div = document.createElement("div");
+            div.className = "enchant-inv-item" + (isSelected ? " enchant-item-selected" : "");
+            const icon = SLOT_ICONS[item.slot] || "";
+            const enchStr = item.enchant_level > 0 ? ` +${item.enchant_level}` : "";
+            div.innerHTML = `<span class="item-name rarity-${item.rarete}">${icon} ${item.nom}${enchStr}</span>`;
+            div.onclick = () => {
+                enchantSelectedItem = { coffre: ci, idx: ii, item };
+                renderEnchant();
+            };
+            inv.appendChild(div);
+        });
+    });
+}
+
+async function enchantSelected() {
+    if (!enchantSelectedItem) return;
+    const res = await fetch("/api/enchant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ coffre_idx: enchantSelectedItem.coffre, item_idx: enchantSelectedItem.idx }),
+    });
+    const data = await res.json();
+    const resultDiv = document.getElementById("enchant-result");
+    if (data.success && data.reussi) {
+        resultDiv.innerHTML = `<div class="chaudron-success">${data.message}</div>`;
+    } else if (data.success) {
+        resultDiv.innerHTML = `<div class="chaudron-error">${data.message}</div>`;
+    } else {
+        resultDiv.innerHTML = `<div class="chaudron-error">${data.message}</div>`;
+    }
+    addLogLine(data.message);
+    enchantSelectedItem = null;
+    await fetchState();
+    renderEnchant();
 }
 
 // ─── CHAUDRON MAGIQUE ────────────────────────────────────────────────────

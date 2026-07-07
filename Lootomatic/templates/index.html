@@ -13,6 +13,7 @@
         <div class="header-info">
             <button id="btn-donjon" onclick="toggleDonjon()">🏰 Donjon</button>
             <button id="btn-chaudron" onclick="toggleChaudron()"><span class="chaudron-icon">⚗</span> Chaudron</button>
+            <button id="btn-enchant" onclick="toggleEnchant()">Enchantement</button>
             <button id="btn-stats-overlay" onclick="toggleStatsOverlay()">Stats</button>
             <button id="btn-info" onclick="toggleInfo()">❓ Aide</button>
             <span id="or-display">💰 0</span>
@@ -23,70 +24,88 @@
 
     <div id="info-panel" class="hidden">
         <div class="info-content">
-            <h2>📊 Statistiques du Héros</h2>
+            <h2>Statistiques du Heros</h2>
             <table class="info-table">
-                <tr><td>⚔️ ATQ</td><td>Dégâts infligés par attaque</td></tr>
-                <tr><td>🛡️ DÉF</td><td>Réduction des dégâts reçus (formule : DEF / (DEF+100))</td></tr>
-                <tr><td>❤️ PV Max</td><td>Points de vie maximum</td></tr>
-                <tr><td>💚 VIT</td><td>Chaque point = +5 PV Max</td></tr>
-                <tr><td>💥 Critique %</td><td>Chance d'infliger un coup critique</td></tr>
-                <tr><td>💥 Dégâts Crit. %</td><td>Multiplicateur de dégâts sur un critique (base 150%)</td></tr>
-                <tr><td>⚡ Esquive %</td><td>Chance d'esquiver une attaque ennemie</td></tr>
-                <tr><td>🎁 Chance Loot %</td><td>Chance de loot. 100% = 1 objet, 200% = 2 objets, etc.</td></tr>
-                <tr><td>🔄 Contre-attaque %</td><td>Chance de riposter après avoir reçu un coup</td></tr>
-                <tr><td>⏩ Vit. Attaque</td><td>Vitesse d'attaque. 100 = 1 coup/sec, 200 = 2 coups/sec</td></tr>
-                <tr><td>✨ Niveau Sorts</td><td>Augmente globalement le niveau des sorts</td></tr>
+                <tr><td>ATQ</td><td>Degats infliges par attaque</td></tr>
+                <tr><td>DEF</td><td>Reduction des degats recus (formule : DEF / (DEF+100))</td></tr>
+                <tr><td>PV Max</td><td>Points de vie maximum</td></tr>
+                <tr><td>VIT</td><td>Chaque point = +5 PV Max</td></tr>
+                <tr><td>Critique %</td><td>Chance d'infliger un coup critique. Au-dela de 100%, chaque point en trop = +1 ATQ</td></tr>
+                <tr><td>Degats Crit. %</td><td>Multiplicateur de degats sur un critique (base 150%)</td></tr>
+                <tr><td>Esquive %</td><td>Chance d'esquiver une attaque ennemie (plafonnee a 30%)</td></tr>
+                <tr><td>Chance Loot %</td><td>100% = 1 objet, 200% = 2 objets, etc.</td></tr>
+                <tr><td>Contre-attaque %</td><td>Chance de riposter apres un coup recu. Au-dela de 100%, chaque point en trop = +1 ATQ</td></tr>
+                <tr><td>Vit. Attaque</td><td>100 = 1 coup/sec, 200 = 2 coups/sec</td></tr>
+                <tr><td>Niveau Sorts</td><td>Augmente globalement le niveau des sorts</td></tr>
+            </table>
+            <p class="info-note">Les PV sont remis au max a chaque victoire et a chaque mort. La mort fait perdre 1% de l'XP.</p>
+
+            <h2>Orbes de Modification</h2>
+            <table class="info-table">
+                <tr><td>Orbe d'Amelioration</td><td>+1 sur un mod aleatoire de l'objet. 10% corruption. Drop 15% (30% boss)</td></tr>
+                <tr><td>Orbe d'Alteration</td><td>Ajoute un mod aleatoire. 25% rarete up. 40% corruption. Mythique = auto-corruption. Drop 5% (10% boss)</td></tr>
+            </table>
+            <p class="info-note">Un objet corrompu ne peut plus etre modifie par des orbes.</p>
+
+            <h2>Artefacts et Sorts</h2>
+            <p class="info-note">Les artefacts donnent un sort a stacks. Chaque coup ou degat recu accumule des stacks, et quand la barre est pleine, l'effet se declenche ! Le niveau du sort depend de la rarete :</p>
+            <table class="info-table">
+                <tr><td>Rare (Niv.2)</td><td>Puissance x1.5</td></tr>
+                <tr><td>Epique (Niv.3)</td><td>Puissance x2.0</td></tr>
+                <tr><td>Legendaire (Niv.4)</td><td>Puissance x2.5</td></tr>
+                <tr><td>Mythique (Niv.5)</td><td>Puissance x3.0</td></tr>
             </table>
 
-            <h2>🔮 Orbes de Modification</h2>
+            <h3>Sorts Offensifs</h3>
             <table class="info-table">
-                <tr><td>✨ Orbe d'Amélioration</td><td>+1 sur une stat aléatoire de l'objet. 10% corruption. Drop 15% (30% boss)</td></tr>
-                <tr><td>🔮 Orbe d'Altération</td><td>Ajoute un mod aléatoire. 25% rareté↑. 40% corruption. Mythique = auto-corruption. Drop 5% (10% boss)</td></tr>
+                <tr><td>Poison</td><td>L'ennemi perd des PV chaque seconde pendant 5 secondes. Scale avec l'ATQ.</td></tr>
+                <tr><td>Surge de Flammes</td><td>Frappe 3 fois, puis explosion de degats purs (ignore la DEF).</td></tr>
+                <tr><td>Hemorragie</td><td>Frappe 4 fois, puis l'ennemi saigne pendant 3 secondes.</td></tr>
+                <tr><td>Chaine d'Eclairs</td><td>Se charge automatiquement. ZAP : degats d'eclair !</td></tr>
+                <tr><td>Vengeance</td><td>Encaisse 5 coups, puis renvoie tous les degats recus d'un seul coup !</td></tr>
+                <tr><td>Lame Spectrale</td><td>Frappe 2 fois, puis le prochain coup fait beaucoup plus mal !</td></tr>
+                <tr><td>Marque Maudite</td><td>Frappe 3 fois, puis les prochains coups font beaucoup plus mal !</td></tr>
+                <tr><td>Execution</td><td>Frappe 6 fois. Si l'ennemi est presque mort, coup gigantesque !</td></tr>
             </table>
 
-            <h2>✨ Artéfacts & Sorts</h2>
-            <p class="info-note">Les artéfacts sont des objets rares qui octroient un sort. Le niveau du sort dépend de la rareté :</p>
+            <h3>Sorts Defensifs</h3>
             <table class="info-table">
-                <tr><td>Rare</td><td>Sort niveau 2 (×1.5 puissance)</td></tr>
-                <tr><td>Épique</td><td>Sort niveau 3 (×2.0 puissance)</td></tr>
-                <tr><td>Légendaire</td><td>Sort niveau 4 (×2.5 puissance)</td></tr>
-                <tr><td>Mythique</td><td>Sort niveau 5 (×3.0 puissance) — auto-corruption</td></tr>
+                <tr><td>Gel Accumule</td><td>Apres 3 coups recus, l'ennemi est gele et rate ses prochaines attaques.</td></tr>
+                <tr><td>Peau de Fer</td><td>Apres 4 coups recus, un bouclier absorbe le prochain coup.</td></tr>
             </table>
 
-            <h3>🔥 Sorts Offensifs</h3>
+            <h3>Sorts Utilitaires</h3>
             <table class="info-table">
-                <tr><td>Boule de Feu</td><td>Dégâts purs (ignore DEF) toutes les 5 secondes</td></tr>
-                <tr><td>Chaîne d'Éclairs</td><td>15% chance ×1.5 dégâts par attaque</td></tr>
-                <tr><td>Poison</td><td>Dégâts sur la durée (5 ticks) au début du combat</td></tr>
-                <tr><td>Exécution</td><td>Dégâts massifs si ennemi sous 20% HP</td></tr>
-                <tr><td>Frappe Astrale</td><td>×3 dégâts sur le prochain coup, toutes les 8 secondes</td></tr>
+                <tr><td>Vol d'Ame</td><td>Frappe 6 fois, puis tu voles la vie de l'ennemi a chaque coup.</td></tr>
+                <tr><td>Distorsion</td><td>Se charge automatiquement. Quand c'est plein, tu attaques 2x plus vite !</td></tr>
             </table>
 
-            <h3>🛡️ Sorts Défensifs</h3>
+            <h2>Raretes des Objets</h2>
             <table class="info-table">
-                <tr><td>Bouclier Magique</td><td>Absorbe les dégâts d'un coup quand HP &lt; 50%</td></tr>
-                <tr><td>Régénération</td><td>Heal %HP/tick pendant 5 ticks quand HP &lt; 30%</td></tr>
-                <tr><td>Esquive Spectrale</td><td>20% chance d'esquiver totalement quand touché</td></tr>
-                <tr><td>Renvoi de Sort</td><td>Renvoie 15% des dégâts reçus à l'ennemi (passif)</td></tr>
+                <tr><td style="color:#b0b0b0">Commun (86.5%)</td><td>1 modificateur, puissance x1.0</td></tr>
+                <tr><td style="color:#4a90d9">Rare (10%)</td><td>2 modificateurs, puissance x1.5</td></tr>
+                <tr><td style="color:#a855f7">Epique (2%)</td><td>3 modificateurs, puissance x2.0</td></tr>
+                <tr><td style="color:#f59e0b">Legendaire (1%)</td><td>4 modificateurs, puissance x3.0</td></tr>
+                <tr><td style="color:#ef4444">Mythique (0.5%)</td><td>5 modificateurs, puissance x5.0</td></tr>
             </table>
 
-            <h3>⚡ Sorts Utilitaires</h3>
+            <h2>Chaudron Magique</h2>
+            <p class="info-note">Place 3 objets dans le chaudron + de l'or pour obtenir un nouvel objet aleatoire. La rarete des objets mis dedans influence le resultat :</p>
             <table class="info-table">
-                <tr><td>Vol de Vie</td><td>10% des dégâts infligés soignent le héros (passif)</td></tr>
-                <tr><td>Berserker</td><td>+50% ATQ / -25% DEF quand HP &lt; 25% (passif)</td></tr>
-                <tr><td>Hâte Temporelle</td><td>×2 vitesse d'attaque pendant 3 ticks, toutes les 12 secondes</td></tr>
+                <tr><td>3x Commun</td><td>~41% Rare, ~21% Epique, ~10% Legendaire</td></tr>
+                <tr><td>3x Rare</td><td>~40% Epique, ~20% Legendaire, ~10% Mythique</td></tr>
+                <tr><td>3x Epique</td><td>~40% Legendaire, ~30% Mythique</td></tr>
+                <tr><td>3x Legendaire</td><td>~57% Mythique, ~40% Legendaire</td></tr>
             </table>
+            <p class="info-note">Les objets melanges font la moyenne des raretes. Les orbes, artefacts et objets verrouilles ne peuvent pas etre fondus.</p>
 
-            <h2>🎯 Raretés des Objets</h2>
-            <table class="info-table">
-                <tr><td style="color:#b0b0b0">Commun (86.5%)</td><td>1 modificateur, puissance ×1.0</td></tr>
-                <tr><td style="color:#4a90d9">Rare (10%)</td><td>2 modificateurs, puissance ×1.5</td></tr>
-                <tr><td style="color:#a855f7">Épique (2%)</td><td>3 modificateurs, puissance ×2.0</td></tr>
-                <tr><td style="color:#f59e0b">Légendaire (1%)</td><td>4 modificateurs, puissance ×3.0</td></tr>
-                <tr><td style="color:#ef4444">Mythique (0.5%)</td><td>5 modificateurs, puissance ×5.0</td></tr>
-            </table>
+            <h2>Verrouillage d'Objets</h2>
+            <p class="info-note">Survolez un objet et cliquez le cadenas pour le verrouiller. Un objet verrouille a un nom arc-en-ciel et ne peut pas etre supprime (ni manuellement, ni par suppression par lot). deverrouillez-le d'abord.</p>
 
-            <button class="info-close" onclick="toggleInfo()">✕ Fermer</button>
+            <h2>Donjon et Reincarnation</h2>
+            <p class="info-note">Le donjon est un parcours de 20 etages avec combats, camps, evenements et reliques. Battre le boss final d'un chapitre pour la premiere fois declenche une reincarnation : retour au niveau 1, mais +1 point de stat permanent par niveau pour chaque boss vaincu. Les chapitres deja completes rapportent des jetons et des objets (machine a sous, objets).</p>
+
+            <button class="info-close" onclick="toggleInfo()">Fermer</button>
         </div>
     </div>
 
@@ -251,6 +270,29 @@
                 </select>
             </div>
             <button id="btn-donjon-start" onclick="startDonjon()">Commencer</button>
+        </div>
+    </div>
+
+    <!-- ENCHANTEMENT -->
+    <div id="enchant-overlay" class="hidden">
+        <div class="enchant-panel">
+            <div class="enchant-header">
+                <h2>Enchantement</h2>
+                <button class="enchant-close" onclick="toggleEnchant()">Fermer</button>
+            </div>
+            <p class="enchant-desc">Choisis un objet pour l'enchanter. Chaque niveau + augmente ses stats de 10%. Echec = corruption !</p>
+            <div class="enchant-layout">
+                <div class="enchant-selected" id="enchant-selected">
+                    <div class="enchant-selected-title">Objet selectionne</div>
+                    <div id="enchant-selected-item">
+                        <span style="color:#555">Clique sur un objet ci-dessous</span>
+                    </div>
+                    <div id="enchant-info"></div>
+                    <button id="enchant-btn" class="enchant-action-btn" onclick="enchantSelected()" disabled>Enchanter</button>
+                </div>
+                <div class="enchant-list" id="enchant-inventory"></div>
+            </div>
+            <div id="enchant-result"></div>
         </div>
     </div>
 

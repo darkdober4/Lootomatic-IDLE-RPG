@@ -1938,3 +1938,229 @@ h2 {
     background: #533483;
     color: #fff;
 }
+
+/* ─── ENCHANTEMENT ─────────────────────────────────────────────────── */
+
+.enchant-badge {
+    color: #f59e0b;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+.btn-enchant {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    background: #1a1a2e;
+    border: 1px solid #f59e0b;
+    color: #f59e0b;
+    font-size: 0.7rem;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s;
+    padding: 0;
+}
+
+.equip-slot:hover .btn-enchant {
+    opacity: 1;
+}
+
+.btn-enchant:hover {
+    background: #f59e0b;
+    color: #1a1a2e;
+}
+
+.btn-enchant-inv {
+    position: absolute;
+    top: 2px;
+    right: 34px;
+    background: #1a1a2e;
+    border: 1px solid #f59e0b;
+    color: #f59e0b;
+    font-size: 0.65rem;
+    font-weight: bold;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s;
+    padding: 0;
+}
+
+.inv-slot:hover .btn-enchant-inv {
+    opacity: 1;
+}
+
+.btn-enchant-inv:hover {
+    background: #f59e0b;
+    color: #1a1a2e;
+}
+
+/* ─── OVERLAY ENCHANTEMENT ──────────────────────────────────────────── */
+
+#enchant-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#enchant-overlay.hidden { display: none; }
+
+.enchant-panel {
+    background: #16213e;
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    padding: 24px;
+    width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.enchant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.enchant-header h2 {
+    color: #f59e0b;
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.enchant-close {
+    background: #1a1a2e;
+    border: 1px solid #f59e0b;
+    color: #888;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.enchant-close:hover { color: #fff; }
+
+.enchant-desc {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+.enchant-layout {
+    display: flex;
+    gap: 16px;
+}
+
+.enchant-selected {
+    flex: 1;
+    background: #1a1a2e;
+    border: 2px solid #0f3460;
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.enchant-selected-title {
+    color: #888;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.enchant-stat {
+    color: #ccc;
+    font-size: 0.9rem;
+    padding: 2px 0;
+}
+
+.enchant-action-btn {
+    background: #f59e0b;
+    border: none;
+    color: #1a1a2e;
+    padding: 10px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.enchant-action-btn:disabled {
+    background: #333;
+    color: #555;
+    cursor: not-allowed;
+}
+
+.enchant-action-btn:not(:disabled):hover {
+    background: #fbbf24;
+}
+
+.enchant-list {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 8px;
+    background: #0f1629;
+    border-radius: 4px;
+    align-content: flex-start;
+}
+
+.enchant-inv-item {
+    padding: 4px 8px;
+    background: #1a1a2e;
+    border: 1px solid #0f3460;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.75rem;
+}
+
+.enchant-inv-item:hover {
+    border-color: #f59e0b;
+    background: #1e1040;
+}
+
+.enchant-inv-item.enchant-item-selected {
+    border: 2px solid #f59e0b;
+    background: #2a1a0e;
+}
+
+#enchant-result {
+    margin-top: 12px;
+    text-align: center;
+}
+
+#btn-enchant {
+    background: #1a1a2e;
+    border: 1px solid #f59e0b;
+    color: #f59e0b;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+#btn-enchant:hover {
+    background: #f59e0b;
+    color: #1a1a2e;
+}
