@@ -4,6 +4,6 @@
     plus fort a chaque boss vaincu.
 Help me buy a new pc https://gofund.me/4f2d4ae1f
 
-Start the game with python on app.py
+Start the game with a terminal using python on app.py
 
 *python app.py
