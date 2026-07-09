@@ -158,6 +158,7 @@
                 <div id="vs-indicator">⚔️ Combat en cours</div>
             </div>
             <div id="enemy-info">
+                <img id="enemy-image" class="hidden" alt="">
                 <h2 id="enemy-name">Ennemi</h2>
                 <div class="hp-bar-container">
                     <div id="enemy-hp-bar" class="hp-bar enemy-hp"></div>
@@ -166,8 +167,11 @@
                 <div id="enemy-stats-list"></div>
             </div>
             <div id="time-controls">
-                <button id="btn-prev-enemy" onclick="prevEnemy()" title="Ennemi précédent">◀ Précédent</button>
-                <button id="btn-skip-enemy" onclick="skipEnemy()" title="Passer à l'ennemi suivant">Suivant ▶</button>
+                <button id="btn-prev-enemy" onclick="prevEnemy(5)" title="Reculer de 5 niveaux">◀◀ 5</button>
+                <button id="btn-prev-enemy-1" onclick="prevEnemy()" title="Ennemi précédent">◀</button>
+                <button id="btn-pause" onclick="togglePause()">Pause</button>
+                <button id="btn-skip-enemy-1" onclick="skipEnemy()" title="Passer à l'ennemi suivant">▶</button>
+                <button id="btn-skip-enemy" onclick="skipEnemy(5)" title="Avancer de 5 niveaux">5 ▶▶</button>
             </div>
             <div id="log-container">
                 <div id="log-header" onclick="toggleLog()">

@@ -1,12 +1,12 @@
 {
   "player": {
-    "niveau": 33,
-    "xp": 4009,
-    "xp_max": 4378,
-    "points_stats": 12,
+    "niveau": 53,
+    "xp": 25045,
+    "xp_max": 71656,
+    "points_stats": 162,
     "stats": {
       "hp_max": 100,
-      "atk": 94,
+      "atk": 160,
       "def": 5,
       "vit": 10,
       "crit_chance": 5,
@@ -17,256 +17,242 @@
       "vitesse_attaque": 100,
       "niveau_sorts": 0
     },
-    "hp": 758,
-    "or": 72133,
+    "hp": 3689,
+    "or": 661721,
     "equipement": {
       "arme": {
         "slot": "arme",
-        "rarete": "Légendaire",
-        "niveau": 7,
-        "nom": "Hache Légendaire",
+        "rarete": "Mythique",
+        "niveau": 37,
+        "nom": "Bâton Mythique",
         "mods": [
           {
-            "nom": "Agilité",
-            "stat": "esquive",
-            "valeur": 5
+            "nom": "Vitalité",
+            "stat": "vit",
+            "valeur": 25
           },
           {
-            "nom": "Robustesse",
-            "stat": "hp_max",
-            "valeur": 22
-          },
-          {
-            "nom": "Protection",
-            "stat": "def",
-            "valeur": 6
+            "nom": "Riposte",
+            "stat": "contre",
+            "valeur": 28
           },
           {
             "nom": "Précision",
             "stat": "crit_chance",
-            "valeur": 10
+            "valeur": 34
           },
           {
-            "nom": "Vitalité",
-            "stat": "vit",
-            "valeur": 5
+            "nom": "Robustesse",
+            "stat": "hp_max",
+            "valeur": 74
           },
           {
-            "nom": "Fureur",
-            "stat": "crit_mult",
-            "valeur": 11
+            "nom": "Force",
+            "stat": "atk",
+            "valeur": 59
           }
         ],
-        "corrompu": false,
+        "corrompu": true,
         "orbe_type": null,
         "spell_type": null,
         "quantite": 1,
-        "locked": false
+        "locked": false,
+        "enchant_level": 0
       },
       "armure": {
         "slot": "armure",
         "rarete": "Mythique",
-        "niveau": 38,
-        "nom": "Cotte de mailles Mythique",
+        "niveau": 279,
+        "nom": "Plastron Mythique",
         "mods": [
+          {
+            "nom": "Vitalité",
+            "stat": "vit",
+            "valeur": 198
+          },
+          {
+            "nom": "Fortune",
+            "stat": "chance_loot",
+            "valeur": 385
+          },
           {
             "nom": "Robustesse",
             "stat": "hp_max",
-            "valeur": 151
-          },
-          {
-            "nom": "Fortune",
-            "stat": "chance_loot",
-            "valeur": 38
-          },
-          {
-            "nom": "Force",
-            "stat": "atk",
-            "valeur": 48
+            "valeur": 724
           },
           {
             "nom": "Agilité",
             "stat": "esquive",
-            "valeur": 42
-          },
-          {
-            "nom": "Protection",
-            "stat": "def",
-            "valeur": 35
-          },
-          {
-            "nom": "Hâte",
-            "stat": "vitesse_attaque",
-            "valeur": 19
-          },
-          {
-            "nom": "Fureur",
-            "stat": "crit_mult",
-            "valeur": 31
-          }
-        ],
-        "corrompu": true,
-        "orbe_type": null,
-        "spell_type": null,
-        "quantite": 1,
-        "locked": false
-      },
-      "casque": {
-        "slot": "casque",
-        "rarete": "Mythique",
-        "niveau": 24,
-        "nom": "Couronne Mythique",
-        "mods": [
-          {
-            "nom": "Protection",
-            "stat": "def",
-            "valeur": 32
-          },
-          {
-            "nom": "Hâte",
-            "stat": "vitesse_attaque",
-            "valeur": 84
-          },
-          {
-            "nom": "Fureur",
-            "stat": "crit_mult",
-            "valeur": 136
-          },
-          {
-            "nom": "Fortune",
-            "stat": "chance_loot",
-            "valeur": 51
-          },
-          {
-            "nom": "Riposte",
-            "stat": "contre",
-            "valeur": 30
-          },
-          {
-            "nom": "Vitalité",
-            "stat": "vit",
-            "valeur": 9
+            "valeur": 158
           },
           {
             "nom": "Force",
             "stat": "atk",
-            "valeur": 15
-          }
-        ],
-        "corrompu": true,
-        "orbe_type": null,
-        "spell_type": null,
-        "quantite": 1,
-        "locked": false
-      },
-      "bouclier": {
-        "slot": "bouclier",
-        "rarete": "Mythique",
-        "niveau": 38,
-        "nom": "Écu Mythique",
-        "mods": [
-          {
-            "nom": "Vitalité",
-            "stat": "vit",
-            "valeur": 35
-          },
-          {
-            "nom": "Force",
-            "stat": "atk",
-            "valeur": 24
-          },
-          {
-            "nom": "Précision",
-            "stat": "crit_chance",
-            "valeur": 37
-          },
-          {
-            "nom": "Hâte",
-            "stat": "vitesse_attaque",
-            "valeur": 48
-          },
-          {
-            "nom": "Agilité",
-            "stat": "esquive",
-            "valeur": 43
-          }
-        ],
-        "corrompu": true,
-        "orbe_type": null,
-        "spell_type": null,
-        "quantite": 1,
-        "locked": false
-      },
-      "anneau": {
-        "slot": "anneau",
-        "rarete": "Mythique",
-        "niveau": 38,
-        "nom": "Anneau Mythique",
-        "mods": [
-          {
-            "nom": "Vitalité",
-            "stat": "vit",
-            "valeur": 38
-          },
-          {
-            "nom": "Agilité",
-            "stat": "esquive",
-            "valeur": 32
-          },
-          {
-            "nom": "Riposte",
-            "stat": "contre",
-            "valeur": 33
-          },
-          {
-            "nom": "Protection",
-            "stat": "def",
-            "valeur": 33
-          },
-          {
-            "nom": "Fureur",
-            "stat": "crit_mult",
-            "valeur": 150
-          }
-        ],
-        "corrompu": true,
-        "orbe_type": null,
-        "spell_type": null,
-        "quantite": 1,
-        "locked": false
-      },
-      "amulette": {
-        "slot": "amulette",
-        "rarete": "Légendaire",
-        "niveau": 71,
-        "nom": "Collier Légendaire",
-        "mods": [
-          {
-            "nom": "Force",
-            "stat": "atk",
-            "valeur": 38
-          },
-          {
-            "nom": "Protection",
-            "stat": "def",
-            "valeur": 35
-          },
-          {
-            "nom": "Agilité",
-            "stat": "esquive",
-            "valeur": 26
-          },
-          {
-            "nom": "Hâte",
-            "stat": "vitesse_attaque",
-            "valeur": 76
+            "valeur": 391
           }
         ],
         "corrompu": false,
         "orbe_type": null,
         "spell_type": null,
         "quantite": 1,
-        "locked": false
+        "locked": false,
+        "enchant_level": 2
+      },
+      "casque": {
+        "slot": "casque",
+        "rarete": "Mythique",
+        "niveau": 140,
+        "nom": "Couronne Mythique",
+        "mods": [
+          {
+            "nom": "Précision",
+            "stat": "crit_chance",
+            "valeur": 121
+          },
+          {
+            "nom": "Fortune",
+            "stat": "chance_loot",
+            "valeur": 206
+          },
+          {
+            "nom": "Hâte",
+            "stat": "vitesse_attaque",
+            "valeur": 318
+          },
+          {
+            "nom": "Agilité",
+            "stat": "esquive",
+            "valeur": 93
+          },
+          {
+            "nom": "Fureur",
+            "stat": "crit_mult",
+            "valeur": 540
+          }
+        ],
+        "corrompu": false,
+        "orbe_type": null,
+        "spell_type": null,
+        "quantite": 1,
+        "locked": false,
+        "enchant_level": 2
+      },
+      "bouclier": {
+        "slot": "bouclier",
+        "rarete": "Mythique",
+        "niveau": 140,
+        "nom": "Rondache Mythique",
+        "mods": [
+          {
+            "nom": "Robustesse",
+            "stat": "hp_max",
+            "valeur": 493
+          },
+          {
+            "nom": "Agilité",
+            "stat": "esquive",
+            "valeur": 126
+          },
+          {
+            "nom": "Force",
+            "stat": "atk",
+            "valeur": 136
+          },
+          {
+            "nom": "Précision",
+            "stat": "crit_chance",
+            "valeur": 137
+          },
+          {
+            "nom": "Protection",
+            "stat": "def",
+            "valeur": 88
+          }
+        ],
+        "corrompu": false,
+        "orbe_type": null,
+        "spell_type": null,
+        "quantite": 1,
+        "locked": false,
+        "enchant_level": 3
+      },
+      "anneau": {
+        "slot": "anneau",
+        "rarete": "Mythique",
+        "niveau": 160,
+        "nom": "Signet Mythique",
+        "mods": [
+          {
+            "nom": "Protection",
+            "stat": "def",
+            "valeur": 93
+          },
+          {
+            "nom": "Hâte",
+            "stat": "vitesse_attaque",
+            "valeur": 363
+          },
+          {
+            "nom": "Fortune",
+            "stat": "chance_loot",
+            "valeur": 248
+          },
+          {
+            "nom": "Robustesse",
+            "stat": "hp_max",
+            "valeur": 498
+          },
+          {
+            "nom": "Fureur",
+            "stat": "crit_mult",
+            "valeur": 460
+          }
+        ],
+        "corrompu": false,
+        "orbe_type": null,
+        "spell_type": null,
+        "quantite": 1,
+        "locked": false,
+        "enchant_level": 3
+      },
+      "amulette": {
+        "slot": "amulette",
+        "rarete": "Mythique",
+        "niveau": 255,
+        "nom": "Pendentif Mythique",
+        "mods": [
+          {
+            "nom": "Force",
+            "stat": "atk",
+            "valeur": 148
+          },
+          {
+            "nom": "Riposte",
+            "stat": "contre",
+            "valeur": 175
+          },
+          {
+            "nom": "Précision",
+            "stat": "crit_chance",
+            "valeur": 139
+          },
+          {
+            "nom": "Protection",
+            "stat": "def",
+            "valeur": 223
+          },
+          {
+            "nom": "Agilité",
+            "stat": "esquive",
+            "valeur": 237
+          }
+        ],
+        "corrompu": true,
+        "orbe_type": null,
+        "spell_type": null,
+        "quantite": 1,
+        "locked": false,
+        "enchant_level": 0
       },
       "ceinture": {
         "slot": "ceinture",
@@ -300,44 +286,41 @@
             "valeur": 26
           }
         ],
-        "corrompu": false,
+        "corrompu": true,
         "orbe_type": null,
         "spell_type": null,
         "quantite": 1,
-        "locked": false
+        "locked": false,
+        "enchant_level": 0
       },
       "bottes": {
         "slot": "bottes",
         "rarete": "Légendaire",
-        "niveau": 13,
+        "niveau": 274,
         "nom": "Bottines Légendaire",
         "mods": [
           {
-            "nom": "Protection",
-            "stat": "def",
-            "valeur": 9
-          },
-          {
             "nom": "Fureur",
             "stat": "crit_mult",
-            "valeur": 19
+            "valeur": 445
+          },
+          {
+            "nom": "Agilité",
+            "stat": "esquive",
+            "valeur": 119
           },
           {
             "nom": "Force",
             "stat": "atk",
-            "valeur": 18
-          },
-          {
-            "nom": "Fortune",
-            "stat": "chance_loot",
-            "valeur": 9
+            "valeur": 132
           }
         ],
         "corrompu": false,
         "orbe_type": null,
         "spell_type": null,
         "quantite": 1,
-        "locked": false
+        "locked": false,
+        "enchant_level": 0
       },
       "artefact": {
         "slot": "artefact",
@@ -349,7 +332,8 @@
         "orbe_type": null,
         "spell_type": "chaine_eclairs",
         "quantite": 1,
-        "locked": false
+        "locked": false,
+        "enchant_level": 0
       }
     },
     "inventaire": [
@@ -363,8 +347,9 @@
           "corrompu": false,
           "orbe_type": "alteration",
           "spell_type": null,
-          "quantite": 53,
-          "locked": false
+          "quantite": 102,
+          "locked": false,
+          "enchant_level": 0
         },
         {
           "slot": "orbe",
@@ -375,64 +360,9 @@
           "corrompu": false,
           "orbe_type": "amelioration",
           "spell_type": null,
-          "quantite": 150,
-          "locked": false
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Épique",
-          "niveau": 38,
-          "nom": "Pendentif Épique",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 9
-            },
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 29
-            },
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 18
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Épique",
-          "niveau": 74,
-          "nom": "Écharpe Épique",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 51
-            },
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 75
-            },
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 18
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
+          "quantite": 287,
+          "locked": false,
+          "enchant_level": 0
         },
         {
           "slot": "artefact",
@@ -444,68 +374,8 @@
           "orbe_type": null,
           "spell_type": "lame_spectrale",
           "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "casque",
-          "rarete": "Épique",
-          "niveau": 71,
-          "nom": "Diadème Épique",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 70
-            },
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 44
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 25
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Légendaire",
-          "niveau": 71,
-          "nom": "Amulette Légendaire",
-          "mods": [
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 46
-            },
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 29
-            },
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 35
-            },
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 75
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
+          "locked": false,
+          "enchant_level": 0
         },
         {
           "slot": "artefact",
@@ -517,35 +387,8 @@
           "orbe_type": null,
           "spell_type": "gel_accumule",
           "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "ceinture",
-          "rarete": "Épique",
-          "niveau": 71,
-          "nom": "Baudrier Épique",
-          "mods": [
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 99
-            },
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 21
-            },
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 40
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
+          "locked": false,
+          "enchant_level": 0
         },
         {
           "slot": "artefact",
@@ -557,195 +400,8 @@
           "orbe_type": null,
           "spell_type": "gel_accumule",
           "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "bouclier",
-          "rarete": "Épique",
-          "niveau": 71,
-          "nom": "Pavois Épique",
-          "mods": [
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 87
-            },
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 36
-            },
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 40
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "armure",
-          "rarete": "Épique",
-          "niveau": 71,
-          "nom": "Cuirasse Épique",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 81
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 31
-            },
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 30
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "armure",
-          "rarete": "Épique",
-          "niveau": 71,
-          "nom": "Plastron Épique",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 39
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 18
-            },
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 41
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "amulette",
-          "rarete": "Légendaire",
-          "niveau": 23,
-          "nom": "Amulette Légendaire",
-          "mods": [
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 29
-            },
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 45
-            },
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 31
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 18
-            },
-            {
-              "nom": "Vitalité",
-              "stat": "vit",
-              "valeur": 6
-            }
-          ],
-          "corrompu": true,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "arme",
-          "rarete": "Légendaire",
-          "niveau": 71,
-          "nom": "Dague Légendaire",
-          "mods": [
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 46
-            },
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 112
-            },
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 26
-            },
-            {
-              "nom": "Fortune",
-              "stat": "chance_loot",
-              "valeur": 51
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "anneau",
-          "rarete": "Légendaire",
-          "niveau": 71,
-          "nom": "Bague Légendaire",
-          "mods": [
-            {
-              "nom": "Précision",
-              "stat": "crit_chance",
-              "valeur": 32
-            },
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 110
-            },
-            {
-              "nom": "Fureur",
-              "stat": "crit_mult",
-              "valeur": 66
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 26
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
+          "locked": false,
+          "enchant_level": 0
         },
         {
           "slot": "artefact",
@@ -757,7 +413,8 @@
           "orbe_type": null,
           "spell_type": "lame_spectrale",
           "quantite": 1,
-          "locked": false
+          "locked": false,
+          "enchant_level": 0
         },
         {
           "slot": "ceinture",
@@ -795,7 +452,8 @@
           "orbe_type": null,
           "spell_type": null,
           "quantite": 1,
-          "locked": false
+          "locked": false,
+          "enchant_level": 0
         },
         {
           "slot": "bouclier",
@@ -829,79 +487,12 @@
               "valeur": 40
             }
           ],
-          "corrompu": false,
+          "corrompu": true,
           "orbe_type": null,
           "spell_type": null,
           "quantite": 1,
-          "locked": false
-        },
-        {
-          "slot": "arme",
-          "rarete": "Légendaire",
-          "niveau": 71,
-          "nom": "Dague Légendaire",
-          "mods": [
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 33
-            },
-            {
-              "nom": "Protection",
-              "stat": "def",
-              "valeur": 40
-            },
-            {
-              "nom": "Agilité",
-              "stat": "esquive",
-              "valeur": 47
-            },
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 41
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
-        }
-      ],
-      [
-        {
-          "slot": "armure",
-          "rarete": "Légendaire",
-          "niveau": 71,
-          "nom": "Cuirasse Légendaire",
-          "mods": [
-            {
-              "nom": "Hâte",
-              "stat": "vitesse_attaque",
-              "valeur": 88
-            },
-            {
-              "nom": "Riposte",
-              "stat": "contre",
-              "valeur": 25
-            },
-            {
-              "nom": "Force",
-              "stat": "atk",
-              "valeur": 57
-            },
-            {
-              "nom": "Robustesse",
-              "stat": "hp_max",
-              "valeur": 125
-            }
-          ],
-          "corrompu": false,
-          "orbe_type": null,
-          "spell_type": null,
-          "quantite": 1,
-          "locked": false
+          "locked": false,
+          "enchant_level": 0
         },
         {
           "slot": "artefact",
@@ -913,16 +504,5514 @@
           "orbe_type": null,
           "spell_type": "peau_fer",
           "quantite": 1,
-          "locked": false
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Lame Spectrale",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "lame_spectrale",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Épique",
+          "niveau": 37,
+          "nom": "Écharpe Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 18
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 83
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 24
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 37,
+          "nom": "Masse Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 10
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 16
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 10
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Mythique",
+          "niveau": 37,
+          "nom": "Capuchon Mythique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 43
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 72
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 26
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 41
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 209
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 15
+            }
+          ],
+          "corrompu": true,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Légendaire",
+          "niveau": 13,
+          "nom": "Bottines Légendaire",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 9
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 19
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 18
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 9
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Surge de Flammes",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "surge_flammes",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Légendaire",
+          "niveau": 38,
+          "nom": "Bottines Légendaire",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 19
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 37
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 23
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 23
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Vengeance",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "vengeance",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 6,
+          "nom": "Dague Épique",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 3
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 5
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 3
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Légendaire",
+          "niveau": 140,
+          "nom": "Bouclier Légendaire",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 73
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 45
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 75
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 55
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Épique",
+          "niveau": 140,
+          "nom": "Anneau Épique",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 45
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 47
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 43
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        }
+      ],
+      [
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 140,
+          "nom": "Robe Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 48
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 60
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 42
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Mythique",
+          "niveau": 24,
+          "nom": "Couronne Mythique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 32
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 84
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 136
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 51
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 30
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 9
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 15
+            }
+          ],
+          "corrompu": true,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 140,
+          "nom": "Bouclier Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 48
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 57
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 61
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 140,
+          "nom": "Collier Épique",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 59
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 200
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 42
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 140,
+          "nom": "Hache Épique",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 225
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 52
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 47
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Peau de Fer",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "peau_fer",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Légendaire",
+          "niveau": 140,
+          "nom": "Cuirasse Légendaire",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 73
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 92
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 167
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 46
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Mythique",
+          "niveau": 140,
+          "nom": "Bottes Mythique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 109
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 322
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 138
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 96
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 93
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 140,
+          "nom": "Collier Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 32
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 42
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 129
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Légendaire",
+          "niveau": 140,
+          "nom": "Signet Légendaire",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 60
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 131
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 80
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 52
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Marque Maudite",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "marque_maudite",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Mythique",
+          "niveau": 38,
+          "nom": "Écu Mythique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 35
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 24
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 37
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 48
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 43
+            }
+          ],
+          "corrompu": true,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 140,
+          "nom": "Cuirasse Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 47
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 33
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 38
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Surge de Flammes",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "surge_flammes",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Mythique",
+          "niveau": 140,
+          "nom": "Heaume Mythique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 180
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 84
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 109
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 163
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 192
+            }
+          ],
+          "corrompu": true,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Vengeance",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "vengeance",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 140,
+          "nom": "Pendentif Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 40
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 74
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 42
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Légendaire",
+          "niveau": 140,
+          "nom": "Baudrier Légendaire",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 102
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 52
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 178
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 47
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Légendaire",
+          "niveau": 140,
+          "nom": "Robe Légendaire",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 119
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 88
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 68
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 160
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Vol d'Ame",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "vol_ame",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        }
+      ],
+      [
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 140,
+          "nom": "Talisman Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 40
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 207
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 50
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Poison",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "poison",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Mythique",
+          "niveau": 140,
+          "nom": "Amulette Mythique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 95
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 149
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 556
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 320
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 76
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Mythique",
+          "niveau": 141,
+          "nom": "Cuirasse Mythique",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 235
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 480
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 94
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 89
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 268
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 141,
+          "nom": "Cotte de mailles Épique",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 35
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 112
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 44
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Légendaire",
+          "niveau": 141,
+          "nom": "Bottes Légendaire",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 54
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 86
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 86
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 66
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Légendaire",
+          "niveau": 141,
+          "nom": "Signet Légendaire",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 100
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 128
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 401
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 115
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 141,
+          "nom": "Collier Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 58
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 60
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 45
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Surge de Flammes",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "surge_flammes",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 160,
+          "nom": "Talisman Épique",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 55
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 81
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 58
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 160,
+          "nom": "Couronne Épique",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 67
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 36
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 44
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 160,
+          "nom": "Collier Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 42
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 42
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 102
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Légendaire",
+          "niveau": 160,
+          "nom": "Amulette Légendaire",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 98
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 59
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 61
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 59
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 160,
+          "nom": "Pavois Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 61
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 68
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 36
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Mythique",
+          "niveau": 38,
+          "nom": "Anneau Mythique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 38
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 32
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 33
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 33
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 150
+            }
+          ],
+          "corrompu": true,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 160,
+          "nom": "Hache Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 36
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 56
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 34
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 160,
+          "nom": "Bouclier Épique",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 49
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 61
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 95
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 160,
+          "nom": "Robe Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 67
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 75
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 60
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Légendaire",
+          "niveau": 160,
+          "nom": "Pavois Légendaire",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 281
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 74
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 100
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 379
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Légendaire",
+          "niveau": 166,
+          "nom": "Ceinture Légendaire",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 340
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 87
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 93
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 157
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        }
+      ],
+      [
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Peau de Fer",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "peau_fer",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 171,
+          "nom": "Cotte de mailles Épique",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 57
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 44
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 65
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 186,
+          "nom": "Masse Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 51
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 53
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 52
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 188,
+          "nom": "Pavois Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 85
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 53
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 100
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Mythique",
+          "niveau": 190,
+          "nom": "Sandales Mythique",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 148
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 283
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 114
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 122
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 120
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Lame Spectrale",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "lame_spectrale",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 203,
+          "nom": "Capuchon Épique",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 49
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 77
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 85
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Surge de Flammes",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "surge_flammes",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Mythique",
+          "niveau": 206,
+          "nom": "Diadème Mythique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 303
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 171
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 160
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 183
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 534
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Légendaire",
+          "niveau": 207,
+          "nom": "Baudrier Légendaire",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 138
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 322
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 177
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 79
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Épique",
+          "niveau": 40,
+          "nom": "Écharpe Épique",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 41
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 19
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 15
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 217,
+          "nom": "Amulette Épique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 272
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 48
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 51
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 226,
+          "nom": "Capuchon Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 58
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 114
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 103
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Épique",
+          "niveau": 232,
+          "nom": "Écharpe Épique",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 57
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 72
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 58
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 40,
+          "nom": "Hache Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 16
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 96
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 40
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Épique",
+          "niveau": 237,
+          "nom": "Anneau Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 91
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 56
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 53
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 240,
+          "nom": "Cotte de mailles Épique",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 66
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 140
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 145
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 245,
+          "nom": "Épée Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 62
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 137
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 94
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 251,
+          "nom": "Robe Épique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 141
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 96
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 96
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Légendaire",
+          "niveau": 254,
+          "nom": "Rondache Légendaire",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 133
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 100
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 268
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 94
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        }
+      ],
+      [
+        {
+          "slot": "bottes",
+          "rarete": "Légendaire",
+          "niveau": 33,
+          "nom": "Bottes Légendaire",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 45
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 26
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 25
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 14
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Légendaire",
+          "niveau": 71,
+          "nom": "Collier Légendaire",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 38
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 35
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 26
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 76
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 3
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 271,
+          "nom": "Collier Épique",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 81
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 293
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 200
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Légendaire",
+          "niveau": 272,
+          "nom": "Bague Légendaire",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 157
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 128
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 652
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 127
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Épique",
+          "niveau": 273,
+          "nom": "Ceinture Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 92
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 57
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 96
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "orbe",
+          "rarete": "Commun",
+          "niveau": 1,
+          "nom": "Orbe d'Échange",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": "echange",
+          "spell_type": null,
+          "quantite": 33,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Légendaire",
+          "niveau": 275,
+          "nom": "Écharpe Légendaire",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 112
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 141
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 129
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 554
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "orbe",
+          "rarete": "Commun",
+          "niveau": 1,
+          "nom": "Orbe de Polymorphie",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": "polymorphie",
+          "spell_type": null,
+          "quantite": 29,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 285,
+          "nom": "Cotte de mailles Épique",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 86
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 100
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 74
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Légendaire",
+          "niveau": 145,
+          "nom": "Sandales Légendaire",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 56
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 85
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 57
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 93
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 305,
+          "nom": "Pavois Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 161
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 294
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 105
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Légendaire",
+          "niveau": 306,
+          "nom": "Bottines Légendaire",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 130
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 386
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 170
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 173
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 303,
+          "nom": "Dague Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 159
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 93
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 78
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Légendaire",
+          "niveau": 303,
+          "nom": "Plastron Légendaire",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 389
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 780
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 116
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 140
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Légendaire",
+          "niveau": 303,
+          "nom": "Anneau Légendaire",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 142
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 177
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 405
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 259
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Légendaire",
+          "niveau": 294,
+          "nom": "Collier Légendaire",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 142
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 146
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 367
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 160
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "artefact",
+          "rarete": "Rare",
+          "niveau": 2,
+          "nom": "Artéfact de Peau de Fer",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": "peau_fer",
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Légendaire",
+          "niveau": 279,
+          "nom": "Hache Légendaire",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 251
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 822
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 171
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 134
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Légendaire",
+          "niveau": 279,
+          "nom": "Capuchon Légendaire",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 249
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 130
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 105
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 168
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Légendaire",
+          "niveau": 279,
+          "nom": "Couronne Légendaire",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 372
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 131
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 130
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 101
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        }
+      ],
+      [
+        {
+          "slot": "orbe",
+          "rarete": "Commun",
+          "niveau": 1,
+          "nom": "Orbe de Fragilité",
+          "mods": [],
+          "corrompu": false,
+          "orbe_type": "fragilite",
+          "spell_type": null,
+          "quantite": 16,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Capuchon Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 98
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 114
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 66
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Épée Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 151
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 115
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 102
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Bague Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 112
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 183
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 106
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Légendaire",
+          "niveau": 279,
+          "nom": "Talisman Légendaire",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 154
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 141
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 163
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 541
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Pavois Épique",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 158
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 115
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 250
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Masse Épique",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 275
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 95
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 83
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Cotte de mailles Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 94
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 88
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 239
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Légendaire",
+          "niveau": 279,
+          "nom": "Bottes Légendaire",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 491
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 163
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 119
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 365
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Anneau Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 84
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 94
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 100
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Rondache Épique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 456
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 60
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 61
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Légendaire",
+          "niveau": 45,
+          "nom": "Greaves Légendaire",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 31
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 158
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 75
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 51
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Diadème Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 113
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 84
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 86
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Hache Épique",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 94
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 75
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 154
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Légendaire",
+          "niveau": 279,
+          "nom": "Écharpe Légendaire",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 113
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 581
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 126
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 195
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Légendaire",
+          "niveau": 279,
+          "nom": "Rondache Légendaire",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 225
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 123
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 212
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 152
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Rondache Épique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 267
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 77
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 146
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Bouclier Épique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 215
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 190
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 114
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Diadème Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 68
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 146
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 164
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Mythique",
+          "niveau": 38,
+          "nom": "Cotte de mailles Mythique",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 151
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 38
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 48
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 42
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 35
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 19
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 31
+            }
+          ],
+          "corrompu": true,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        }
+      ],
+      [
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Plastron Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 98
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 149
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 92
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Légendaire",
+          "niveau": 279,
+          "nom": "Rondache Légendaire",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 168
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 120
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 172
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 219
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 279,
+          "nom": "Couronne Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 105
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 76
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 374
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Mythique",
+          "niveau": 279,
+          "nom": "Capuchon Mythique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 1050
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 639
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 330
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 237
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 227
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Mythique",
+          "niveau": 283,
+          "nom": "Pendentif Mythique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 201
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 234
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 147
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 242
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 659
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Épique",
+          "niveau": 288,
+          "nom": "Signet Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 102
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 92
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 462
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Légendaire",
+          "niveau": 289,
+          "nom": "Rondache Légendaire",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 417
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 117
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 150
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 138
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Épique",
+          "niveau": 292,
+          "nom": "Signet Épique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 272
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 377
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 84
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Épique",
+          "niveau": 293,
+          "nom": "Sandales Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 62
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 108
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 335
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Légendaire",
+          "niveau": 294,
+          "nom": "Collier Légendaire",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 627
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 114
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 95
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 377
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Légendaire",
+          "niveau": 301,
+          "nom": "Talisman Légendaire",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 196
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 177
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 125
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 173
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 302,
+          "nom": "Amulette Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 71
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 487
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 74
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Légendaire",
+          "niveau": 304,
+          "nom": "Écu Légendaire",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 394
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 133
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 152
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 179
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Épique",
+          "niveau": 305,
+          "nom": "Ceinture Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 124
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 141
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 124
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Épique",
+          "niveau": 305,
+          "nom": "Bague Épique",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 227
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 90
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 90
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 307,
+          "nom": "Cuirasse Épique",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 87
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 110
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 84
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Légendaire",
+          "niveau": 309,
+          "nom": "Bâton Légendaire",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 141
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 720
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 153
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 246
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Épique",
+          "niveau": 314,
+          "nom": "Bottes Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 108
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 157
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 80
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Légendaire",
+          "niveau": 326,
+          "nom": "Bague Légendaire",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 136
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 104
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 107
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 823
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Mythique",
+          "niveau": 332,
+          "nom": "Diadème Mythique",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 368
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 1344
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 336
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 442
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 173
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        }
+      ],
+      [
+        {
+          "slot": "arme",
+          "rarete": "Mythique",
+          "niveau": 332,
+          "nom": "Dague Mythique",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 471
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 268
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 221
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 308
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 311
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 337,
+          "nom": "Cuirasse Épique",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 84
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 117
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 125
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 338,
+          "nom": "Masse Épique",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 186
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 140
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 102
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Mythique",
+          "niveau": 339,
+          "nom": "Bâton Mythique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 304
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 198
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 345
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 1118
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 276
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 343,
+          "nom": "Rondache Épique",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 442
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 70
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 353
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Épique",
+          "niveau": 347,
+          "nom": "Signet Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 80
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 121
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 106
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 348,
+          "nom": "Collier Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 73
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 112
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 293
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 349,
+          "nom": "Diadème Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 81
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 284
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 106
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Légendaire",
+          "niveau": 350,
+          "nom": "Signet Légendaire",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 211
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 1062
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 218
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 155
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Mythique",
+          "niveau": 353,
+          "nom": "Pavois Mythique",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 533
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 580
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 341
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 243
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 348
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Mythique",
+          "niveau": 359,
+          "nom": "Rondache Mythique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 724
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 255
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 233
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 410
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 879
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Épique",
+          "niveau": 362,
+          "nom": "Baudrier Épique",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 241
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 665
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 199
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 365,
+          "nom": "Capuchon Épique",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 185
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 91
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 101
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 367,
+          "nom": "Cuirasse Épique",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 114
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 163
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 153
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Mythique",
+          "niveau": 367,
+          "nom": "Épée Mythique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 298
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 678
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 421
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 214
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 194
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 368,
+          "nom": "Heaume Épique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 268
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 94
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 139
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 371,
+          "nom": "Pendentif Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 87
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 219
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 112
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Légendaire",
+          "niveau": 373,
+          "nom": "Écu Légendaire",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 179
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 144
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 187
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 973
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Légendaire",
+          "niveau": 384,
+          "nom": "Bottes Légendaire",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 901
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 122
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 164
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 309
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 386,
+          "nom": "Bouclier Épique",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 277
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 143
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 188
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        }
+      ],
+      [
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 389,
+          "nom": "Épée Épique",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 143
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 85
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 364
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 396,
+          "nom": "Talisman Épique",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 360
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 146
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 154
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Épique",
+          "niveau": 397,
+          "nom": "Baudrier Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 145
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 148
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 83
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Épique",
+          "niveau": 398,
+          "nom": "Greaves Épique",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 256
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 148
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 113
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Légendaire",
+          "niveau": 398,
+          "nom": "Écharpe Légendaire",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 222
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 986
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 201
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 280
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Mythique",
+          "niveau": 404,
+          "nom": "Dague Mythique",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 1259
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 348
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 586
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 315
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 320
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Épique",
+          "niveau": 407,
+          "nom": "Écharpe Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 95
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 91
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 241
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 407,
+          "nom": "Diadème Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 180
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 154
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 413
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 411,
+          "nom": "Dague Épique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 130
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 350
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 157
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 412,
+          "nom": "Pavois Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 121
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 215
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 137
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bottes",
+          "rarete": "Épique",
+          "niveau": 415,
+          "nom": "Greaves Épique",
+          "mods": [
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 121
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 483
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 214
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Légendaire",
+          "niveau": 420,
+          "nom": "Bague Légendaire",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 151
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 236
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 373
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 159
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 421,
+          "nom": "Capuchon Épique",
+          "mods": [
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 107
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 121
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 849
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "anneau",
+          "rarete": "Épique",
+          "niveau": 424,
+          "nom": "Bague Épique",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 181
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 365
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 140
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Légendaire",
+          "niveau": 425,
+          "nom": "Masse Légendaire",
+          "mods": [
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 239
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 244
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 217
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 215
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 426,
+          "nom": "Capuchon Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 99
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 781
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 162
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 427,
+          "nom": "Masse Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 137
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 185
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 89
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Légendaire",
+          "niveau": 428,
+          "nom": "Cotte de mailles Légendaire",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 171
+            },
+            {
+              "nom": "Agilité",
+              "stat": "esquive",
+              "valeur": 232
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 135
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 608
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Épique",
+          "niveau": 430,
+          "nom": "Pavois Épique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 181
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 99
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 150
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 434,
+          "nom": "Épée Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 144
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 116
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 785
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        }
+      ],
+      [
+        {
+          "slot": "bouclier",
+          "rarete": "Légendaire",
+          "niveau": 435,
+          "nom": "Rondache Légendaire",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 140
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 224
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 1306
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 224
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Épique",
+          "niveau": 439,
+          "nom": "Pendentif Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 178
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 431
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 123
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 440,
+          "nom": "Robe Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 196
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 132
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 106
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "casque",
+          "rarete": "Épique",
+          "niveau": 440,
+          "nom": "Capuchon Épique",
+          "mods": [
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 218
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 139
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 406
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 443,
+          "nom": "Épée Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 180
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 100
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 656
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "arme",
+          "rarete": "Épique",
+          "niveau": 444,
+          "nom": "Épée Épique",
+          "mods": [
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 653
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 98
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 102
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Épique",
+          "niveau": 446,
+          "nom": "Écharpe Épique",
+          "mods": [
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 143
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 291
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 124
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "armure",
+          "rarete": "Épique",
+          "niveau": 452,
+          "nom": "Robe Épique",
+          "mods": [
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 194
+            },
+            {
+              "nom": "Fureur",
+              "stat": "crit_mult",
+              "valeur": 467
+            },
+            {
+              "nom": "Fortune",
+              "stat": "chance_loot",
+              "valeur": 161
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "bouclier",
+          "rarete": "Légendaire",
+          "niveau": 456,
+          "nom": "Pavois Légendaire",
+          "mods": [
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 1150
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 224
+            },
+            {
+              "nom": "Force",
+              "stat": "atk",
+              "valeur": 167
+            },
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 148
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "amulette",
+          "rarete": "Mythique",
+          "niveau": 458,
+          "nom": "Pendentif Mythique",
+          "mods": [
+            {
+              "nom": "Protection",
+              "stat": "def",
+              "valeur": 295
+            },
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 466
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 322
+            },
+            {
+              "nom": "Hâte",
+              "stat": "vitesse_attaque",
+              "valeur": 651
+            },
+            {
+              "nom": "Précision",
+              "stat": "crit_chance",
+              "valeur": 246
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
+        },
+        {
+          "slot": "ceinture",
+          "rarete": "Épique",
+          "niveau": 464,
+          "nom": "Ceinture Épique",
+          "mods": [
+            {
+              "nom": "Vitalité",
+              "stat": "vit",
+              "valeur": 153
+            },
+            {
+              "nom": "Riposte",
+              "stat": "contre",
+              "valeur": 168
+            },
+            {
+              "nom": "Robustesse",
+              "stat": "hp_max",
+              "valeur": 908
+            }
+          ],
+          "corrompu": false,
+          "orbe_type": null,
+          "spell_type": null,
+          "quantite": 1,
+          "locked": false,
+          "enchant_level": 0
         }
       ]
     ],
     "orbes": [],
-    "kill_count": 1035,
-    "jetons": 4,
-    "boss_donjon_battus": 1,
+    "kill_count": 1945,
+    "jetons": 5,
+    "boss_donjon_battus": 4,
     "chapitres_completees": [
-      1
+      1,
+      2,
+      3,
+      4
     ],
     "donjon_actif": null,
     "auto_supprimer": [
@@ -931,22 +6020,22 @@
     ]
   },
   "enemy": {
-    "niveau": 71,
+    "niveau": 472,
     "boss": false,
-    "nom": "Rat Géant",
+    "nom": "Liche",
     "stats": {
-      "hp_max": 1130,
-      "atk": 218,
-      "def": 73,
-      "vit": 148,
-      "crit_chance": 38,
-      "crit_mult": 340,
-      "esquive": 23,
+      "hp_max": 7145,
+      "atk": 1421,
+      "def": 474,
+      "vit": 950,
+      "crit_chance": 238,
+      "crit_mult": 1543,
+      "esquive": 30,
       "chance_loot": 0,
-      "contre": 23,
-      "vitesse_attaque": 220,
+      "contre": 143,
+      "vitesse_attaque": 1022,
       "niveau_sorts": 0
     },
-    "hp": 301
+    "hp": 7145
   }
 }

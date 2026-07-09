@@ -4,6 +4,7 @@ let logExpanded = true;
 let gameState = null;
 let tickTimer = null;
 let enemyTimer = null;
+let gamePaused = false;
 let selectedOrbe = null;
 
 const STAT_LABELS = {
@@ -50,8 +51,11 @@ const SORTS_INFO = {
 };
 
 const ORBE_DESCRIPTIONS = {
-    amelioration: "Choisit une stat aléatoire sur l'objet et lui ajoute +1. Risque de 10% de corrompre l'objet.",
-    alteration: "Ajoute un nouveau modificateur aléatoire à l'objet. 25% de chance de monter en rareté. 40% de corruption. Si l'objet atteint Mythique, il est automatiquement corrompu.",
+    amelioration: "Un mod au hasard gagne +1. Petit risque de corruption.",
+    alteration: "Ajoute un nouveau mod et peut monter la rarete. Gros risque de corruption.",
+    echange: "Deux mods echanges leurs valeurs. Utile pour deplacer un gros chiffre sur la bonne stat.",
+    fragilite: "Un mod devient 50% plus fort, mais un autre disparait. Quitte ou double !",
+    polymorphie: "Transforme l'objet en un autre type (ex: bottes en casque). Les mods restent.",
 };
 
 async function fetchState() {
@@ -187,12 +191,43 @@ function renderPlayerStats() {
     }
 }
 
+const ENEMY_IMAGES = {
+    "Loup": "/static/images/loup.png",
+    "Gobelin": "/static/images/goblin.png",
+    "Chauve-souris": "/static/images/chauve souris.png",
+    "Squelette": "/static/images/squelette.png",
+    "Slime": "/static/images/slime.png",
+    "Rat Géant": "/static/images/rat.png",
+    "Zombie": "/static/images/zombie.png",
+    "Orc": "/static/images/orc.png",
+    "Troll": "/static/images/troll.png",
+    "Spectre": "/static/images/spectre.png",
+    "Élémentaire": "/static/images/elementaire.png",
+    "Wyverne": "/static/images/wyvern.png",
+    "Araignée": "/static/images/araignée.png",
+    "Bandit": "/static/images/bandit.png",
+    "Mimic": "/static/images/mimic.png",
+    "Dragon": "/static/images/wyvern.png",
+    "Démon Mineur": "/static/images/demon.png",
+    "Liche": "/static/images/lich.png",
+    "Gargouille": "/static/images/gargouille.png",
+    "Golem": "/static/images/golem.png",
+};
+
 function renderEnemy() {
     const e = gameState.enemy;
     const nameEl = document.getElementById("enemy-name");
     nameEl.textContent = (e.boss ? "👑 " : "") + e.nom + " (Niv. " + e.niveau + ")";
     if (e.boss) nameEl.classList.add("boss-name");
     else nameEl.classList.remove("boss-name");
+
+    const imgEl = document.getElementById("enemy-image");
+    if (ENEMY_IMAGES[e.nom]) {
+        imgEl.src = ENEMY_IMAGES[e.nom];
+        imgEl.classList.remove("hidden");
+    } else {
+        imgEl.classList.add("hidden");
+    }
 
     const hpBar = document.getElementById("enemy-hp-bar");
     const hpText = document.getElementById("enemy-hp-text");
@@ -566,17 +601,25 @@ async function newGame() {
     addLogLine("⚔️ Le combat commence...");
 }
 
-async function skipEnemy() {
-    const res = await fetch("/api/skip_enemy", { method: "POST" });
+async function skipEnemy(amount) {
+    const res = await fetch("/api/skip_enemy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: amount || 1 }),
+    });
     const data = await res.json();
-    addLogLine("⏭️ " + data.message);
+    addLogLine(data.message);
     await fetchState();
 }
 
-async function prevEnemy() {
-    const res = await fetch("/api/prev_enemy", { method: "POST" });
+async function prevEnemy(amount) {
+    const res = await fetch("/api/prev_enemy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: amount || 1 }),
+    });
     const data = await res.json();
-    addLogLine("◀ " + data.message);
+    addLogLine(data.message);
     await fetchState();
 }
 
@@ -653,6 +696,19 @@ function renderBatchDelete() {
         btn.addEventListener("click", () => deleteBatch(r));
         container.appendChild(btn);
     });
+    const artBtn = document.createElement("button");
+    artBtn.className = "btn-batch btn-batch-artefact";
+    artBtn.textContent = "Artefacts";
+    artBtn.addEventListener("click", () => deleteArtefacts());
+    container.appendChild(artBtn);
+}
+
+async function deleteArtefacts() {
+    if (!confirm("Supprimer tous les artefacts non verrouilles ?")) return;
+    const res = await fetch("/api/delete_artefacts", { method: "POST" });
+    const data = await res.json();
+    addLogLine(data.message);
+    await fetchState();
 }
 
 async function utiliserOrbe(cibleCoffreIdx, cibleItemIdx) {
@@ -669,12 +725,43 @@ async function utiliserOrbe(cibleCoffreIdx, cibleItemIdx) {
     });
     const data = await res.json();
     addLogLine(data.message);
+    showOrbeNotification(data.message, data.success);
     selectedOrbe = null;
     await fetchState();
 }
 
+function showOrbeNotification(message, success) {
+    let notif = document.getElementById("orbe-notification");
+    if (!notif) {
+        notif = document.createElement("div");
+        notif.id = "orbe-notification";
+        document.body.appendChild(notif);
+    }
+    notif.textContent = message;
+    notif.className = success ? "orbe-notif orbe-notif-success" : "orbe-notif orbe-notif-error";
+    notif.classList.add("orbe-notif-show");
+    setTimeout(() => notif.classList.remove("orbe-notif-show"), 3000);
+}
+
+function togglePause() {
+    gamePaused = !gamePaused;
+    const btn = document.getElementById("btn-pause");
+    if (gamePaused) {
+        if (tickTimer) clearInterval(tickTimer);
+        if (enemyTimer) clearInterval(enemyTimer);
+        tickTimer = null;
+        enemyTimer = null;
+        btn.textContent = "Reprendre";
+        btn.classList.add("btn-pause-active");
+    } else {
+        btn.textContent = "Pause";
+        btn.classList.remove("btn-pause-active");
+        updateTickSpeed();
+    }
+}
+
 function updateTickSpeed() {
-    if (!gameState) return;
+    if (!gameState || gamePaused) return;
     const vitesseJ = gameState.player.stats_effectives.vitesse_attaque || 100;
     const intervalJ = Math.max(200, Math.round(100000 / vitesseJ));
     if (tickTimer) clearInterval(tickTimer);
@@ -1171,6 +1258,10 @@ async function chaudronFondre() {
 }
 
 document.addEventListener("keydown", (e) => {
+    if (e.code === "Escape") {
+        togglePause();
+        return;
+    }
     if (e.code === "Space") {
         const overlay = document.getElementById("chaudron-overlay");
         if (overlay && !overlay.classList.contains("hidden")) {

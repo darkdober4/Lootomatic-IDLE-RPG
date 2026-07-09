@@ -164,15 +164,33 @@ TICK_INTERVAL_MS = 1000
 ORBE_TYPES = {
     "amelioration": {
         "nom": "Orbe d'Amélioration",
-        "description": "Augmente de +1 chaque stat présente sur l'objet",
+        "description": "Un mod au hasard gagne +1. Petit risque de corruption.",
         "drop_chance": 15,
     },
     "alteration": {
         "nom": "Orbe d'Altération",
-        "description": "Ajoute un mod aléatoire, peut augmenter la rareté. 40% de corrompre l'objet.",
+        "description": "Ajoute un nouveau mod et peut monter la rarete. Gros risque de corruption.",
         "drop_chance": 5,
         "corruption_chance": 40,
         "rarete_up_chance": 25,
+    },
+    "echange": {
+        "nom": "Orbe d'Échange",
+        "description": "Deux mods echanges leurs valeurs. Utile pour deplacer un gros chiffre sur la bonne stat.",
+        "drop_chance": 10,
+        "corruption_chance": 15,
+    },
+    "fragilite": {
+        "nom": "Orbe de Fragilité",
+        "description": "Un mod devient 50% plus fort, mais un autre disparait. Quitte ou double !",
+        "drop_chance": 6,
+        "corruption_chance": 20,
+    },
+    "polymorphie": {
+        "nom": "Orbe de Polymorphie",
+        "description": "Transforme l'objet en un autre type (ex: bottes en casque). Les mods restent.",
+        "drop_chance": 8,
+        "corruption_chance": 30,
     },
 }
 
@@ -391,6 +409,7 @@ PRO_TIPS = [
     "Les camps dans le donjon restaurent 100% des PV. Ils n'apparaissent pas dans les 3 premiers etages.",
     "La malediction dans le donjon reduit vos PV max de 5 a 15% de facon permanente pour toute la run.",
     "Le Critique et la Contre-attaque depassent 100% ? Chaque point en trop se transforme en +1 ATQ. Rien ne se perd !",
+    "La Chance de Loot est plafonnee a 1000%. Au-dela, chaque point en trop = +1 ATQ. 1000% = 10 objets par kill !",
 ]
 
 SLOT_MACHINE_SLOTS_CHOIX = [

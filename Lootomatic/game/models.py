@@ -195,6 +195,9 @@ class Player:
         if stats.get("contre", 0) > 100:
             stats["atk"] += stats["contre"] - 100
             stats["contre"] = 100
+        if stats.get("chance_loot", 0) > 1000:
+            stats["atk"] += stats["chance_loot"] - 1000
+            stats["chance_loot"] = 1000
         return stats
 
     def ajouter_item(self, item):
@@ -309,6 +312,7 @@ class Enemy:
             if self.boss:
                 val = int(val * BOSS_MULT_STATS)
             stats[stat] = val
+        stats["esquive"] = min(stats.get("esquive", 0), 30)
         return stats
 
     def recompense_xp(self):

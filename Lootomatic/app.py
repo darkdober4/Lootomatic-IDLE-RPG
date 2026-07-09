@@ -143,7 +143,9 @@ def api_enemy_tick():
 def api_skip_enemy():
     global enemy, max_niveau_debloque
     p, e = get_or_init_game()
-    nouveau_niveau = e.niveau + 1
+    data = request.get_json() or {}
+    amount = data.get("amount", 1)
+    nouveau_niveau = e.niveau + amount
     if nouveau_niveau > max_niveau_debloque:
         max_niveau_debloque = nouveau_niveau
     enemy = Enemy(niveau=nouveau_niveau)
@@ -159,7 +161,9 @@ def api_skip_enemy():
 def api_prev_enemy():
     global enemy
     p, e = get_or_init_game()
-    nouveau_niveau = max(1, e.niveau - 1)
+    data = request.get_json() or {}
+    amount = data.get("amount", 1)
+    nouveau_niveau = max(1, e.niveau - amount)
     enemy = Enemy(niveau=nouveau_niveau, boss=False)
     p.hp = p.get_stats_effectives()["hp_max"]
     return jsonify({
@@ -270,6 +274,32 @@ def api_delete_batch():
         coffre.extend(items_a_garder)
     _consolider_inventaire(p)
     msg = f"{count} objet(s) {rarete} supprime(s)"
+    if locked_skipped > 0:
+        msg += f" ({locked_skipped} verrouille(s) ignore(s))"
+    return jsonify({
+        "success": True,
+        "message": msg,
+    })
+
+
+@app.route("/api/delete_artefacts", methods=["POST"])
+def api_delete_artefacts():
+    p, _ = get_or_init_game()
+    count = 0
+    locked_skipped = 0
+    for coffre in p.inventaire:
+        items_a_garder = []
+        for item in coffre:
+            if item.slot == "artefact" and not item.locked:
+                count += 1
+            else:
+                if item.slot == "artefact" and item.locked:
+                    locked_skipped += 1
+                items_a_garder.append(item)
+        coffre.clear()
+        coffre.extend(items_a_garder)
+    _consolider_inventaire(p)
+    msg = f"{count} artefact(s) supprime(s)"
     if locked_skipped > 0:
         msg += f" ({locked_skipped} verrouille(s) ignore(s))"
     return jsonify({
@@ -415,6 +445,42 @@ def api_utiliser_orbe():
         if not cible_item.corrompu and random.random() * 100 < ORBE_TYPES["alteration"]["corruption_chance"]:
             cible_item.corrompu = True
             message += " ⚠️ CORROMPU ! Cet objet ne peut plus être modifié."
+
+    elif orbe_type == "echange":
+        if len(cible_item.mods) < 2:
+            return jsonify({"success": False, "message": "Il faut au moins 2 mods pour échanger"})
+        mod_a, mod_b = random.sample(cible_item.mods, 2)
+        mod_a["valeur"], mod_b["valeur"] = mod_b["valeur"], mod_a["valeur"]
+        message = f"Échange : {mod_a['nom']} +{mod_a['valeur']} ↔ {mod_b['nom']} +{mod_b['valeur']}"
+        if random.random() * 100 < ORBE_TYPES["echange"]["corruption_chance"]:
+            cible_item.corrompu = True
+            message += " ⚠️ CORROMPU !"
+
+    elif orbe_type == "fragilite":
+        if len(cible_item.mods) < 2:
+            return jsonify({"success": False, "message": "Il faut au moins 2 mods pour cette orbe"})
+        mod_boost = random.choice(cible_item.mods)
+        mods_sauf_boost = [m for m in cible_item.mods if m is not mod_boost]
+        mod_supprime = random.choice(mods_sauf_boost)
+        ancien_val = mod_boost["valeur"]
+        mod_boost["valeur"] = int(mod_boost["valeur"] * 1.5)
+        cible_item.mods.remove(mod_supprime)
+        message = f"Fragilité : {mod_boost['nom']} {ancien_val}→{mod_boost['valeur']}, mais {mod_supprime['nom']} perdu !"
+        if random.random() * 100 < ORBE_TYPES["fragilite"]["corruption_chance"]:
+            cible_item.corrompu = True
+            message += " ⚠️ CORROMPU !"
+
+    elif orbe_type == "polymorphie":
+        from config import SLOTS_EQUIPEMENT
+        slots_possibles = [s for s in SLOTS_EQUIPEMENT if s not in ("artefact", cible_item.slot)]
+        nouveau_slot = random.choice(slots_possibles)
+        ancien_slot = cible_item.slot
+        cible_item.slot = nouveau_slot
+        cible_item.nom = cible_item._generer_nom()
+        message = f"Polymorphie : {ancien_slot} → {nouveau_slot} ({cible_item.nom})"
+        if random.random() * 100 < ORBE_TYPES["polymorphie"]["corruption_chance"]:
+            cible_item.corrompu = True
+            message += " ⚠️ CORROMPU !"
 
     orbe_item.quantite -= 1
     if orbe_item.quantite <= 0:
