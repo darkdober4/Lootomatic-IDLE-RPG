@@ -39,7 +39,7 @@ Lootomatic est un jeu de type idle RPG jouable dans le navigateur. Le personnage
 
 ```bash
 # Cloner le dépôt
-git clone <repo-url>
+git clone <[repo-url](https://github.com/darkdober4/Lootomatic-IDLE-RPG.git)>
 cd Lootomatic-IDLE-RPG-v.0.5.0/Lootomatic
 
 # Créer un environnement virtuel (recommandé)
