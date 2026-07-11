@@ -105,7 +105,6 @@ Lootomatic/
 ### Donjon
 - Map procédurale avec 7 colonnes × 20 étages
 - Types de nœuds : combat, boss, camp (soin complet), événement, relique
-- 5 chapitres (niveau 10, 20, 30, 40, 50)
 - Battre un boss réincarne au niveau 1 avec +1 point de stat permanent par niveau
 
 ## 🛠️ Technologies
