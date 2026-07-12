@@ -8,14 +8,14 @@
 </head>
 <body>
     <header>
-        <button id="btn-options" onclick="toggleOptions()">⚙️ Options</button>
+        <button id="btn-options" onclick="toggleOptions()">⚙️ <span data-i18n="ui_options">Options</span></button>
         <h1>Lootomatic</h1>
         <div class="header-info">
-            <button id="btn-donjon" onclick="toggleDonjon()">🏰 Donjon</button>
-            <button id="btn-chaudron" onclick="toggleChaudron()"><span class="chaudron-icon">⚗</span> Chaudron</button>
-            <button id="btn-enchant" onclick="toggleEnchant()">Enchantement</button>
-            <button id="btn-stats-overlay" onclick="toggleStatsOverlay()">Stats</button>
-            <button id="btn-info" onclick="toggleInfo()">❓ Aide</button>
+            <button id="btn-donjon" onclick="toggleDonjon()">🏰 <span data-i18n="ui_donjon">Donjon</span></button>
+            <button id="btn-chaudron" onclick="toggleChaudron()"><span class="chaudron-icon">⚗</span> <span data-i18n="ui_chaudron">Chaudron</span></button>
+            <button id="btn-enchant" onclick="toggleEnchant()" data-i18n="ui_enchantement">Enchantement</button>
+            <button id="btn-stats-overlay" onclick="toggleStatsOverlay()" data-i18n="ui_stats">Stats</button>
+            <button id="btn-info" onclick="toggleInfo()">❓ <span data-i18n="ui_aide">Aide</span></button>
             <span id="or-display">💰 0</span>
             <span id="kill-display">☠️ 0</span>
             <span id="jeton-display">🪙 0</span>
@@ -24,119 +24,171 @@
 
     <div id="info-panel" class="hidden">
         <div class="info-content">
-            <h2>Statistiques du Heros</h2>
+            <h2 data-i18n="help_stats_title">Statistiques du Heros</h2>
             <table class="info-table">
-                <tr><td>ATQ</td><td>Degats infliges par attaque</td></tr>
-                <tr><td>DEF</td><td>Reduction des degats recus (formule : DEF / (DEF+100))</td></tr>
-                <tr><td>PV Max</td><td>Points de vie maximum</td></tr>
-                <tr><td>VIT</td><td>Chaque point = +5 PV Max</td></tr>
-                <tr><td>Critique %</td><td>Chance d'infliger un coup critique. Au-dela de 100%, chaque point en trop = +1 ATQ</td></tr>
-                <tr><td>Degats Crit. %</td><td>Multiplicateur de degats sur un critique (base 150%)</td></tr>
-                <tr><td>Esquive %</td><td>Chance d'esquiver une attaque ennemie (plafonnee a 30%)</td></tr>
-                <tr><td>Chance Loot %</td><td>100% = 1 objet, 200% = 2 objets, etc.</td></tr>
-                <tr><td>Contre-attaque %</td><td>Chance de riposter apres un coup recu. Au-dela de 100%, chaque point en trop = +1 ATQ</td></tr>
-                <tr><td>Vit. Attaque</td><td>100 = 1 coup/sec, 200 = 2 coups/sec</td></tr>
-                <tr><td>Niveau Sorts</td><td>Augmente globalement le niveau des sorts</td></tr>
+                <tr><td data-i18n="help_stats_atq">ATQ</td><td data-i18n="help_stats_atq_desc">Degats infliges par attaque</td></tr>
+                <tr><td data-i18n="help_stats_def">DEF</td><td data-i18n="help_stats_def_desc">Reduction des degats recus (formule : DEF / (DEF+100))</td></tr>
+                <tr><td data-i18n="help_stats_hp">PV Max</td><td data-i18n="help_stats_hp_desc">Points de vie maximum</td></tr>
+                <tr><td data-i18n="help_stats_vit">VIT</td><td data-i18n="help_stats_vit_desc">Chaque point = +5 PV Max</td></tr>
+                <tr><td data-i18n="help_stats_crit">Critique %</td><td data-i18n="help_stats_crit_desc">Chance d'infliger un coup critique. Au-dela de 100%, chaque point en trop = +1 ATQ</td></tr>
+                <tr><td data-i18n="help_stats_critdmg">Degats Crit. %</td><td data-i18n="help_stats_critdmg_desc">Multiplicateur de degats sur un critique (base 150%)</td></tr>
+                <tr><td data-i18n="help_stats_dodge">Esquive %</td><td data-i18n="help_stats_dodge_desc">Chance d'esquiver une attaque ennemie (plafonnee a 30%)</td></tr>
+                <tr><td data-i18n="help_stats_loot">Chance Loot %</td><td data-i18n="help_stats_loot_desc">100% = 1 objet, 200% = 2 objets, etc.</td></tr>
+                <tr><td data-i18n="help_stats_counter">Contre-attaque %</td><td data-i18n="help_stats_counter_desc">Chance de riposter apres un coup recu. Au-dela de 100%, chaque point en trop = +1 ATQ</td></tr>
+                <tr><td data-i18n="help_stats_speed">Vit. Attaque</td><td data-i18n="help_stats_speed_desc">100 = 1 coup/sec, 200 = 2 coups/sec</td></tr>
+                <tr><td data-i18n="help_stats_spells">Niveau Sorts</td><td data-i18n="help_stats_spells_desc">Augmente globalement le niveau des sorts</td></tr>
             </table>
-            <p class="info-note">Les PV sont remis au max a chaque victoire et a chaque mort. La mort fait perdre 1% de l'XP.</p>
+            <p class="info-note" data-i18n="help_hp_note">Les PV sont remis au max a chaque victoire et a chaque mort. La mort fait perdre 1% de l'XP.</p>
 
-            <h2>Orbes de Modification</h2>
+            <h2 data-i18n="help_orbs_title">Orbes de Modification</h2>
             <table class="info-table">
-                <tr><td>Orbe d'Amelioration</td><td>+1 sur un mod aleatoire de l'objet. 10% corruption. Drop 15% (30% boss)</td></tr>
-                <tr><td>Orbe d'Alteration</td><td>Ajoute un mod aleatoire. 25% rarete up. 40% corruption. Mythique = auto-corruption. Drop 5% (10% boss)</td></tr>
+                <tr><td data-i18n="help_orb_enhance">Orbe d'Amelioration</td><td data-i18n="help_orb_enhance_desc">+1 sur un mod aleatoire de l'objet. 10% corruption. Drop 8% (16% boss)</td></tr>
+                <tr><td data-i18n="help_orb_alter">Orbe d'Alteration</td><td data-i18n="help_orb_alter_desc">Ajoute un mod aleatoire. 25% rarete up. 40% corruption. Mythique = auto-corruption. Drop 3% (6% boss)</td></tr>
+                <tr><td data-i18n="help_orb_exchange">Orbe d'Echange</td><td data-i18n="help_orb_exchange_desc">Echange les valeurs de 2 mods aleatoires. 15% corruption. Drop 5% (10% boss)</td></tr>
+                <tr><td data-i18n="help_orb_frag">Orbe de Fragilite</td><td data-i18n="help_orb_frag_desc">+50% sur 1 mod, mais un autre disparait. 20% corruption. Drop 3% (6% boss)</td></tr>
+                <tr><td data-i18n="help_orb_poly">Orbe de Polymorphie</td><td data-i18n="help_orb_poly_desc">Change le slot (ex: bottes en casque), les mods restent. 30% corruption. Drop 4% (8% boss)</td></tr>
+                <tr><td data-i18n="help_orb_purify">Orbe de Purification</td><td data-i18n="help_orb_purify_desc">Retire la corruption d'un objet. Drop 0.3% (0.6% boss)</td></tr>
             </table>
-            <p class="info-note">Un objet corrompu ne peut plus etre modifie par des orbes.</p>
+            <p class="info-note" data-i18n="help_orb_note">Un objet corrompu ne peut plus etre modifie par des orbes (sauf Purification).</p>
 
-            <h2>Artefacts et Sorts</h2>
-            <p class="info-note">Les artefacts donnent un sort a stacks. Chaque coup ou degat recu accumule des stacks, et quand la barre est pleine, l'effet se declenche ! Le niveau du sort depend de la rarete :</p>
+            <h2 data-i18n="help_artifacts_title">Artefacts et Sorts</h2>
+            <p class="info-note" data-i18n="help_artifacts_desc">Les artefacts donnent un sort a stacks. Chaque coup ou degat recu accumule des stacks, et quand la barre est pleine, l'effet se declenche ! Le niveau du sort depend de la rarete :</p>
             <table class="info-table">
-                <tr><td>Rare (Niv.2)</td><td>Puissance x1.5</td></tr>
-                <tr><td>Epique (Niv.3)</td><td>Puissance x2.0</td></tr>
-                <tr><td>Legendaire (Niv.4)</td><td>Puissance x2.5</td></tr>
-                <tr><td>Mythique (Niv.5)</td><td>Puissance x3.0</td></tr>
-            </table>
-
-            <h3>Sorts Offensifs</h3>
-            <table class="info-table">
-                <tr><td>Poison</td><td>L'ennemi perd des PV chaque seconde pendant 5 secondes. Scale avec l'ATQ.</td></tr>
-                <tr><td>Surge de Flammes</td><td>Frappe 3 fois, puis explosion de degats purs (ignore la DEF).</td></tr>
-                <tr><td>Hemorragie</td><td>Frappe 4 fois, puis l'ennemi saigne pendant 3 secondes.</td></tr>
-                <tr><td>Chaine d'Eclairs</td><td>Se charge automatiquement. ZAP : degats d'eclair !</td></tr>
-                <tr><td>Vengeance</td><td>Encaisse 5 coups, puis renvoie tous les degats recus d'un seul coup !</td></tr>
-                <tr><td>Lame Spectrale</td><td>Frappe 2 fois, puis le prochain coup fait beaucoup plus mal !</td></tr>
-                <tr><td>Marque Maudite</td><td>Frappe 3 fois, puis les prochains coups font beaucoup plus mal !</td></tr>
-                <tr><td>Execution</td><td>Frappe 6 fois. Si l'ennemi est presque mort, coup gigantesque !</td></tr>
+                <tr><td data-i18n="help_artifact_rare">Rare (Niv.2)</td><td data-i18n="help_artifact_rare_desc">Puissance x1.5</td></tr>
+                <tr><td data-i18n="help_artifact_epic">Epique (Niv.3)</td><td data-i18n="help_artifact_epic_desc">Puissance x2.0</td></tr>
+                <tr><td data-i18n="help_artifact_legendary">Legendaire (Niv.4)</td><td data-i18n="help_artifact_legendary_desc">Puissance x2.5</td></tr>
+                <tr><td data-i18n="help_artifact_mythic">Mythique (Niv.5)</td><td data-i18n="help_artifact_mythic_desc">Puissance x3.0</td></tr>
             </table>
 
-            <h3>Sorts Defensifs</h3>
+            <h3 data-i18n="help_spells_offensive">Sorts Offensifs</h3>
             <table class="info-table">
-                <tr><td>Gel Accumule</td><td>Apres 3 coups recus, l'ennemi est gele et rate ses prochaines attaques.</td></tr>
-                <tr><td>Peau de Fer</td><td>Apres 4 coups recus, un bouclier absorbe le prochain coup.</td></tr>
+                <tr><td data-i18n="help_spell_poison_name">Poison</td><td data-i18n="help_spell_poison_desc">L'ennemi perd des PV chaque seconde pendant 5 secondes. Scale avec l'ATQ.</td></tr>
+                <tr><td data-i18n="help_spell_surge_name">Surge de Flammes</td><td data-i18n="help_spell_surge_desc">Frappe 3 fois, puis explosion de degats purs (ignore la DEF).</td></tr>
+                <tr><td data-i18n="help_spell_hemo_name">Hemorragie</td><td data-i18n="help_spell_hemo_desc">Frappe 4 fois, puis l'ennemi saigne pendant 3 secondes.</td></tr>
+                <tr><td data-i18n="help_spell_chain_name">Chaine d'Eclairs</td><td data-i18n="help_spell_chain_desc">Se charge automatiquement. ZAP : degats d'eclair !</td></tr>
+                <tr><td data-i18n="help_spell_vengeance_name">Vengeance</td><td data-i18n="help_spell_vengeance_desc">Encaisse 5 coups, puis renvoie tous les degats recus d'un seul coup !</td></tr>
+                <tr><td data-i18n="help_spell_lame_name">Lame Spectrale</td><td data-i18n="help_spell_lame_desc">Frappe 2 fois, puis le prochain coup fait beaucoup plus mal !</td></tr>
+                <tr><td data-i18n="help_spell_marque_name">Marque Maudite</td><td data-i18n="help_spell_marque_desc">Frappe 3 fois, puis les prochains coups font beaucoup plus mal !</td></tr>
+                <tr><td data-i18n="help_spell_exec_name">Execution</td><td data-i18n="help_spell_exec_desc">Frappe 6 fois. Si l'ennemi est presque mort, coup gigantesque !</td></tr>
             </table>
 
-            <h3>Sorts Utilitaires</h3>
+            <h3 data-i18n="help_spells_defensive">Sorts Defensifs</h3>
             <table class="info-table">
-                <tr><td>Vol d'Ame</td><td>Frappe 6 fois, puis tu voles la vie de l'ennemi a chaque coup.</td></tr>
-                <tr><td>Distorsion</td><td>Se charge automatiquement. Quand c'est plein, tu attaques 2x plus vite !</td></tr>
+                <tr><td data-i18n="help_spell_gel_name">Gel Accumule</td><td data-i18n="help_spell_gel_desc">Apres 3 coups recus, l'ennemi est gele et rate ses prochaines attaques.</td></tr>
+                <tr><td data-i18n="help_spell_peau_name">Peau de Fer</td><td data-i18n="help_spell_peau_desc">Apres 4 coups recus, un bouclier absorbe le prochain coup.</td></tr>
             </table>
 
-            <h2>Raretes des Objets</h2>
+            <h3 data-i18n="help_spells_utility">Sorts Utilitaires</h3>
             <table class="info-table">
-                <tr><td style="color:#b0b0b0">Commun (86.5%)</td><td>1 modificateur, puissance x1.0</td></tr>
-                <tr><td style="color:#4a90d9">Rare (10%)</td><td>2 modificateurs, puissance x1.5</td></tr>
-                <tr><td style="color:#a855f7">Epique (2%)</td><td>3 modificateurs, puissance x2.0</td></tr>
-                <tr><td style="color:#f59e0b">Legendaire (1%)</td><td>4 modificateurs, puissance x3.0</td></tr>
-                <tr><td style="color:#ef4444">Mythique (0.5%)</td><td>5 modificateurs, puissance x5.0</td></tr>
+                <tr><td data-i18n="help_spell_vol_name">Vol d'Ame</td><td data-i18n="help_spell_vol_desc">Frappe 6 fois, puis tu voles la vie de l'ennemi a chaque coup.</td></tr>
+                <tr><td data-i18n="help_spell_distorsion_name">Distorsion</td><td data-i18n="help_spell_distorsion_desc">Se charge automatiquement. Quand c'est plein, tu attaques 2x plus vite !</td></tr>
             </table>
 
-            <h2>Chaudron Magique</h2>
-            <p class="info-note">Place 3 objets dans le chaudron + de l'or pour obtenir un nouvel objet aleatoire. La rarete des objets mis dedans influence le resultat :</p>
+            <h2 data-i18n="help_rarity_title">Raretes des Objets</h2>
             <table class="info-table">
-                <tr><td>3x Commun</td><td>~41% Rare, ~21% Epique, ~10% Legendaire</td></tr>
-                <tr><td>3x Rare</td><td>~40% Epique, ~20% Legendaire, ~10% Mythique</td></tr>
-                <tr><td>3x Epique</td><td>~40% Legendaire, ~30% Mythique</td></tr>
-                <tr><td>3x Legendaire</td><td>~57% Mythique, ~40% Legendaire</td></tr>
+                <tr><td style="color:#b0b0b0" data-i18n="help_rarity_common_label">Commun (90%)</td><td data-i18n="help_rarity_common">1 modificateur, puissance x1.0</td></tr>
+                <tr><td style="color:#4a90d9" data-i18n="help_rarity_rare_label">Rare (7%)</td><td data-i18n="help_rarity_rare">2 modificateurs, puissance x1.5</td></tr>
+                <tr><td style="color:#a855f7" data-i18n="help_rarity_epic_label">Epique (2%)</td><td data-i18n="help_rarity_epic">3 modificateurs, puissance x2.0</td></tr>
+                <tr><td style="color:#f59e0b" data-i18n="help_rarity_legendary_label">Legendaire (0.8%)</td><td data-i18n="help_rarity_legendary">4 modificateurs, puissance x3.0</td></tr>
+                <tr><td style="color:#ef4444" data-i18n="help_rarity_mythic_label">Mythique (0.2%)</td><td data-i18n="help_rarity_mythic">5 modificateurs, puissance x5.0</td></tr>
             </table>
-            <p class="info-note">Les objets melanges font la moyenne des raretes. Les orbes, artefacts et objets verrouilles ne peuvent pas etre fondus.</p>
 
-            <h2>Verrouillage d'Objets</h2>
-            <p class="info-note">Survolez un objet et cliquez le cadenas pour le verrouiller. Un objet verrouille a un nom arc-en-ciel et ne peut pas etre supprime (ni manuellement, ni par suppression par lot). deverrouillez-le d'abord.</p>
+            <h2 data-i18n="help_enchant_title">Enchantement</h2>
+            <p class="info-note" data-i18n="help_enchant_desc">Chaque niveau + augmente tous les mods de l'objet de 10%. Max +10. En cas d'echec, l'objet est CORROMPU et perd tous ses niveaux. Les chances diminuent a chaque palier :</p>
+            <table class="info-table">
+                <tr><td>+0 vers +1</td><td>100 or, 100% chance</td></tr>
+                <tr><td>+1 vers +2</td><td>200 or, 90% chance</td></tr>
+                <tr><td>+2 vers +3</td><td>400 or, 80% chance</td></tr>
+                <tr><td>+3 vers +4</td><td>800 or, 70% chance</td></tr>
+                <tr><td>+4 vers +5</td><td>1 500 or, 55% chance</td></tr>
+                <tr><td>+5 vers +6</td><td>3 000 or, 40% chance</td></tr>
+                <tr><td>+6 vers +7</td><td>5 000 or, 30% chance</td></tr>
+                <tr><td>+7 vers +8</td><td>8 000 or, 20% chance</td></tr>
+                <tr><td>+8 vers +9</td><td>12 000 or, 15% chance</td></tr>
+                <tr><td>+9 vers +10</td><td>20 000 or, 10% chance</td></tr>
+            </table>
 
-            <h2>Donjon et Reincarnation</h2>
-            <p class="info-note">Le donjon est un parcours de 20 etages avec combats, camps, evenements et reliques. Battre le boss final d'un chapitre pour la premiere fois declenche une reincarnation : retour au niveau 1, mais +1 point de stat permanent par niveau pour chaque boss vaincu. Les chapitres deja completes rapportent des jetons et des objets (machine a sous, objets).</p>
+            <h2 data-i18n="help_cauldron_title">Chaudron Magique</h2>
+            <p class="info-note" data-i18n="help_cauldron_desc">Place 3 objets dans le chaudron + de l'or pour obtenir un nouvel objet aleatoire. La rarete des objets mis dedans influence le resultat :</p>
+            <table class="info-table">
+                <tr><td data-i18n="help_cauldron_3commun">3x Commun</td><td data-i18n="help_cauldron_3commun_desc">~41% Rare, ~21% Epique, ~10% Legendaire</td></tr>
+                <tr><td data-i18n="help_cauldron_3rare">3x Rare</td><td data-i18n="help_cauldron_3rare_desc">~40% Epique, ~20% Legendaire, ~10% Mythique</td></tr>
+                <tr><td data-i18n="help_cauldron_3epic">3x Epique</td><td data-i18n="help_cauldron_3epic_desc">~40% Legendaire, ~30% Mythique</td></tr>
+                <tr><td data-i18n="help_cauldron_3legendary">3x Legendaire</td><td data-i18n="help_cauldron_3legendary_desc">~57% Mythique, ~40% Legendaire</td></tr>
+            </table>
+            <p class="info-note" data-i18n="help_cauldron_note">Les objets melanges font la moyenne des raretes. Les orbes, artefacts et objets verrouilles ne peuvent pas etre fondus.</p>
 
-            <button class="info-close" onclick="toggleInfo()">Fermer</button>
+            <h2 data-i18n="help_lock_title">Verrouillage d'Objets</h2>
+            <p class="info-note" data-i18n="help_lock_desc">Survolez un objet et cliquez le cadenas pour le verrouiller. Un objet verrouille a un nom arc-en-ciel et ne peut pas etre supprime (ni manuellement, ni par suppression par lot). deverrouillez-le d'abord.</p>
+
+            <h2 data-i18n="help_dungeon_title">Donjon et Reincarnation</h2>
+            <p class="info-note" data-i18n="help_dungeon_desc">Le donjon est un parcours de 20 etages avec combats, camps, evenements et reliques. Battre le boss final d'un chapitre pour la premiere fois declenche une reincarnation : retour au niveau 1, mais +1 point de stat permanent par niveau pour chaque boss vaincu. Les chapitres deja completes rapportent des jetons et des objets (machine a sous, objets).</p>
+
+            <h2 data-i18n="help_evolution_title">Equipement Vivant</h2>
+            <p class="info-note" data-i18n="help_evolution_desc">Les objets vivants (drop ultra-rare, minimum Epique) evoluent en tuant des ennemis. 3 paliers d'evolution ajoutent chacun un mod bonus. Desequiper = perte des charges en cours. Plus l'objet est rare, plus il faut de kills :</p>
+            <table class="info-table">
+                <tr><td>Rarete</td><td>Tier 1 (Eveille)</td><td>Tier 2 (Renforce)</td><td>Tier 3 (Transcende)</td></tr>
+                <tr><td>Commun</td><td>100 kills</td><td>250</td><td>500</td></tr>
+                <tr><td>Rare</td><td>150 kills</td><td>375</td><td>750</td></tr>
+                <tr><td>Epique</td><td>200 kills</td><td>500</td><td>1 000</td></tr>
+                <tr><td>Legendaire</td><td>300 kills</td><td>750</td><td>1 500</td></tr>
+                <tr><td>Mythique</td><td>500 kills</td><td>1 250</td><td>2 500</td></tr>
+            </table>
+
+            <h2 data-i18n="help_slot_machine_title">Machine a Sous</h2>
+            <p class="info-note" data-i18n="help_slot_machine_desc">Utilise les jetons gagnes en refaisant des chapitres de donjon deja completes. 1 jeton par spin. 3 symboles identiques = Mythique, 2 identiques = Legendaire. Choisis le slot d'equipement souhaite avant de tourner.</p>
+
+            <h2 data-i18n="help_boss_mode_title">Mode Boss Force</h2>
+            <p class="info-note" data-i18n="help_boss_mode_desc">Apres 5 reincarnations (boss de donjon vaincus), un bouton "Boss" apparait. Active-le pour que tous les ennemis soient des boss : plus de stats, plus de loot, plus d'or. Ideal pour farmer rapidement.</p>
+
+            <h2 data-i18n="help_overflow_title">Debordement de Stats</h2>
+            <p class="info-note" data-i18n="help_overflow_desc">Certaines stats ont un plafond. Tout point au-dela est converti en ATQ :</p>
+            <table class="info-table">
+                <tr><td>Critique %</td><td data-i18n="help_overflow_crit">Plafond 100%. Excedent = +1 ATQ par point</td></tr>
+                <tr><td>Contre-attaque %</td><td data-i18n="help_overflow_counter">Plafond 100%. Excedent = +1 ATQ par point</td></tr>
+                <tr><td>Chance Loot %</td><td data-i18n="help_overflow_loot">Plafond 2000% (20 objets/kill). Excedent = +1 ATQ par point</td></tr>
+                <tr><td>Esquive %</td><td data-i18n="help_overflow_dodge">Plafond 30% (joueur et ennemis)</td></tr>
+            </table>
+
+            <button class="info-close" onclick="toggleInfo()" data-i18n="ui_fermer">Fermer</button>
         </div>
     </div>
 
     <div id="options-panel" class="hidden">
         <div class="options-header">
-            <h2>Options</h2>
-            <button class="options-close" onclick="toggleOptions()">Fermer</button>
+            <h2 data-i18n="ui_options">Options</h2>
+            <button class="options-close" onclick="toggleOptions()" data-i18n="ui_fermer">Fermer</button>
         </div>
         <div class="options-section">
-            <h3>Sauvegarde</h3>
+            <h3 data-i18n="ui_save_section">Sauvegarde</h3>
             <div class="options-row">
                 <input type="text" id="save-filename" placeholder="sauvegarde.json" value="sauvegarde.json">
-                <button onclick="sauvegarder()">Sauvegarder</button>
-                <button onclick="charger()">Charger</button>
-                <button onclick="openSavesFolder()">Ouvrir le dossier</button>
+                <button onclick="sauvegarder()" data-i18n="ui_sauvegarder">Sauvegarder</button>
+                <button onclick="charger()" data-i18n="ui_charger">Charger</button>
+                <button onclick="openSavesFolder()" data-i18n="ui_ouvrir_dossier">Ouvrir le dossier</button>
             </div>
             <div id="save-list"></div>
             <div id="options-message"></div>
         </div>
         <div class="options-section">
-            <h3>Auto-suppression apres chaque kill</h3>
+            <h3 data-i18n="ui_auto_delete">Auto-suppression apres chaque kill</h3>
             <div id="auto-supprimer-grid"></div>
         </div>
         <div class="options-section">
-            <button id="btn-new-game" onclick="newGame()">Nouvelle Partie</button>
+            <h3 id="lang-title" data-i18n="ui_langue">Langue</h3>
+            <div class="options-row">
+                <button onclick="setLanguage('fr')">Français</button>
+                <button onclick="setLanguage('en')">English</button>
+            </div>
+        </div>
+        <div class="options-section">
+            <button id="btn-new-game" onclick="newGame()" data-i18n="ui_nouvelle_partie">Nouvelle Partie</button>
         </div>
     </div>
 
     <main>
         <section id="panel-stats">
-            <h2>Héros <span id="player-niveau">Niv. 1</span></h2>
+            <h2><span data-i18n="ui_hero">Héros</span> <span id="player-niveau">Niv. 1</span></h2>
             <div class="hp-bar-container">
                 <div id="player-hp-bar" class="hp-bar"></div>
                 <span id="player-hp-text" class="hp-text">100 / 100</span>
@@ -147,7 +199,7 @@
             </div>
             <div id="stats-list"></div>
             <div id="points-stats-display"></div>
-            <button id="btn-alloc" onclick="toggleAlloc()">Allouer Points</button>
+            <button id="btn-alloc" onclick="toggleAlloc()" data-i18n="ui_allocate_points">Allouer Points</button>
             <div id="alloc-panel" class="hidden"></div>
         </section>
 
@@ -155,11 +207,11 @@
             <div id="pro-tip"></div>
             <div id="spell-display"></div>
             <div id="combat-zone">
-                <div id="vs-indicator">⚔️ Combat en cours</div>
+                <div id="vs-indicator">⚔️ <span data-i18n="ui_combat_running">Combat en cours</span></div>
             </div>
             <div id="enemy-info">
                 <img id="enemy-image" class="hidden" alt="">
-                <h2 id="enemy-name">Ennemi</h2>
+                <h2 id="enemy-name" data-i18n="ui_enemy">Ennemi</h2>
                 <div class="hp-bar-container">
                     <div id="enemy-hp-bar" class="hp-bar enemy-hp"></div>
                     <span id="enemy-hp-text" class="hp-text">80 / 80</span>
@@ -167,58 +219,65 @@
                 <div id="enemy-stats-list"></div>
             </div>
             <div id="time-controls">
-                <button id="btn-prev-enemy" onclick="prevEnemy(5)" title="Reculer de 5 niveaux">◀◀ 5</button>
-                <button id="btn-prev-enemy-1" onclick="prevEnemy()" title="Ennemi précédent">◀</button>
-                <button id="btn-pause" onclick="togglePause()">Pause</button>
-                <button id="btn-skip-enemy-1" onclick="skipEnemy()" title="Passer à l'ennemi suivant">▶</button>
-                <button id="btn-skip-enemy" onclick="skipEnemy(5)" title="Avancer de 5 niveaux">5 ▶▶</button>
+                <button id="btn-prev-enemy" onclick="prevEnemy(5)" data-i18n-title="title_prev_5" title="Reculer de 5 niveaux">◀◀ 5</button>
+                <button id="btn-prev-enemy-1" onclick="prevEnemy()" data-i18n-title="title_prev_1" title="Ennemi précédent">◀</button>
+                <button id="btn-pause" onclick="togglePause()" data-i18n="ui_pause">Pause</button>
+                <button id="btn-skip-enemy-1" onclick="skipEnemy()" data-i18n-title="title_next_1" title="Passer à l'ennemi suivant">▶</button>
+                <button id="btn-skip-enemy" onclick="skipEnemy(5)" data-i18n-title="title_next_5" title="Avancer de 5 niveaux">5 ▶▶</button>
             </div>
+            <button id="btn-force-boss" class="hidden" onclick="toggleForceBoss()" data-i18n-title="title_force_boss" data-i18n="ui_boss" title="Forcer les boss (5+ reincarnations)">Boss</button>
             <div id="log-container">
                 <div id="log-header" onclick="toggleLog()">
-                    📜 Log de Combat <span id="log-toggle">▼</span>
+                    📜 <span data-i18n="ui_combat_log">Log de Combat</span> <span id="log-toggle">▼</span>
                 </div>
                 <div id="log-content"></div>
             </div>
         </section>
 
         <section id="panel-inventory">
-            <h2>Équipement</h2>
+            <h2 data-i18n="ui_equipment">Équipement</h2>
             <div id="equip-slots"></div>
-            <h2>Inventaire</h2>
+            <h2 data-i18n="ui_inventory">Inventaire</h2>
             <div id="inv-tabs"></div>
             <div id="inv-filter-bar">
                 <select id="inv-filter-stat">
-                    <option value="">-- Filtrer par stat --</option>
-                    <option value="atk">ATQ</option>
-                    <option value="hp_max">PV Max</option>
-                    <option value="def">DEF</option>
-                    <option value="vit">VIT</option>
-                    <option value="crit_chance">Critique %</option>
-                    <option value="crit_mult">Degats Crit. %</option>
-                    <option value="esquive">Esquive %</option>
-                    <option value="chance_loot">Chance Loot %</option>
-                    <option value="contre">Contre-attaque %</option>
-                    <option value="vitesse_attaque">Vit. Attaque</option>
+                    <option value="" data-i18n="ui_filtre_stat">-- Filtrer par stat --</option>
+                    <option value="atk" data-i18n="stat_atk">ATQ</option>
+                    <option value="hp_max" data-i18n="stat_hp_max">PV Max</option>
+                    <option value="def" data-i18n="stat_def">DEF</option>
+                    <option value="vit" data-i18n="stat_vit">VIT</option>
+                    <option value="crit_chance" data-i18n="stat_crit_chance">Critique %</option>
+                    <option value="crit_mult" data-i18n="stat_crit_mult">Degats Crit. %</option>
+                    <option value="esquive" data-i18n="stat_esquive">Esquive %</option>
+                    <option value="chance_loot" data-i18n="stat_chance_loot">Chance Loot %</option>
+                    <option value="contre" data-i18n="stat_contre">Contre-attaque %</option>
+                    <option value="vitesse_attaque" data-i18n="stat_vitesse_attaque">Vit. Attaque</option>
                 </select>
                 <select id="inv-sort-mode">
-                    <option value="">-- Trier par --</option>
-                    <option value="rarete">Rarete</option>
-                    <option value="stat">Valeur de la stat</option>
-                    <option value="niveau">Niveau</option>
+                    <option value="" data-i18n="ui_trier_par">-- Trier par --</option>
+                    <option value="rarete" data-i18n="ui_rarete">Rarete</option>
+                    <option value="stat" data-i18n="ui_valeur_stat">Valeur de la stat</option>
+                    <option value="niveau" data-i18n="ui_niveau">Niveau</option>
+                </select>
+                <select id="inv-filter-type">
+                    <option value="" data-i18n="ui_tous_objets">-- Tous les objets --</option>
+                    <option value="vivant" data-i18n="ui_vivants">Vivants</option>
+                    <option value="orbe" data-i18n="ui_orbes">Orbes</option>
+                    <option value="artefact" data-i18n="ui_artefacts">Artefacts</option>
                 </select>
             </div>
             <div id="inv-grid"></div>
 
             <div id="slot-machine">
-                <h2>Machine a Sous</h2>
-                <div class="slot-cost">1 jeton / spin — 3 identiques = Mythique, 2 = Legendaire</div>
+                <h2 data-i18n="slot_machine_title">Machine a Sous</h2>
+                <div class="slot-cost" data-i18n="slot_machine_cost">1 jeton / spin — 3 identiques = Mythique, 2 = Legendaire</div>
                 <div id="slot-reels">
                     <div class="slot-reel" id="reel-1"><span>?</span></div>
                     <div class="slot-reel" id="reel-2"><span>?</span></div>
                     <div class="slot-reel" id="reel-3"><span>?</span></div>
                 </div>
                 <div id="slot-result"></div>
-                <button id="btn-spin" onclick="spinSlotMachine()">Spin !</button>
+                <button id="btn-spin" onclick="spinSlotMachine()" data-i18n="slot_spin">Spin !</button>
                 <div id="slot-chooser" class="hidden">
                     <div id="slot-chooser-buttons"></div>
                 </div>
@@ -228,8 +287,8 @@
 
     <div id="stats-overlay" class="hidden">
         <div class="options-header">
-            <h2>Statistiques de Session</h2>
-            <button class="options-close" onclick="toggleStatsOverlay()">Fermer</button>
+            <h2 data-i18n="ui_session_stats">Statistiques de Session</h2>
+            <button class="options-close" onclick="toggleStatsOverlay()" data-i18n="ui_fermer">Fermer</button>
         </div>
         <div id="stats-overlay-content"></div>
     </div>
@@ -238,9 +297,9 @@
 
     <div id="donjon-overlay" class="hidden">
         <div id="donjon-header">
-            <h2>🏰 Donjon <span id="donjon-chapitre"></span></h2>
-            <button id="btn-donjon-close" onclick="toggleDonjon()">✕ Fermer</button>
-            <button id="btn-donjon-exit" onclick="quitterDonjon()" class="hidden">Abandonner</button>
+            <h2>🏰 <span data-i18n="ui_donjon">Donjon</span> <span id="donjon-chapitre"></span></h2>
+            <button id="btn-donjon-close" onclick="toggleDonjon()">✕ <span data-i18n="ui_fermer">Fermer</span></button>
+            <button id="btn-donjon-exit" onclick="quitterDonjon()" class="hidden" data-i18n="dungeon_abandon">Abandonner</button>
         </div>
         <div id="donjon-hud">
             <div id="donjon-hp-bar-container">
@@ -265,15 +324,15 @@
             </div>
         </div>
         <div id="donjon-start-panel">
-            <h3>Entrer dans le Donjon</h3>
-            <p>Combattez à travers 20 étages, collectez des reliques et vainquez le boss !</p>
+            <h3 data-i18n="dungeon_enter">Entrer dans le Donjon</h3>
+            <p data-i18n="dungeon_desc">Combattez à travers 20 étages, collectez des reliques et vainquez le boss !</p>
             <div id="donjon-chapitre-select">
-                <label>Chapitre :</label>
+                <label data-i18n="dungeon_chapter_label">Chapitre :</label>
                 <select id="donjon-chapitre-input">
                     <option value="1">Chapitre 1 (Niv. 10)</option>
                 </select>
             </div>
-            <button id="btn-donjon-start" onclick="startDonjon()">Commencer</button>
+            <button id="btn-donjon-start" onclick="startDonjon()" data-i18n="dungeon_start">Commencer</button>
         </div>
     </div>
 
@@ -281,18 +340,18 @@
     <div id="enchant-overlay" class="hidden">
         <div class="enchant-panel">
             <div class="enchant-header">
-                <h2>Enchantement</h2>
-                <button class="enchant-close" onclick="toggleEnchant()">Fermer</button>
+                <h2 data-i18n="enchant_overlay_title">Enchantement</h2>
+                <button class="enchant-close" onclick="toggleEnchant()" data-i18n="ui_fermer">Fermer</button>
             </div>
-            <p class="enchant-desc">Choisis un objet pour l'enchanter. Chaque niveau + augmente ses stats de 10%. Echec = corruption !</p>
+            <p class="enchant-desc" data-i18n="enchant_overlay_desc">Choisis un objet pour l'enchanter. Chaque niveau + augmente ses stats de 10%. Echec = corruption !</p>
             <div class="enchant-layout">
                 <div class="enchant-selected" id="enchant-selected">
-                    <div class="enchant-selected-title">Objet selectionne</div>
+                    <div class="enchant-selected-title" data-i18n="enchant_selected_title">Objet selectionne</div>
                     <div id="enchant-selected-item">
                         <span style="color:#555">Clique sur un objet ci-dessous</span>
                     </div>
                     <div id="enchant-info"></div>
-                    <button id="enchant-btn" class="enchant-action-btn" onclick="enchantSelected()" disabled>Enchanter</button>
+                    <button id="enchant-btn" class="enchant-action-btn" onclick="enchantSelected()" disabled data-i18n="enchant_btn">Enchanter</button>
                 </div>
                 <div class="enchant-list" id="enchant-inventory"></div>
             </div>
@@ -304,10 +363,10 @@
     <div id="chaudron-overlay" class="hidden">
         <div class="chaudron-panel">
             <div class="chaudron-header">
-                <h2>Chaudron Magique</h2>
-                <button class="chaudron-close" onclick="toggleChaudron()">Fermer</button>
+                <h2 data-i18n="cauldron_overlay_title">Chaudron Magique</h2>
+                <button class="chaudron-close" onclick="toggleChaudron()" data-i18n="ui_fermer">Fermer</button>
             </div>
-            <p class="chaudron-desc">Place 3 objets dans le chaudron pour en obtenir un nouveau aleatoire. Coute de l'or.</p>
+            <p class="chaudron-desc" data-i18n="cauldron_overlay_desc">Place 3 objets dans le chaudron pour en obtenir un nouveau aleatoire. Coute de l'or.</p>
             <div id="chaudron-slots">
                 <div class="chaudron-slot" id="chaudron-slot-0">
                     <span class="chaudron-slot-label">Objet 1</span>
@@ -320,20 +379,20 @@
                 </div>
             </div>
             <div class="chaudron-filter-row">
-                <label>Filtrer :</label>
+                <label data-i18n="cauldron_filter_label">Filtrer :</label>
                 <select id="chaudron-filter-rarete" onchange="renderChaudron()">
-                    <option value="">Toutes les raretes</option>
-                    <option value="Commun">Commun</option>
-                    <option value="Rare">Rare</option>
-                    <option value="Épique">Épique</option>
-                    <option value="Légendaire">Légendaire</option>
-                    <option value="Mythique">Mythique</option>
+                    <option value="" data-i18n="cauldron_all_rarities">Toutes les raretes</option>
+                    <option value="Commun" data-i18n="rarity_Commun">Commun</option>
+                    <option value="Rare" data-i18n="rarity_Rare">Rare</option>
+                    <option value="Épique" data-i18n="rarity_Epique">Épique</option>
+                    <option value="Légendaire" data-i18n="rarity_Legendaire">Légendaire</option>
+                    <option value="Mythique" data-i18n="rarity_Mythique">Mythique</option>
                 </select>
             </div>
             <div id="chaudron-inventory"></div>
             <div class="chaudron-footer">
                 <span id="chaudron-cost">Cout : 50 or</span>
-                <button id="chaudron-fondre-btn" onclick="chaudronFondre()" disabled>Fondre !</button>
+                <button id="chaudron-fondre-btn" onclick="chaudronFondre()" disabled data-i18n="cauldron_fondre">Fondre !</button>
             </div>
             <div id="chaudron-result"></div>
         </div>

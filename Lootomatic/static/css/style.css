@@ -2307,3 +2307,69 @@ h2 {
     border: 2px solid #ef4444;
     color: #ef4444;
 }
+
+/* ─── EQUIPEMENT EVOLUE ─────────────────────────────────────────────── */
+
+.evolved-item {
+    background: #0a0a0a !important;
+    border: 2px solid #00e5ff !important;
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.4), inset 0 0 4px rgba(0, 229, 255, 0.1);
+}
+
+/* ─── CHARGES (Equipement Vivant) ──────────────────────────────────── */
+
+.charges-bar-container {
+    width: 100%;
+    height: 10px;
+    background: #1a1a2e;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #22c55e;
+    margin-top: 4px;
+}
+
+.charges-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #166534, #22c55e);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.charges-bar-text {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 2px #000;
+}
+
+/* ─── BOUTON FORCE BOSS ─────────────────────────────────────────────── */
+
+#btn-force-boss {
+    display: block;
+    margin: 6px auto;
+    background: #1a1a2e;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    padding: 6px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+#btn-force-boss:hover {
+    background: #ef4444;
+    color: #fff;
+}
+
+.btn-force-boss-active {
+    background: #ef4444 !important;
+    color: #fff !important;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}

@@ -72,7 +72,7 @@ function updateChapitreSelect() {
         const opt = document.createElement("option");
         opt.value = i;
         const done = completees.includes(i);
-        opt.textContent = `Chapitre ${i} (Niv. ${i * 10})${done ? " ✓" : ""}`;
+        opt.textContent = t("dungeon_chapter_option").replace("{n}", i).replace("{niv}", i * 10) + (done ? " ✓" : "");
         select.appendChild(opt);
     }
 }
@@ -83,22 +83,22 @@ async function startDonjon() {
     const ptsNiveau = 2 + bonus;
     const dejaFait = (gameState && gameState.player.chapitres_completees && gameState.player.chapitres_completees.includes(chapitre));
 
-    let msg = "🏰 Donjon — Chapitre " + chapitre + "\n\n"
-        + "Pendant le donjon :\n"
-        + "• Vos stats sont verrouillées\n"
-        + "• Si vous mourrez, TOUT est perdu (loots, reliques, jetons)\n\n";
+    let msg = "🏰 " + t("dj_intro_dungeon") + " " + chapitre + "\n\n"
+        + t("dj_intro_during") + "\n"
+        + "• " + t("dj_intro_stats_locked") + "\n"
+        + "• " + t("dj_intro_death_warning") + "\n\n";
 
     if (dejaFait) {
-        msg += "⚠️ Chapitre DÉJÀ complété — pas de réincarnation.\n"
-            + "Vous gagnerez uniquement des objets.\n\n";
+        msg += "⚠️ " + t("dj_intro_already_done") + "\n"
+            + t("dj_intro_items_only") + "\n\n";
     } else {
-        msg += "En battant le boss (1ère fois) :\n"
-            + "• RÉINCARNATION : retour niveau 1\n"
-            + "• Stats à zéro, équipement conservé\n"
-            + "• +1 pt/niveau permanent (" + ptsNiveau + " → " + (ptsNiveau + 1) + ")\n"
-            + "• Jetons et objets bonus\n\n";
+        msg += t("dj_intro_first_boss") + "\n"
+            + "• " + t("dj_intro_reincarnation") + "\n"
+            + "• " + t("dj_intro_stats_reset") + "\n"
+            + "• " + t("dj_intro_pts_per_level") + " (" + ptsNiveau + " → " + (ptsNiveau + 1) + ")\n"
+            + "• " + t("dj_intro_tokens_items") + "\n\n";
     }
-    msg += "Continuer ?";
+    msg += t("dj_intro_continue");
 
     if (!confirm(msg)) return;
 
@@ -145,7 +145,7 @@ function updateDonjonHUD() {
     hpBar.style.width = Math.max(0, pct) + "%";
     hpText.textContent = `${donjonState.hp} / ${donjonState.hp_max}`;
 
-    document.getElementById("donjon-etage").textContent = `Étage ${donjonState.etage + 1}/${DONJON_ETAGES}`;
+    document.getElementById("donjon-etage").textContent = `${t("dj_floor_label")} ${donjonState.etage + 1}/${DONJON_ETAGES}`;
 
     const relContainer = document.getElementById("donjon-reliques");
     relContainer.innerHTML = "";
@@ -289,7 +289,7 @@ function handleRoomResult(result) {
         showDonjonCombat(result.ennemi, result.message);
         startDonjonCombatTimers();
     } else if (result.type === "camp") {
-        showRoomPanel("🏕️ Camp", result.message, []);
+        showRoomPanel("🏕️ " + t("dj_camp_title"), result.message, []);
     } else if (result.type === "evenement") {
         handleEvenement(result);
     } else if (result.type === "relique") {
@@ -328,7 +328,7 @@ function handleEvenement(result) {
         renderDonjonMap();
     }
 
-    showRoomPanel("❓ Événement", result.message, actions);
+    showRoomPanel("❓ " + t("dj_event_title"), result.message, actions);
 }
 
 function showRelicChoice(choices) {
@@ -336,8 +336,8 @@ function showRelicChoice(choices) {
 
     const panel = document.getElementById("donjon-room-panel");
     panel.classList.remove("hidden");
-    document.getElementById("donjon-room-header").textContent = "💎 Choisissez une relique";
-    document.getElementById("donjon-room-content").innerHTML = "<p>Sélectionnez une relique pour ce run.</p>";
+    document.getElementById("donjon-room-header").textContent = "💎 " + t("dj_choose_relic");
+    document.getElementById("donjon-room-content").innerHTML = "<p>" + t("dj_choose_relic") + "</p>";
 
     const actionsDiv = document.getElementById("donjon-room-actions");
     actionsDiv.innerHTML = "";
@@ -366,7 +366,7 @@ async function choisirRelique(relKey) {
         donjonState = data.donjon;
         updateDonjonHUD();
         renderDonjonMap();
-        showRoomPanel("💎 Relique acquise", data.message, []);
+        showRoomPanel("💎 " + t("dj_relic_acquired_title"), data.message, []);
     }
 }
 
@@ -381,7 +381,7 @@ function showDonjonCombat(ennemi, message) {
     const infoDiv = document.getElementById("donjon-enemy-info");
     const bossClass = enemy.boss ? ' class="boss-name"' : '';
     infoDiv.innerHTML = `
-        <h3${bossClass}>${enemy.boss ? "👑 " : ""}${enemy.nom} (Niv.${enemy.niveau})</h3>
+        <h3${bossClass}>${enemy.boss ? "👑 " : ""}${enemy.nom} (${t("ui_level_short")}${enemy.niveau})</h3>
         <div class="hp-bar-container">
             <div id="donjon-enemy-hp-bar" class="hp-bar enemy-hp" style="width:${(enemy.hp / enemy.hp_max * 100)}%"></div>
             <span class="hp-text">${enemy.hp} / ${enemy.hp_max}</span>
@@ -469,13 +469,13 @@ function processDonjonTickResult(data) {
         } else {
             donjonChoices = data.choix_next || [];
             renderDonjonMap();
-            showRoomPanel("⚔️ Victoire !", `${data.log ? data.log[data.log.length - 1] : ""}`, []);
+            showRoomPanel("⚔️ " + t("dj_victory_title"), `${data.log ? data.log[data.log.length - 1] : ""}`, []);
         }
     } else if (data.resultat === "defaite" || data.donjon_termine) {
         stopDonjonCombat();
         donjonCombatActive = false;
         donjonActive = false;
-        showDonjonDefeat(data.message_defaite || "Vous êtes mort dans le donjon.");
+        showDonjonDefeat(data.message_defaite || t("dj_died"));
     }
 }
 
@@ -500,12 +500,12 @@ function playReincarnationAnimation(chapitre, ptsParNiveau) {
 
     const title = document.createElement("div");
     title.className = "reinc-title";
-    title.textContent = "RÉINCARNATION";
+    title.textContent = t("dj_reincarnation_title");
     overlay.appendChild(title);
 
     const sub = document.createElement("div");
     sub.className = "reinc-subtitle";
-    sub.textContent = `Chapitre ${chapitre} vaincu — ${ptsParNiveau} pts/niveau`;
+    sub.textContent = t("dj_chapter_defeated").replace("{chap}", chapitre).replace("{pts}", ptsParNiveau);
     overlay.appendChild(sub);
 
     const colors = ["#ffd700", "#ff8c00", "#ff4500", "#fff", "#fbbf24", "#ef4444", "#a855f7"];
@@ -572,27 +572,27 @@ async function showBossVictory() {
 
             let content;
             if (data.reincarnation) {
+                const reincResult = t("dj_reincarnation_result")
+                    .replace("{jetons}", data.jetons)
+                    .replace("{total}", data.boss_battus_total)
+                    .replace("{pts}", data.pts_par_niveau);
                 content = `<div class="donjon-result-msg donjon-victory">
-                    <strong>🔄 RÉINCARNATION !</strong><br><br>
-                    Votre personnage renaît au <strong>niveau 1</strong><br>
-                    Stats remises à zéro, équipement conservé<br><br>
-                    +${data.jetons} jetons<br>
-                    ${itemsHTML}<br><br>
-                    Boss totaux battus : ${data.boss_battus_total}<br>
-                    <strong>${data.pts_par_niveau} pts/niveau</strong> désormais
+                    <strong>🔄 ${t("dj_reincarnation_title")} !</strong><br><br>
+                    ${reincResult}
+                    <br>${itemsHTML}
                 </div>`;
-                document.getElementById("donjon-room-header").textContent = "🏆 Boss vaincu — Réincarnation !";
+                document.getElementById("donjon-room-header").textContent = "🏆 " + t("dj_boss_defeated_title") + " — " + t("dj_reincarnation_title") + " !";
             } else {
                 content = `<div class="donjon-result-msg donjon-victory">
-                    <strong>BOSS VAINCU !</strong><br><br>
-                    +${data.jetons} jetons<br>
+                    <strong>${t("dj_boss_defeated_title").toUpperCase()} !</strong><br><br>
+                    ${data.message}<br>
                     ${itemsHTML}
                 </div>`;
-                document.getElementById("donjon-room-header").textContent = "🏆 Boss vaincu !";
+                document.getElementById("donjon-room-header").textContent = "🏆 " + t("dj_boss_defeated_title") + " !";
             }
 
             document.getElementById("donjon-room-content").innerHTML = content;
-            document.getElementById("donjon-room-actions").innerHTML = `<button onclick="fermerDonjonVictoire()">Retour au jeu</button>`;
+            document.getElementById("donjon-room-actions").innerHTML = `<button onclick="fermerDonjonVictoire()">${t("dj_return_game")}</button>`;
         }, data.reincarnation ? 3500 : 0);
 
         await fetchState();
@@ -613,9 +613,9 @@ function showDonjonDefeat(message) {
     combatPanel.classList.remove("hidden");
 
     roomPanel.classList.remove("hidden");
-    document.getElementById("donjon-room-header").textContent = "💀 Défaite";
+    document.getElementById("donjon-room-header").textContent = "💀 " + t("dj_defeat_title");
     document.getElementById("donjon-room-content").innerHTML = `<div class="donjon-result-msg donjon-defeat">${message}</div>`;
-    document.getElementById("donjon-room-actions").innerHTML = `<button onclick="fermerDonjonVictoire()">Retour au jeu</button>`;
+    document.getElementById("donjon-room-actions").innerHTML = `<button onclick="fermerDonjonVictoire()">${t("dj_return_game")}</button>`;
 }
 
 function fermerDonjonVictoire() {
@@ -624,7 +624,7 @@ function fermerDonjonVictoire() {
 }
 
 async function quitterDonjon() {
-    if (!confirm("Abandonner le donjon ? Toutes les récompenses seront perdues.")) return;
+    if (!confirm(t("dj_abandon_confirm"))) return;
     const res = await fetch("/api/donjon/exit", { method: "POST" });
     const data = await res.json();
     donjonActive = false;

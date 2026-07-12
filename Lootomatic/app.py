@@ -8,6 +8,7 @@ from flask import Flask, render_template, jsonify, request
 from game.models import Player, Enemy, Item
 from game.combat import tick_player_attack, tick_enemy_attack
 from game.save import sauvegarder, charger, liste_sauvegardes
+from game.translations import tr
 
 app = Flask(__name__)
 
@@ -15,6 +16,14 @@ player = None
 enemy = None
 max_niveau_debloque = 1
 donjon_enemy = None
+
+
+def _spawn_enemy(niveau, player, force_non_boss=False):
+    if force_non_boss:
+        return Enemy(niveau=niveau, boss=False)
+    if getattr(player, 'force_boss', False) and len(getattr(player, 'chapitres_completees', [])) >= 5:
+        return Enemy(niveau=niveau, boss=True)
+    return Enemy(niveau=niveau)
 
 
 def get_or_init_game():
@@ -26,6 +35,39 @@ def get_or_init_game():
         import time
         player.session_stats["debut_session"] = time.time()
     return player, enemy
+
+
+def _track_equipment_charges(player):
+    import random as _r
+    from config import EVOLUTION_PALIERS, EVOLUTION_PALIERS_RARETE, EVOLUTION_SUFFIXES, MODIFICATEURS, RARITE_MULT
+    messages = []
+    for slot, item in player.equipement.items():
+        if item is None or item.slot in ("orbe", "artefact") or item.corrompu:
+            continue
+        if not getattr(item, 'vivant', False):
+            continue
+        if item.evolution_tier >= 3:
+            continue
+        item.charges += 1
+        base_palier = EVOLUTION_PALIERS.get(item.evolution_tier + 1, 999999)
+        rarete_mult = EVOLUTION_PALIERS_RARETE.get(item.rarete, 1.0)
+        palier = int(base_palier * rarete_mult)
+        if item.charges >= palier:
+            item.evolution_tier += 1
+            item.charges = 0
+            mods_disponibles = [m for m in MODIFICATEURS if m["stat"] not in [mod["stat"] for mod in item.mods]]
+            if mods_disponibles:
+                mod_choisi = _r.choice(mods_disponibles)
+                mult = RARITE_MULT.get(item.rarete, 1.0)
+                val_min = max(1, int(mod_choisi["min"] * mult * (1 + item.niveau * 0.1)))
+                val_max = max(val_min + 1, int(mod_choisi["max"] * mult * (1 + item.niveau * 0.1)))
+                valeur = _r.randint(val_min, val_max)
+                item.mods.append({"nom": mod_choisi["nom"], "stat": mod_choisi["stat"], "valeur": valeur})
+            suffix = EVOLUTION_SUFFIXES.get(item.evolution_tier, "")
+            base_nom = item.nom.split(" (")[0] if " (" in item.nom else item.nom
+            item.nom = f"{base_nom} ({suffix})"
+            messages.append(f"{item.nom} evolue ! Nouveau mod : +{valeur if mods_disponibles else 0} {mod_choisi['nom'] if mods_disponibles else 'rien'}")
+    return messages
 
 
 @app.route("/")
@@ -81,6 +123,8 @@ def api_state():
             "chapitres_completees": p.chapitres_completees,
             "donjon_actif": p.donjon_actif is not None,
             "auto_supprimer": p.auto_supprimer,
+            "force_boss": p.force_boss,
+            "lang": p.lang,
         },
         "enemy": {
             "nom": e.nom,
@@ -105,13 +149,15 @@ def api_combat_tick():
         spell_state.reset()
         if resultat["resultat"] == "victoire":
             p.hp = p.get_stats_effectives()["hp_max"]
+            evo_msgs = _track_equipment_charges(p)
+            resultat["log"].extend(evo_msgs)
             if e.niveau >= max_niveau_debloque:
                 max_niveau_debloque = e.niveau + 1
-                enemy = Enemy(niveau=max_niveau_debloque)
+                enemy = _spawn_enemy(max_niveau_debloque, p)
             else:
-                enemy = Enemy(niveau=e.niveau, boss=False)
+                enemy = _spawn_enemy(e.niveau, p)
         else:
-            enemy = Enemy(niveau=e.niveau, boss=False)
+            enemy = _spawn_enemy(e.niveau, p)
     return jsonify(resultat)
 
 
@@ -129,13 +175,15 @@ def api_enemy_tick():
         spell_state.reset()
         if resultat["resultat"] == "victoire":
             p.hp = p.get_stats_effectives()["hp_max"]
+            evo_msgs = _track_equipment_charges(p)
+            resultat["log"].extend(evo_msgs)
             if e.niveau >= max_niveau_debloque:
                 max_niveau_debloque = e.niveau + 1
-                enemy = Enemy(niveau=max_niveau_debloque)
+                enemy = _spawn_enemy(max_niveau_debloque, p)
             else:
-                enemy = Enemy(niveau=e.niveau, boss=False)
+                enemy = _spawn_enemy(e.niveau, p)
         else:
-            enemy = Enemy(niveau=e.niveau, boss=False)
+            enemy = _spawn_enemy(e.niveau, p)
     return jsonify(resultat)
 
 
@@ -143,16 +191,17 @@ def api_enemy_tick():
 def api_skip_enemy():
     global enemy, max_niveau_debloque
     p, e = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     data = request.get_json() or {}
     amount = data.get("amount", 1)
     nouveau_niveau = e.niveau + amount
     if nouveau_niveau > max_niveau_debloque:
         max_niveau_debloque = nouveau_niveau
-    enemy = Enemy(niveau=nouveau_niveau)
+    enemy = _spawn_enemy(nouveau_niveau, p)
     p.hp = p.get_stats_effectives()["hp_max"]
     return jsonify({
         "success": True,
-        "message": f"Passé à l'ennemi niveau {nouveau_niveau} : {enemy.nom}",
+        "message": tr('api_skip_enemy', lang, niv=nouveau_niveau, nom=enemy.nom),
         "max_niveau": max_niveau_debloque,
     })
 
@@ -161,14 +210,15 @@ def api_skip_enemy():
 def api_prev_enemy():
     global enemy
     p, e = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     data = request.get_json() or {}
     amount = data.get("amount", 1)
     nouveau_niveau = max(1, e.niveau - amount)
-    enemy = Enemy(niveau=nouveau_niveau, boss=False)
+    enemy = _spawn_enemy(nouveau_niveau, p, force_non_boss=True)
     p.hp = p.get_stats_effectives()["hp_max"]
     return jsonify({
         "success": True,
-        "message": f"Retour à l'ennemi niveau {nouveau_niveau} : {enemy.nom}",
+        "message": tr('api_prev_enemy', lang, niv=nouveau_niveau, nom=enemy.nom),
         "max_niveau": max_niveau_debloque,
     })
 
@@ -176,12 +226,19 @@ def api_prev_enemy():
 @app.route("/api/alloquer_stat", methods=["POST"])
 def api_allouer_stat():
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     if p.donjon_actif is not None:
-        return jsonify({"success": False, "message": "Impossible d'allouer des stats pendant un donjon."})
+        return jsonify({"success": False, "message": tr('api_no_stats_dungeon', lang)})
     data = request.get_json()
     stat = data.get("stat")
-    ok = p.allouer_stat(stat)
-    return jsonify({"success": ok, "points_restants": p.points_stats, "stats": p.stats})
+    amount = data.get("amount", 1)
+    allocated = 0
+    for _ in range(amount):
+        if p.allouer_stat(stat):
+            allocated += 1
+        else:
+            break
+    return jsonify({"success": allocated > 0, "allocated": allocated, "points_restants": p.points_stats, "stats": p.stats})
 
 
 @app.route("/api/equiper", methods=["POST"])
@@ -235,21 +292,22 @@ def _consolider_inventaire(p):
 @app.route("/api/delete_item", methods=["POST"])
 def api_delete_item():
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     data = request.get_json()
     coffre_idx = data.get("coffre_idx", 0)
     item_idx = data.get("item_idx", 0)
     if coffre_idx >= len(p.inventaire):
-        return jsonify({"success": False, "message": "Coffre invalide"})
+        return jsonify({"success": False, "message": tr('api_chest_invalid', lang)})
     coffre = p.inventaire[coffre_idx]
     if item_idx >= len(coffre):
-        return jsonify({"success": False, "message": "Objet invalide"})
+        return jsonify({"success": False, "message": tr('api_item_invalid', lang)})
     if coffre[item_idx].locked:
-        return jsonify({"success": False, "message": "Objet verrouille, deverrouillez-le d'abord"})
+        return jsonify({"success": False, "message": tr('api_item_locked', lang)})
     item = coffre.pop(item_idx)
     _consolider_inventaire(p)
     return jsonify({
         "success": True,
-        "message": f"{item.nom} supprime",
+        "message": tr('api_item_deleted', lang, nom=item.nom),
         "or_gagne": 0,
     })
 
@@ -257,6 +315,7 @@ def api_delete_item():
 @app.route("/api/delete_batch", methods=["POST"])
 def api_delete_batch():
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     data = request.get_json()
     rarete = data.get("rarete")
     count = 0
@@ -264,7 +323,7 @@ def api_delete_batch():
     for coffre in p.inventaire:
         items_a_garder = []
         for item in coffre:
-            if rarete and item.rarete == rarete and item.slot not in ("orbe", "artefact") and not item.locked:
+            if rarete and item.rarete == rarete and item.slot not in ("orbe", "artefact") and not item.locked and not getattr(item, 'vivant', False):
                 count += 1
             else:
                 if rarete and item.rarete == rarete and item.locked:
@@ -273,9 +332,9 @@ def api_delete_batch():
         coffre.clear()
         coffre.extend(items_a_garder)
     _consolider_inventaire(p)
-    msg = f"{count} objet(s) {rarete} supprime(s)"
+    msg = tr('api_batch_deleted', lang, n=count, rar=rarete)
     if locked_skipped > 0:
-        msg += f" ({locked_skipped} verrouille(s) ignore(s))"
+        msg += " " + tr('api_batch_locked_skipped', lang, n=locked_skipped)
     return jsonify({
         "success": True,
         "message": msg,
@@ -285,6 +344,7 @@ def api_delete_batch():
 @app.route("/api/delete_artefacts", methods=["POST"])
 def api_delete_artefacts():
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     count = 0
     locked_skipped = 0
     for coffre in p.inventaire:
@@ -299,9 +359,9 @@ def api_delete_artefacts():
         coffre.clear()
         coffre.extend(items_a_garder)
     _consolider_inventaire(p)
-    msg = f"{count} artefact(s) supprime(s)"
+    msg = tr('api_artefacts_deleted', lang, n=count)
     if locked_skipped > 0:
-        msg += f" ({locked_skipped} verrouille(s) ignore(s))"
+        msg += " " + tr('api_batch_locked_skipped', lang, n=locked_skipped)
     return jsonify({
         "success": True,
         "message": msg,
@@ -311,20 +371,22 @@ def api_delete_artefacts():
 @app.route("/api/toggle_lock", methods=["POST"])
 def api_toggle_lock():
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     data = request.get_json()
     coffre_idx = data.get("coffre_idx", 0)
     item_idx = data.get("item_idx", 0)
     if coffre_idx >= len(p.inventaire):
-        return jsonify({"success": False, "message": "Coffre invalide"})
+        return jsonify({"success": False, "message": tr('api_chest_invalid', lang)})
     coffre = p.inventaire[coffre_idx]
     if item_idx >= len(coffre):
-        return jsonify({"success": False, "message": "Objet invalide"})
+        return jsonify({"success": False, "message": tr('api_item_invalid', lang)})
     item = coffre[item_idx]
     item.locked = not item.locked
+    state = tr('api_locked', lang) if item.locked else tr('api_unlocked', lang)
     return jsonify({
         "success": True,
         "locked": item.locked,
-        "message": f"{item.nom} {'verrouille' if item.locked else 'deverrouille'}",
+        "message": tr('api_lock_toggled', lang, nom=item.nom, state=state),
     })
 
 
@@ -332,6 +394,7 @@ def api_toggle_lock():
 def api_enchant():
     import random as _r
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     data = request.get_json()
 
     from config import ENCHANT_MAX, ENCHANT_COUT_OR, ENCHANT_CHANCE_REUSSITE
@@ -343,19 +406,19 @@ def api_enchant():
         coffre_idx = data.get("coffre_idx", 0)
         item_idx = data.get("item_idx", 0)
         if coffre_idx >= len(p.inventaire):
-            return jsonify({"success": False, "message": "Coffre invalide"})
+            return jsonify({"success": False, "message": tr('api_chest_invalid', lang)})
         coffre = p.inventaire[coffre_idx]
         if item_idx >= len(coffre):
-            return jsonify({"success": False, "message": "Objet invalide"})
+            return jsonify({"success": False, "message": tr('api_item_invalid', lang)})
         item = coffre[item_idx]
     if item.slot in ("orbe", "artefact"):
-        return jsonify({"success": False, "message": "Les orbes et artefacts ne peuvent pas etre enchantes."})
+        return jsonify({"success": False, "message": tr('api_enchant_not_possible', lang)})
     if item.enchant_level >= ENCHANT_MAX:
-        return jsonify({"success": False, "message": f"Niveau max (+{ENCHANT_MAX}) atteint !"})
+        return jsonify({"success": False, "message": tr('api_enchant_max', lang, max=ENCHANT_MAX)})
 
     cout = ENCHANT_COUT_OR.get(item.enchant_level, 99999)
     if p.or_ < cout:
-        return jsonify({"success": False, "message": f"Pas assez d'or ! Il faut {cout} or."})
+        return jsonify({"success": False, "message": tr('api_not_enough_gold', lang, cout=cout)})
 
     p.or_ -= cout
     chance = ENCHANT_CHANCE_REUSSITE.get(item.enchant_level, 0)
@@ -365,7 +428,7 @@ def api_enchant():
         return jsonify({
             "success": True,
             "reussi": True,
-            "message": f"Enchantement reussi ! {item.nom} passe a +{item.enchant_level}",
+            "message": tr('api_enchant_success', lang, nom=item.nom, niv=item.enchant_level),
             "enchant_level": item.enchant_level,
         })
     else:
@@ -374,7 +437,7 @@ def api_enchant():
         return jsonify({
             "success": True,
             "reussi": False,
-            "message": f"Echec ! {item.nom} est CORROMPU et perd tous ses niveaux d'enchantement !",
+            "message": tr('api_enchant_fail', lang, nom=item.nom),
             "enchant_level": 0,
         })
 
@@ -382,6 +445,7 @@ def api_enchant():
 @app.route("/api/utiliser_orbe", methods=["POST"])
 def api_utiliser_orbe():
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     data = request.get_json()
     orbe_coffre = data.get("orbe_coffre_idx")
     orbe_idx = data.get("orbe_item_idx")
@@ -389,86 +453,88 @@ def api_utiliser_orbe():
     cible_idx = data.get("cible_item_idx")
 
     if orbe_coffre >= len(p.inventaire):
-        return jsonify({"success": False, "message": "Coffre orbe invalide"})
+        return jsonify({"success": False, "message": tr('api_orb_chest_invalid', lang)})
     orbe_item = p.inventaire[orbe_coffre][orbe_idx]
     if not getattr(orbe_item, "orbe_type", None):
-        return jsonify({"success": False, "message": "Ce n'est pas un orbe"})
+        return jsonify({"success": False, "message": tr('api_not_an_orb', lang)})
 
     if cible_coffre >= len(p.inventaire):
-        return jsonify({"success": False, "message": "Coffre cible invalide"})
+        return jsonify({"success": False, "message": tr('api_target_chest_invalid', lang)})
     cible_item = p.inventaire[cible_coffre][cible_idx]
     if cible_item.slot == "orbe":
-        return jsonify({"success": False, "message": "Impossible d'utiliser un orbe sur un autre orbe"})
+        return jsonify({"success": False, "message": tr('api_orb_on_orb', lang)})
 
-    if cible_item.corrompu:
-        return jsonify({"success": False, "message": "Cet objet est corrompu et ne peut plus être modifié"})
+    orbe_type = orbe_item.orbe_type
+
+    if cible_item.corrompu and orbe_type != "purification":
+        return jsonify({"success": False, "message": tr('api_corrupted', lang)})
 
     from config import ORBE_TYPES, MODIFICATEURS, RARITES, RARITE_MULT
     import random
 
     message = ""
-    orbe_type = orbe_item.orbe_type
 
     if orbe_type == "amelioration":
         if not cible_item.mods:
-            return jsonify({"success": False, "message": "Cet objet n'a aucune stat à améliorer"})
+            return jsonify({"success": False, "message": tr('api_no_stats_to_enhance', lang)})
         mod_choisi = random.choice(cible_item.mods)
         mod_choisi["valeur"] += 1
-        message = f"✨ {cible_item.nom} : {mod_choisi['nom']} +1 (maintenant +{mod_choisi['valeur']})"
+        message = tr('api_orb_enhance_result', lang, stats=f"{cible_item.nom} : {mod_choisi['nom']} +1 (+{mod_choisi['valeur']})")
         if random.random() * 100 < 10:
             cible_item.corrompu = True
-            message += " ⚠️ CORROMPU ! Cet objet ne peut plus être modifié."
+            message += " " + tr('api_orb_corrupted', lang)
 
     elif orbe_type == "alteration":
         mods_disponibles = [m for m in MODIFICATEURS if m["stat"] not in [mod["stat"] for mod in cible_item.mods]]
         if not mods_disponibles:
-            return jsonify({"success": False, "message": "Cet objet a déjà tous les mods possibles"})
+            return jsonify({"success": False, "message": tr('api_all_mods_present', lang)})
 
         mod_choisi = random.choice(mods_disponibles)
         mult = RARITE_MULT.get(cible_item.rarete, 1.0)
-        val_min = max(1, int(mod_choisi["min"] * mult))
-        val_max = max(val_min + 1, int(mod_choisi["max"] * mult))
+        niveau_mult = 1 + cible_item.niveau * 0.1
+        val_min = max(1, int(mod_choisi["min"] * mult * niveau_mult))
+        val_max = max(val_min + 1, int(mod_choisi["max"] * mult * niveau_mult))
         valeur = random.randint(val_min, val_max)
         cible_item.mods.append({"nom": mod_choisi["nom"], "stat": mod_choisi["stat"], "valeur": valeur})
-        message = f"🔮 {cible_item.nom} : +{valeur} {mod_choisi['nom']} ajouté"
+        message = tr('api_orb_alter_result', lang, nom=cible_item.nom, val=valeur, stat=mod_choisi['nom'])
 
         if random.random() * 100 < ORBE_TYPES["alteration"]["rarete_up_chance"]:
             idx = RARITES.index(cible_item.rarete)
             if idx < len(RARITES) - 1:
                 cible_item.rarete = RARITES[idx + 1]
                 cible_item.nom = cible_item._generer_nom()
-                message += f" → Rareté augmentée à {cible_item.rarete} !"
+                message += " " + tr('api_orb_alter_rarity_up', lang, rar=cible_item.rarete)
                 if cible_item.rarete == "Mythique":
                     cible_item.corrompu = True
-                    message += " ⚠️ Mythique atteint ! Objet automatiquement CORROMPU."
+                    message += " " + tr('api_orb_alter_corrupt', lang)
 
         if not cible_item.corrompu and random.random() * 100 < ORBE_TYPES["alteration"]["corruption_chance"]:
             cible_item.corrompu = True
-            message += " ⚠️ CORROMPU ! Cet objet ne peut plus être modifié."
+            message += " " + tr('api_orb_corrupted', lang)
 
     elif orbe_type == "echange":
         if len(cible_item.mods) < 2:
-            return jsonify({"success": False, "message": "Il faut au moins 2 mods pour échanger"})
+            return jsonify({"success": False, "message": tr('api_need_2_mods', lang)})
         mod_a, mod_b = random.sample(cible_item.mods, 2)
         mod_a["valeur"], mod_b["valeur"] = mod_b["valeur"], mod_a["valeur"]
-        message = f"Échange : {mod_a['nom']} +{mod_a['valeur']} ↔ {mod_b['nom']} +{mod_b['valeur']}"
+        message = tr('api_orb_exchange_result', lang, a=mod_a['nom'], av=mod_a['valeur'], b=mod_b['nom'], bv=mod_b['valeur'])
         if random.random() * 100 < ORBE_TYPES["echange"]["corruption_chance"]:
             cible_item.corrompu = True
-            message += " ⚠️ CORROMPU !"
+            message += " " + tr('api_orb_corrupted', lang)
 
     elif orbe_type == "fragilite":
         if len(cible_item.mods) < 2:
-            return jsonify({"success": False, "message": "Il faut au moins 2 mods pour cette orbe"})
+            return jsonify({"success": False, "message": tr('api_need_2_mods_frag', lang)})
         mod_boost = random.choice(cible_item.mods)
         mods_sauf_boost = [m for m in cible_item.mods if m is not mod_boost]
         mod_supprime = random.choice(mods_sauf_boost)
         ancien_val = mod_boost["valeur"]
         mod_boost["valeur"] = int(mod_boost["valeur"] * 1.5)
         cible_item.mods.remove(mod_supprime)
-        message = f"Fragilité : {mod_boost['nom']} {ancien_val}→{mod_boost['valeur']}, mais {mod_supprime['nom']} perdu !"
+        message = tr('api_orb_frag_result', lang, a=mod_boost['nom'], old=ancien_val, new=mod_boost['valeur'], b=mod_supprime['nom'])
         if random.random() * 100 < ORBE_TYPES["fragilite"]["corruption_chance"]:
             cible_item.corrompu = True
-            message += " ⚠️ CORROMPU !"
+            message += " " + tr('api_orb_corrupted', lang)
 
     elif orbe_type == "polymorphie":
         from config import SLOTS_EQUIPEMENT
@@ -477,10 +543,16 @@ def api_utiliser_orbe():
         ancien_slot = cible_item.slot
         cible_item.slot = nouveau_slot
         cible_item.nom = cible_item._generer_nom()
-        message = f"Polymorphie : {ancien_slot} → {nouveau_slot} ({cible_item.nom})"
+        message = tr('api_orb_poly_result', lang, old_slot=ancien_slot, new_slot=nouveau_slot, nom=cible_item.nom)
         if random.random() * 100 < ORBE_TYPES["polymorphie"]["corruption_chance"]:
             cible_item.corrompu = True
-            message += " ⚠️ CORROMPU !"
+            message += " " + tr('api_orb_corrupted', lang)
+
+    elif orbe_type == "purification":
+        if not cible_item.corrompu:
+            return jsonify({"success": False, "message": tr('api_not_corrupted', lang)})
+        cible_item.corrompu = False
+        message = tr('api_orb_purify_result', lang, nom=cible_item.nom)
 
     orbe_item.quantite -= 1
     if orbe_item.quantite <= 0:
@@ -491,6 +563,7 @@ def api_utiliser_orbe():
 @app.route("/api/sauvegarder", methods=["POST"])
 def api_sauvegarder():
     p, e = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     data = request.get_json() or {}
     filename = data.get("filename", "sauvegarde.json")
     confirm = data.get("confirm_overwrite", False)
@@ -500,11 +573,11 @@ def api_sauvegarder():
         return jsonify({
             "success": False,
             "exists": True,
-            "message": f"La sauvegarde '{filename}' existe deja. Ecraser ?",
+            "message": tr('api_save_exists', lang, file=filename),
         })
 
     sauvegarder(p, e, filename)
-    return jsonify({"success": True, "message": f"Sauvegarde : {filename}"})
+    return jsonify({"success": True, "message": tr('api_saved', lang, file=filename)})
 
 
 @app.route("/api/charger", methods=["POST"])
@@ -514,10 +587,11 @@ def api_charger():
     filename = data.get("filename", "sauvegarde.json")
     p, e = charger(filename)
     if p is None:
-        return jsonify({"success": False, "message": "Aucune sauvegarde trouvée"})
+        return jsonify({"success": False, "message": tr('api_no_save_found', lang='fr')})
     player = p
     enemy = e
-    return jsonify({"success": True, "message": f"Chargé : {filename}"})
+    lang = getattr(p, 'lang', 'fr')
+    return jsonify({"success": True, "message": tr('api_loaded', lang, file=filename)})
 
 
 @app.route("/api/sauvegardes")
@@ -545,7 +619,8 @@ def api_new_game():
     max_niveau_debloque = 1
     donjon_enemy = None
     spell_state.reset()
-    return jsonify({"success": True, "message": "Nouvelle partie commencee !"})
+    lang = getattr(player, 'lang', 'fr')
+    return jsonify({"success": True, "message": tr('api_new_game', lang)})
 
 
 # ─── DONJON ───────────────────────────────────────────────────────────────────
@@ -554,8 +629,9 @@ def api_new_game():
 def api_donjon_start():
     global donjon_enemy
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     if p.donjon_actif is not None:
-        return jsonify({"success": False, "message": "Vous êtes déjà dans un donjon."})
+        return jsonify({"success": False, "message": tr('api_already_in_dungeon', lang)})
 
     data = request.get_json() or {}
     chapitre = data.get("chapitre", 1)
@@ -588,7 +664,7 @@ def api_donjon_start():
 
     return jsonify({
         "success": True,
-        "message": f"Donjon Chapitre {chapitre} commencé !",
+        "message": tr('api_dungeon_started', lang, chap=chapitre),
         "donjon": _build_donjon_state(p),
         "choix": choix_serialized,
     })
@@ -597,8 +673,9 @@ def api_donjon_start():
 @app.route("/api/donjon/state")
 def api_donjon_state():
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     if p.donjon_actif is None:
-        return jsonify({"success": False, "message": "Aucun donjon en cours."})
+        return jsonify({"success": False, "message": tr('api_no_dungeon', lang)})
     return jsonify({
         "success": True,
         "donjon": _build_donjon_state(p),
@@ -609,8 +686,9 @@ def api_donjon_state():
 def api_donjon_select_node():
     global donjon_enemy
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     if p.donjon_actif is None:
-        return jsonify({"success": False, "message": "Aucun donjon en cours."})
+        return jsonify({"success": False, "message": tr('api_no_dungeon', lang)})
 
     data = request.get_json()
     col = data.get("col")
@@ -626,7 +704,7 @@ def api_donjon_select_node():
 
     choix = get_choix_disponibles(nodes, position, dj["etage"])
     if (col, etage) not in choix:
-        return jsonify({"success": False, "message": "Ce node n'est pas accessible."})
+        return jsonify({"success": False, "message": tr('api_node_inaccessible', lang)})
 
     node = nodes[(col, etage)]
     node.visite = True
@@ -643,13 +721,13 @@ def api_donjon_select_node():
         donjon_enemy = generer_ennemi_donjon(dj["chapitre"])
         dj["combat_en_cours"] = True
         resultat["ennemi"] = donjon_enemy.to_dict()
-        resultat["message"] = f"Combat contre {donjon_enemy.nom} (Niv.{donjon_enemy.niveau}) !"
+        resultat["message"] = tr('dj_combat_start', lang, nom=donjon_enemy.nom, niv=donjon_enemy.niveau)
 
     elif node.type == "boss":
         donjon_enemy = generer_boss_donjon(dj["chapitre"])
         dj["combat_en_cours"] = True
         resultat["ennemi"] = donjon_enemy.to_dict()
-        resultat["message"] = f"BOSS : {donjon_enemy.nom} ! Préparez-vous !"
+        resultat["message"] = tr('dj_boss_intro', lang, nom=donjon_enemy.nom)
 
     elif node.type == "camp":
         from game.relics import appliquer_reliques_player_stats
@@ -659,10 +737,10 @@ def api_donjon_select_node():
         p.stats = saved_stats
         dj["hp"] = hp_max_reliques
         dj["hp_max"] = hp_max_reliques
-        resultat["message"] = "Vous vous reposez au camp. PV entièrement restaurés !"
+        resultat["message"] = tr('dj_camp_rest', lang)
 
     elif node.type == "evenement":
-        evt = generer_evenement(dj["chapitre"])
+        evt = generer_evenement(dj["chapitre"], lang)
         resultat["evenement"] = evt
 
         if evt["type"] == "objet":
@@ -709,7 +787,7 @@ def api_donjon_select_node():
             {"key": k, **DONJON_RELICS[k]} for k in choices
         ]
         dj["action_en_attente"] = {"type": "choix_relique", "choix": choices}
-        resultat["message"] = "Choisissez une relique !"
+        resultat["message"] = tr('dj_choose_relic', lang)
 
     choix_next = get_choix_disponibles(nodes, (col, etage), dj["etage"])
     choix_next_serialized = [
@@ -729,10 +807,11 @@ def api_donjon_select_node():
 def api_donjon_combat_tick():
     global donjon_enemy
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     if p.donjon_actif is None or not p.donjon_actif.get("combat_en_cours"):
-        return jsonify({"success": False, "message": "Pas de combat en cours."})
+        return jsonify({"success": False, "message": tr('api_no_combat', lang)})
     if donjon_enemy is None:
-        return jsonify({"success": False, "message": "Pas d'ennemi."})
+        return jsonify({"success": False, "message": tr('api_no_enemy', lang)})
 
     dj = p.donjon_actif
     saved_hp = p.hp
@@ -774,7 +853,7 @@ def api_donjon_combat_tick():
         if heal > 0:
             stats_eff = p.get_stats_effectives()
             p.hp = min(p.hp + heal, stats_eff["hp_max"])
-            resultat["log"].append(f"🩸 Vol de Vie (relique) : +{heal} HP")
+            resultat["log"].append(tr('dj_lifesteal_log', lang, heal=heal))
 
     p.stats = saved_stats
     dj["hp"] = p.hp
@@ -813,7 +892,7 @@ def api_donjon_combat_tick():
         donjon_enemy = None
         _terminer_donjon(p, victoire=False)
         resultat["donjon_termine"] = True
-        resultat["message_defaite"] = "Vous êtes mort dans le donjon. Tout est perdu."
+        resultat["message_defaite"] = tr('dj_died', lang)
 
     resultat["donjon"] = _build_donjon_state(p)
     return jsonify(resultat)
@@ -823,10 +902,11 @@ def api_donjon_combat_tick():
 def api_donjon_enemy_tick():
     global donjon_enemy
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     if p.donjon_actif is None or not p.donjon_actif.get("combat_en_cours"):
-        return jsonify({"success": False, "message": "Pas de combat en cours."})
+        return jsonify({"success": False, "message": tr('api_no_combat', lang)})
     if donjon_enemy is None:
-        return jsonify({"success": False, "message": "Pas d'ennemi."})
+        return jsonify({"success": False, "message": tr('api_no_enemy', lang)})
 
     dj = p.donjon_actif
     saved_hp = p.hp
@@ -860,7 +940,7 @@ def api_donjon_enemy_tick():
         reflet = int(degats_recus * mods["epines_pct"] / 100)
         if reflet > 0:
             donjon_enemy.hp -= reflet
-            resultat["log"].append(f"🌿 Épines (relique) : {reflet} dégâts renvoyés")
+            resultat["log"].append(tr('dj_thorns_log', lang, dmg=reflet))
 
     if mods["vol_de_vie_bonus"] > 0:
         degats_ennemi = max(0, enemy_hp_before - donjon_enemy.hp)
@@ -869,7 +949,7 @@ def api_donjon_enemy_tick():
             if heal > 0:
                 stats_eff = p.get_stats_effectives()
                 p.hp = min(p.hp + heal, stats_eff["hp_max"])
-                resultat["log"].append(f"🩸 Vol de Vie (relique) : +{heal} HP")
+                resultat["log"].append(tr('dj_lifesteal_log', lang, heal=heal))
 
     p.stats = saved_stats
     dj["hp"] = p.hp
@@ -907,7 +987,7 @@ def api_donjon_enemy_tick():
         donjon_enemy = None
         _terminer_donjon(p, victoire=False)
         resultat["donjon_termine"] = True
-        resultat["message_defaite"] = "Vous êtes mort dans le donjon. Tout est perdu."
+        resultat["message_defaite"] = tr('dj_died', lang)
 
     resultat["donjon"] = _build_donjon_state(p)
     return jsonify(resultat)
@@ -916,8 +996,9 @@ def api_donjon_enemy_tick():
 @app.route("/api/donjon/action", methods=["POST"])
 def api_donjon_action():
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     if p.donjon_actif is None:
-        return jsonify({"success": False, "message": "Aucun donjon en cours."})
+        return jsonify({"success": False, "message": tr('api_no_dungeon', lang)})
 
     data = request.get_json()
     action = data.get("action")
@@ -928,13 +1009,13 @@ def api_donjon_action():
 
     if action == "choisir_relique":
         if not dj.get("action_en_attente"):
-            return jsonify({"success": False, "message": "Aucune action en attente."})
+            return jsonify({"success": False, "message": tr('api_no_pending_action', lang)})
 
         rel_key = data.get("relique")
         attente = dj["action_en_attente"]
 
         if attente["type"] == "choix_relique" and rel_key not in attente.get("choix", []):
-            return jsonify({"success": False, "message": "Relique non valide."})
+            return jsonify({"success": False, "message": tr('api_invalid_relic', lang)})
 
         if rel_key in DONJON_RELICS:
             dj["reliques"].append(rel_key)
@@ -942,14 +1023,14 @@ def api_donjon_action():
             dj["action_en_attente"] = None
             return jsonify({
                 "success": True,
-                "message": f"Relique acquise : {rel['nom']} — {rel['description']}",
+                "message": tr('api_relic_acquired', lang, nom=rel['nom'], desc=rel['description']),
                 "donjon": _build_donjon_state(p),
             })
-        return jsonify({"success": False, "message": "Relique inconnue."})
+        return jsonify({"success": False, "message": tr('api_unknown_relic', lang)})
 
     elif action == "boss_vaincu":
         if dj["etage"] != 19:
-            return jsonify({"success": False, "message": "Le boss n'a pas été vaincu."})
+            return jsonify({"success": False, "message": tr('api_boss_not_defeated', lang)})
 
         chapitre = dj["chapitre"]
         deja_fait = chapitre in p.chapitres_completees
@@ -970,7 +1051,7 @@ def api_donjon_action():
             return jsonify({
                 "success": True,
                 "reincarnation": False,
-                "message": f"Chapitre {chapitre} déjà complété. +{jetons} jetons, +{len(items_gagnes)} objets.",
+                "message": tr('dj_chapter_already_done', lang, chap=chapitre, jetons=jetons, items=len(items_gagnes)),
                 "jetons": jetons,
                 "items": items_gagnes,
                 "boss_battus_total": p.boss_donjon_battus,
@@ -993,26 +1074,27 @@ def api_donjon_action():
         return jsonify({
             "success": True,
             "reincarnation": True,
-            "message": f"RÉINCARNATION ! Niv.1 — {pts_par_niveau} pts/niveau désormais. +{jetons} jetons, {len(items_gagnes)} objets !",
+            "message": tr('dj_reincarnation_msg', lang, pts=pts_par_niveau, jetons=jetons, items=len(items_gagnes)),
             "jetons": jetons,
             "items": items_gagnes,
             "boss_battus_total": p.boss_donjon_battus,
             "pts_par_niveau": pts_par_niveau,
         })
 
-    return jsonify({"success": False, "message": "Action inconnue."})
+    return jsonify({"success": False, "message": tr('dj_unknown_action', lang)})
 
 
 @app.route("/api/donjon/exit", methods=["POST"])
 def api_donjon_exit():
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     if p.donjon_actif is None:
-        return jsonify({"success": False, "message": "Aucun donjon en cours."})
+        return jsonify({"success": False, "message": tr('api_no_dungeon', lang)})
 
     _terminer_donjon(p, victoire=False)
     return jsonify({
         "success": True,
-        "message": "Vous avez quitté le donjon. Les récompenses non obtenues sont perdues.",
+        "message": tr('dj_exit_message', lang),
     })
 
 
@@ -1145,13 +1227,14 @@ def api_slot_machine_claim():
 @app.route("/api/chaudron/fondre", methods=["POST"])
 def api_chaudron_fondre():
     p, _ = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
     data = request.get_json()
     items_input = data.get("items", [])
 
     from config import CHAUDRON_ITEMS_REQUIS, CHAUDRON_COUT_OR, CHAUDRON_COUT_PAR_RARETE
 
     if len(items_input) != CHAUDRON_ITEMS_REQUIS:
-        return jsonify({"success": False, "message": f"Il faut exactement {CHAUDRON_ITEMS_REQUIS} objets."})
+        return jsonify({"success": False, "message": tr('api_cauldron_need_3', lang)})
 
     items_to_remove = []
     total_cout = CHAUDRON_COUT_OR
@@ -1161,20 +1244,22 @@ def api_chaudron_fondre():
         c = entry.get("coffre_idx", 0)
         i = entry.get("item_idx", 0)
         if c >= len(p.inventaire):
-            return jsonify({"success": False, "message": "Coffre invalide."})
+            return jsonify({"success": False, "message": tr('api_chest_invalid', lang)})
         if i >= len(p.inventaire[c]):
-            return jsonify({"success": False, "message": "Objet invalide."})
+            return jsonify({"success": False, "message": tr('api_item_invalid', lang)})
         item = p.inventaire[c][i]
         if item.locked:
-            return jsonify({"success": False, "message": f"{item.nom} est verrouille."})
+            return jsonify({"success": False, "message": tr('api_cauldron_locked', lang, nom=item.nom)})
         if item.slot in ("orbe", "artefact"):
-            return jsonify({"success": False, "message": "Les orbes et artefacts ne peuvent pas etre fondus."})
+            return jsonify({"success": False, "message": tr('api_cauldron_no_orbs', lang)})
+        if getattr(item, 'vivant', False):
+            return jsonify({"success": False, "message": tr('api_cauldron_no_vivant', lang, nom=item.nom)})
         total_cout += CHAUDRON_COUT_PAR_RARETE.get(item.rarete, 0)
         input_raretes.append(item.rarete)
         items_to_remove.append((c, i))
 
     if p.or_ < total_cout:
-        return jsonify({"success": False, "message": f"Pas assez d'or ! Il faut {total_cout} or."})
+        return jsonify({"success": False, "message": tr('api_not_enough_gold', lang, cout=total_cout)})
 
     p.or_ -= total_cout
 
@@ -1212,7 +1297,7 @@ def api_chaudron_fondre():
 
     return jsonify({
         "success": True,
-        "message": f"Le chaudron bouillonne... {new_item.nom} ({new_item.rarete}) en sort !",
+        "message": tr('api_cauldron_result', lang, nom=new_item.nom, rar=new_item.rarete),
         "cout": total_cout,
         "item": new_item.to_dict(),
     })
@@ -1281,6 +1366,47 @@ def api_auto_supprimer():
     return jsonify({
         "success": True,
         "auto_supprimer": p.auto_supprimer,
+    })
+
+
+@app.route("/api/set_language", methods=["POST"])
+def api_set_language():
+    p, _ = get_or_init_game()
+    data = request.get_json() or {}
+    lang = data.get("lang", "fr")
+    if lang not in ("fr", "en"):
+        lang = "fr"
+    p.lang = lang
+    return jsonify({"success": True, "lang": lang})
+
+
+@app.route("/api/translations")
+def api_translations():
+    from game.translations import TRANSLATIONS
+    p, _ = get_or_init_game()
+    lang = p.lang
+    result = {}
+    for key, val in TRANSLATIONS.items():
+        result[key] = val.get(lang, val.get("fr", key))
+    return jsonify(result)
+
+
+@app.route("/api/toggle_force_boss", methods=["POST"])
+def api_toggle_force_boss():
+    global enemy
+    p, e = get_or_init_game()
+    lang = getattr(p, 'lang', 'fr')
+    reincarnations = len(p.chapitres_completees)
+    if reincarnations < 5:
+        return jsonify({"success": False, "message": tr('api_force_boss_need_reinc', lang, n=reincarnations), "force_boss": p.force_boss})
+    p.force_boss = not p.force_boss
+    if p.force_boss:
+        enemy = _spawn_enemy(e.niveau, p)
+        p.hp = p.get_stats_effectives()["hp_max"]
+    return jsonify({
+        "success": True,
+        "force_boss": p.force_boss,
+        "message": tr('api_force_boss_active', lang) if p.force_boss else tr('api_force_boss_off', lang),
     })
 
 

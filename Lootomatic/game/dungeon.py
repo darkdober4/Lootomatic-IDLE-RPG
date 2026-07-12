@@ -8,6 +8,7 @@ from config import (
 )
 from game.models import Enemy, Item
 from game.relics import tirage_reliques
+from game.translations import tr
 
 
 class DungeonNode:
@@ -147,7 +148,7 @@ def generer_boss_donjon(chapitre):
     return boss
 
 
-def generer_evenement(chapitre):
+def generer_evenement(chapitre, lang='fr'):
     types = [e["type"] for e in DONJON_EVENEMENTS]
     poids = [e["poids"] for e in DONJON_EVENEMENTS]
     type_evt = random.choices(types, weights=poids, k=1)[0]
@@ -159,32 +160,32 @@ def generer_evenement(chapitre):
         niveau = DONJON_NIVEAU_PAR_CHAPITRE.get(chapitre, 10 * chapitre)
         item = Item(niveau=niveau)
         resultat["item"] = item.to_dict()
-        resultat["message"] = f"Vous obtenez : {item.nom} ({item.rarete})"
+        resultat["message"] = tr('evt_item_found', lang, nom=item.nom, rar=item.rarete)
 
     elif type_evt == "relique":
         choices = tirage_reliques(nb=1)
         if choices:
             rel = DONJON_RELICS[choices[0]]
             resultat["relique"] = choices[0]
-            resultat["message"] = f"Relique obtenue : {rel['nom']} — {rel['description']}"
+            resultat["message"] = tr('evt_relic_found', lang, nom=rel['nom'], desc=rel['description'])
 
     elif type_evt == "guérison":
         heal_pct = random.randint(20, 50)
         resultat["heal_pct"] = heal_pct
-        resultat["message"] = f"Vous récupérez {heal_pct}% de vos PV max."
+        resultat["message"] = tr('evt_heal', lang, pct=heal_pct)
 
     elif type_evt == "teleport":
-        resultat["message"] = "Un portail vous téléporte à un autre étage !"
+        resultat["message"] = tr('evt_teleport', lang)
 
     elif type_evt == "or":
         or_gagne = random.randint(20, 80) * chapitre
         resultat["or"] = or_gagne
-        resultat["message"] = f"Vous obtenez {or_gagne} or !"
+        resultat["message"] = tr('evt_gold', lang, amount=or_gagne)
 
     elif type_evt == "malédiction":
         perte_pct = random.randint(5, 15)
         resultat["perte_pct"] = perte_pct
-        resultat["message"] = f"Malédiction ! Vous perdez {perte_pct}% de vos PV max."
+        resultat["message"] = tr('evt_curse', lang, pct=perte_pct)
 
     return resultat
 

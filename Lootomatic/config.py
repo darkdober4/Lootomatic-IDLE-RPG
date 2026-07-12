@@ -96,7 +96,7 @@ NOMS_BOSS = [
 
 RARITES = ["Commun", "Rare", "Épique", "Légendaire", "Mythique"]
 
-RARITE_POIDS = [86.5, 10, 2, 1, 0.5]
+RARITE_POIDS = [90, 7, 2, 0.8, 0.2]
 
 RARITE_MULT = {
     "Commun": 1.0,
@@ -165,32 +165,37 @@ ORBE_TYPES = {
     "amelioration": {
         "nom": "Orbe d'Amélioration",
         "description": "Un mod au hasard gagne +1. Petit risque de corruption.",
-        "drop_chance": 15,
+        "drop_chance": 8,
     },
     "alteration": {
         "nom": "Orbe d'Altération",
         "description": "Ajoute un nouveau mod et peut monter la rarete. Gros risque de corruption.",
-        "drop_chance": 5,
+        "drop_chance": 3,
         "corruption_chance": 40,
         "rarete_up_chance": 25,
     },
     "echange": {
         "nom": "Orbe d'Échange",
         "description": "Deux mods echanges leurs valeurs. Utile pour deplacer un gros chiffre sur la bonne stat.",
-        "drop_chance": 10,
+        "drop_chance": 5,
         "corruption_chance": 15,
     },
     "fragilite": {
         "nom": "Orbe de Fragilité",
         "description": "Un mod devient 50% plus fort, mais un autre disparait. Quitte ou double !",
-        "drop_chance": 6,
+        "drop_chance": 3,
         "corruption_chance": 20,
     },
     "polymorphie": {
         "nom": "Orbe de Polymorphie",
         "description": "Transforme l'objet en un autre type (ex: bottes en casque). Les mods restent.",
-        "drop_chance": 8,
+        "drop_chance": 4,
         "corruption_chance": 30,
+    },
+    "purification": {
+        "nom": "Orbe de Purification",
+        "description": "Retire la corruption d'un objet. Tres rare.",
+        "drop_chance": 0.3,
     },
 }
 
@@ -409,7 +414,9 @@ PRO_TIPS = [
     "Les camps dans le donjon restaurent 100% des PV. Ils n'apparaissent pas dans les 3 premiers etages.",
     "La malediction dans le donjon reduit vos PV max de 5 a 15% de facon permanente pour toute la run.",
     "Le Critique et la Contre-attaque depassent 100% ? Chaque point en trop se transforme en +1 ATQ. Rien ne se perd !",
-    "La Chance de Loot est plafonnee a 1000%. Au-dela, chaque point en trop = +1 ATQ. 1000% = 10 objets par kill !",
+    "La Chance de Loot est plafonnee a 2000%. Au-dela, chaque point en trop = +1 ATQ. 2000% = 20 objets par kill !",
+    "L'equipement evolue en tuant des ennemis ! 100/250/500 kills = 3 evolutions avec un mod bonus a chaque palier. Mais desequiper = perte des charges en cours !",
+    "Plus un objet est rare, plus il faut de kills pour le faire evoluer. Un Mythique demande 5x plus de charges qu'un Commun.",
 ]
 
 SLOT_MACHINE_SLOTS_CHOIX = [
@@ -443,3 +450,24 @@ ENCHANT_CHANCE_REUSSITE = {
     5: 40, 6: 30, 7: 20, 8: 15, 9: 10,
 }
 ENCHANT_BONUS_PCT = 10
+
+# ─── EQUIPEMENT VIVANT ───────────────────────────────────────────────────────
+
+EVOLUTION_PALIERS = {
+    1: 100,
+    2: 250,
+    3: 500,
+}
+
+EVOLUTION_PALIERS_RARETE = {
+    "Commun": 1.0,
+    "Rare": 1.5,
+    "Épique": 2.0,
+    "Légendaire": 3.0,
+    "Mythique": 5.0,
+}
+EVOLUTION_SUFFIXES = {
+    1: "Eveille",
+    2: "Renforce",
+    3: "Transcende",
+}

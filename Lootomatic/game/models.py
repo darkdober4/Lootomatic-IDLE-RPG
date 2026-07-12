@@ -30,6 +30,9 @@ class Item:
         self.quantite = 1
         self.locked = False
         self.enchant_level = 0
+        self.charges = 0
+        self.evolution_tier = 0
+        self.vivant = False
 
     @staticmethod
     def _roll_rarete():
@@ -75,6 +78,9 @@ class Item:
             "quantite": self.quantite,
             "locked": self.locked,
             "enchant_level": self.enchant_level,
+            "charges": self.charges,
+            "evolution_tier": self.evolution_tier,
+            "vivant": self.vivant,
         }
 
     @classmethod
@@ -91,6 +97,9 @@ class Item:
         item.quantite = data.get("quantite", 1)
         item.locked = data.get("locked", False)
         item.enchant_level = data.get("enchant_level", 0)
+        item.charges = data.get("charges", 0)
+        item.evolution_tier = data.get("evolution_tier", 0)
+        item.vivant = data.get("vivant", False)
         if item.slot == "artefact" and item.spell_type and item.spell_type not in SORTS:
             remap = {
                 "boule_feu": "surge_flammes",
@@ -127,6 +136,8 @@ class Player:
         self.chapitres_completees = []
         self.donjon_actif = None
         self.auto_supprimer = []
+        self.force_boss = False
+        self.lang = "fr"
         self.session_stats = {
             "debut_session": None,
             "kills": 0,
@@ -195,9 +206,9 @@ class Player:
         if stats.get("contre", 0) > 100:
             stats["atk"] += stats["contre"] - 100
             stats["contre"] = 100
-        if stats.get("chance_loot", 0) > 1000:
-            stats["atk"] += stats["chance_loot"] - 1000
-            stats["chance_loot"] = 1000
+        if stats.get("chance_loot", 0) > 2000:
+            stats["atk"] += stats["chance_loot"] - 2000
+            stats["chance_loot"] = 2000
         return stats
 
     def ajouter_item(self, item):
@@ -231,6 +242,8 @@ class Player:
             return False
         if not self.ajouter_item(item):
             return False
+        if getattr(item, 'vivant', False):
+            item.charges = 0
         self.equipement[slot] = None
         return True
 
@@ -258,6 +271,8 @@ class Player:
             "chapitres_completees": self.chapitres_completees,
             "donjon_actif": self.donjon_actif,
             "auto_supprimer": self.auto_supprimer,
+            "force_boss": self.force_boss,
+            "lang": self.lang,
         }
 
     @classmethod
@@ -285,6 +300,8 @@ class Player:
         p.chapitres_completees = data.get("chapitres_completees", [])
         p.donjon_actif = data.get("donjon_actif", None)
         p.auto_supprimer = data.get("auto_supprimer", [])
+        p.force_boss = data.get("force_boss", False)
+        p.lang = data.get("lang", "fr")
         return p
 
 

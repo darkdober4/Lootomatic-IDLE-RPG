@@ -1,4 +1,5 @@
 from config import SORTS, RARITE_SORT_NIVEAU
+from game.translations import tr
 
 
 class SpellState:
@@ -92,6 +93,7 @@ def process_spells_before_player_attack(player, enemy, log):
     spell_state.tick_count += 1
     stats = player.get_stats_effectives()
     hp_max = stats["hp_max"]
+    lang = getattr(player, 'lang', 'fr')
 
     for sort in spells:
         key = sort["key"]
@@ -109,14 +111,14 @@ def process_spells_before_player_attack(player, enemy, log):
                     "ticks_remaining": data.get("duration", 5),
                     "damage": value,
                 }
-                log.append(f"Poison applique sur {enemy.nom} ({value} degats/tick)")
+                log.append(tr("splog_poison_applied", lang, n=enemy.nom, d=value))
 
     if "poison" in spell_state.active_effects:
         poison = spell_state.active_effects["poison"]
         if poison["ticks_remaining"] > 0 and enemy.hp > 0:
             enemy.hp -= poison["damage"]
             poison["ticks_remaining"] -= 1
-            log.append(f"Poison : {poison['damage']} degats sur {enemy.nom}")
+            log.append(tr("splog_poison_tick", lang, d=poison['damage'], n=enemy.nom))
             if poison["ticks_remaining"] <= 0:
                 del spell_state.active_effects["poison"]
 
@@ -125,7 +127,7 @@ def process_spells_before_player_attack(player, enemy, log):
         if bleed["ticks_remaining"] > 0 and enemy.hp > 0:
             enemy.hp -= bleed["damage"]
             bleed["ticks_remaining"] -= 1
-            log.append(f"Hemorragie : {bleed['damage']} degats sur {enemy.nom}")
+            log.append(tr("splog_hemo_tick", lang, d=bleed['damage'], n=enemy.nom))
             if bleed["ticks_remaining"] <= 0:
                 del spell_state.active_effects["hemorragie_bleed"]
 
@@ -166,62 +168,63 @@ def _trigger_spell_effect(key, sort, player, enemy, log):
     level_mult = 1 + (niveau - 1) * 0.5
     stats = player.get_stats_effectives()
     hp_max = stats["hp_max"]
+    lang = getattr(player, 'lang', 'fr')
 
     if key == "surge_flammes":
         enemy.hp -= value
-        log.append(f"Surge de Flammes ! {value} degats purs sur {enemy.nom}")
+        log.append(tr("splog_surge", lang, d=value, n=enemy.nom))
 
     elif key == "hemorragie":
         spell_state.active_effects["hemorragie_bleed"] = {
             "ticks_remaining": data.get("duration", 3),
             "damage": value,
         }
-        log.append(f"Hemorragie declenchee ! {value} degats/tick pendant {data.get('duration', 3)} ticks")
+        log.append(tr("splog_hemo_trigger", lang, d=value, t=data.get('duration', 3)))
 
     elif key == "gel_accumule":
         spell_state.enemy_frozen = niveau
-        log.append(f"Gel Accumule ! {enemy.nom} gele pour {niveau} attaque(s)")
+        log.append(tr("splog_gel", lang, n=enemy.nom, t=niveau))
 
     elif key == "vengeance":
         total = int(spell_state.accumulated_damage * level_mult)
         if total > 0:
             enemy.hp -= total
-            log.append(f"Vengeance ! {total} degats accumules relaches sur {enemy.nom} (x{level_mult})")
+            log.append(tr("splog_vengeance", lang, d=total, n=enemy.nom, m=level_mult))
             spell_state.accumulated_damage = 0
 
     elif key == "chaine_eclairs":
         degats = value
         enemy.hp -= degats
-        log.append(f"Chaine d'Eclairs ! {degats} degats sur {enemy.nom}")
+        log.append(tr("splog_eclair", lang, d=degats, n=enemy.nom))
 
     elif key == "vol_ame":
         heal = int(hp_max * value / 100)
         if heal > 0:
             spell_state.lifesteal_bonus += value
             player.hp = min(player.hp + heal, hp_max)
-            log.append(f"Vol d'Ame ! +{heal} HP et +{value}% vol de vie permanent")
+            log.append(tr("splog_vol_ame", lang, h=heal, v=value))
 
     elif key == "lame_spectrale":
         mult = 1.5 + niveau * 0.5
         spell_state.next_attack_mult = mult
-        log.append(f"Lame Spectrale ! Prochain coup x{mult} degats")
+        log.append(tr("splog_lame", lang, m=mult))
 
     elif key == "marque_maudite":
         hits = 4 + niveau
         bonus_pct = 40 + niveau * 10
         spell_state.malediction_hits = hits
         spell_state.malediction_bonus = bonus_pct
-        log.append(f"Marque Maudite ! +{bonus_pct}% degats pendant {hits} coups")
+        log.append(tr("splog_marque", lang, b=bonus_pct, h=hits))
 
     elif key == "peau_fer":
         spell_state.shield_active = True
         spell_state.shield_value = value
-        log.append(f"Peau de Fer ! Bouclier de {value} points actif")
+        log.append(tr("splog_peau_fer", lang, v=value))
 
     elif key == "distorsion":
         ticks = 2 + niveau
         spell_state.hate_ticks_remaining = ticks
-        log.append(f"Distorsion ! Vitesse x2 pendant {ticks} ticks")
+        log.append(tr("splog_distorsion", lang, t=ticks))
 
     elif key == "execution":
         enemy_hp_pct = (enemy.hp / enemy.stats["hp_max"] * 100) if enemy.stats["hp_max"] > 0 else 0
@@ -230,9 +233,9 @@ def _trigger_spell_effect(key, sort, player, enemy, log):
             exec_mult = 3 + niveau
             degats = int(player.get_stats_effectives()["atk"] * exec_mult)
             enemy.hp -= degats
-            log.append(f"EXECUTION ! {degats} degats massifs sur {enemy.nom} (x{exec_mult})")
+            log.append(tr("splog_exec_success", lang, d=degats, n=enemy.nom, p=f"{enemy_hp_pct:.0f}"))
         else:
-            log.append(f"Execution echouee ({enemy_hp_pct:.0f}% HP, besoin < {threshold_pct}%)")
+            log.append(tr("splog_exec_fail", lang, p=f"{enemy_hp_pct:.0f}", t=threshold_pct))
 
 
 def get_player_attack_multiplier():
@@ -265,7 +268,8 @@ def process_spells_on_player_hit(player, enemy, degats_recus, log):
         absorbed = min(degats_recus, spell_state.shield_value)
         spell_state.shield_active = False
         spell_state.shield_value = 0
-        log.append(f"Peau de Fer absorbe {absorbed} degats")
+        lang = getattr(player, 'lang', 'fr')
+        log.append(tr("splog_peau_absorb", lang, d=absorbed))
         return absorbed
 
     spell_state.accumulated_damage += degats_recus
@@ -288,7 +292,8 @@ def process_lifesteal(player, degats_infliges, log):
         if heal > 0:
             hp_max = player.get_stats_effectives()["hp_max"]
             player.hp = min(player.hp + heal, hp_max)
-            log.append(f"Vol d'Ame : +{heal} HP")
+            lang = getattr(player, 'lang', 'fr')
+            log.append(tr("splog_vol_ame_heal", lang, h=heal))
 
 
 def process_execution(player, enemy, log):

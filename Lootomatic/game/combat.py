@@ -1,5 +1,6 @@
 import random
 from game.models import Player, Enemy, Item
+from game.translations import tr
 from game.spells import (
     spell_state, process_spells_before_player_attack,
     get_player_attack_multiplier, get_hate_speed_bonus,
@@ -30,16 +31,17 @@ def tick_player_attack(player: Player, enemy: Enemy):
         process_execution(player, enemy, log)
 
     if enemy.hp > 0 and player.hp > 0:
+        lang = getattr(player, 'lang', 'fr')
         if random.random() * 100 < stats_e["esquive"]:
-            log.append(f"⚡ {enemy.nom} esquive votre attaque !")
+            log.append(tr("log_esquive_ennemi", lang, n=enemy.nom))
         else:
             mult = get_player_attack_multiplier()
             degats = int(calculer_degats(atq_j, stats_e["def"]) * mult)
             if random.random() * 100 < stats_j["crit_chance"]:
                 degats = int(degats * stats_j["crit_mult"] / 100)
-                log.append(f"CRITIQUE ! Vous infligez {degats} degats a {enemy.nom}")
+                log.append(tr("log_crit_joueur", lang, d=degats, n=enemy.nom))
             else:
-                log.append(f"Vous infligez {degats} degats a {enemy.nom}")
+                log.append(tr("log_degats_ennemi", lang, d=degats, n=enemy.nom))
             enemy.hp -= degats
             for sort in get_active_spells(player):
                 accumulate_stacks_on_hit(sort["key"], sort, player, enemy, log)
@@ -52,7 +54,7 @@ def tick_player_attack(player: Player, enemy: Enemy):
             if random.random() * 100 < stats_e["contre"]:
                 contre_degats = calculer_degats(stats_e["atk"], def_j)
                 player.hp -= contre_degats
-                log.append(f"🔄 {enemy.nom} contre-attaque ! {contre_degats} dégâts")
+                log.append(tr("log_contre_ennemi", lang, n=enemy.nom, d=contre_degats))
 
     return _build_result(log, player, enemy)
 
@@ -67,24 +69,25 @@ def tick_enemy_attack(player: Player, enemy: Enemy):
     def_j = int(stats_j["def"] * mods["def_mult"])
 
     if enemy.hp > 0 and player.hp > 0:
+        lang = getattr(player, 'lang', 'fr')
         if is_enemy_frozen():
-            log.append(f"{enemy.nom} est gele ! Attaque annulee")
+            log.append(tr("log_gele", lang, n=enemy.nom))
         elif random.random() * 100 < stats_j["esquive"]:
-            log.append(f"Vous esquivez l'attaque de {enemy.nom} !")
+            log.append(tr("log_esquive_joueur", lang, n=enemy.nom))
         else:
             degats = calculer_degats(stats_e["atk"], def_j)
             if random.random() * 100 < stats_e["crit_chance"]:
                 degats = int(degats * stats_e["crit_mult"] / 100)
-                log.append(f"{enemy.nom} CRITIQUE ! {degats} degats sur vous")
+                log.append(tr("log_crit_ennemi", lang, n=enemy.nom, d=degats))
             else:
-                log.append(f"{enemy.nom} vous inflige {degats} degats")
+                log.append(tr("log_degats_joueur", lang, n=enemy.nom, d=degats))
             absorbed = process_spells_on_player_hit(player, enemy, degats, log)
             degats_reels = degats - absorbed
             player.hp -= degats_reels
             if random.random() * 100 < stats_j["contre"]:
                 contre_degats = calculer_degats(atq_j, stats_e["def"])
                 enemy.hp -= contre_degats
-                log.append(f"Vous contre-attaquez ! {contre_degats} degats")
+                log.append(tr("log_contre_joueur", lang, d=contre_degats))
 
     return _build_result(log, player, enemy)
 
@@ -93,12 +96,14 @@ def _build_result(log, player, enemy):
     resultat = None
     recompenses = {}
 
+    lang = getattr(player, 'lang', 'fr')
+
     if enemy.hp <= 0 and player.hp <= 0:
         resultat = "defaite"
         perte_xp = player.mourir()
         player.session_stats["mort"] += 1
         player.session_stats["kills_sans_mourir"] = 0
-        log.append(f"Vous et {enemy.nom} etes tombes en meme temps ! -{perte_xp} XP")
+        log.append(tr("log_double_defaite", lang, n=enemy.nom, xp=perte_xp))
         recompenses = {"perte_xp": perte_xp}
 
     elif enemy.hp <= 0:
@@ -140,7 +145,7 @@ def _build_result(log, player, enemy):
                     loot.nom = loot._generer_nom()
             player.ajouter_item(loot)
             loots_tombes.append(loot.to_dict())
-            log.append(f"🎁 Loot : {loot.nom} ({loot.rarete})")
+            log.append(tr("log_loot", lang, nom=loot.nom, rar=loot.rarete))
             ss["loots_par_rarete"][loot.rarete] = ss["loots_par_rarete"].get(loot.rarete, 0) + 1
             from config import RARITES as _R
             if ss["meilleur_loot"] is None or _R.index(loot.rarete) > _R.index(ss["meilleur_loot"]["rarete"]):
@@ -177,9 +182,12 @@ def _build_result(log, player, enemy):
                     orbe_item.quantite = 1
                     orbe_item.locked = False
                     orbe_item.enchant_level = 0
+                    orbe_item.charges = 0
+                    orbe_item.evolution_tier = 0
+                    orbe_item.vivant = False
                     player.ajouter_item(orbe_item)
                 orbes_tombes.append({"type": orbe_key, "nom": orbe_data["nom"]})
-                log.append(f"🔮 {orbe_data['nom']} obtenu(e) !")
+                log.append(tr("log_orbe", lang, nom=orbe_data['nom']))
                 ss["orbes_obtenues"] += 1
         if orbes_tombes:
             recompenses["orbes"] = orbes_tombes
@@ -206,6 +214,9 @@ def _build_result(log, player, enemy):
             art.quantite = 1
             art.locked = False
             art.enchant_level = 0
+            art.charges = 0
+            art.evolution_tier = 0
+            art.vivant = False
             if enemy.boss:
                 idx = RARITES.index(art.rarete)
                 if idx < len(RARITES) - 1:
@@ -213,7 +224,24 @@ def _build_result(log, player, enemy):
                     art.nom = f"Artéfact de {SORTS[art.spell_type]['nom']}"
             niv_sort = RARITE_SORT_NIVEAU.get(art.rarete, 1)
             player.ajouter_item(art)
-            log.append(f"✨ ARTÉFACT : {art.nom} ({art.rarete}, Sort niv.{niv_sort})")
+            log.append(tr("log_artefact", lang, nom=art.nom, rar=art.rarete, niv=niv_sort))
+
+        vivant_chance = 0.1
+        if enemy.boss:
+            vivant_chance = 0.5
+        if random.random() * 100 < vivant_chance:
+            from config import RARITES
+            viv = Item(niveau=enemy.niveau)
+            min_rarete_idx = 2
+            current_idx = RARITES.index(viv.rarete)
+            if current_idx < min_rarete_idx:
+                viv.rarete = RARITES[min_rarete_idx]
+                viv.mods = viv._generer_mods()
+                viv.nom = viv._generer_nom()
+            viv.vivant = True
+            viv.nom = f"{viv.nom} Vivant"
+            player.ajouter_item(viv)
+            log.append(tr("log_vivant", lang, nom=viv.nom, rar=viv.rarete))
 
         if player.auto_supprimer:
             supprimes = 0
@@ -223,21 +251,22 @@ def _build_result(log, player, enemy):
                     it for it in coffre
                     if it.rarete not in player.auto_supprimer
                     or it.slot in ("orbe", "artefact")
+                    or getattr(it, 'vivant', False)
                 ]
                 supprimes += avant - len(coffre)
             if supprimes > 0:
                 from app import _consolider_inventaire
                 _consolider_inventaire(player)
-                log.append(f"Auto-suppression : {supprimes} objet(s) elimine(s)")
+                log.append(tr("log_auto_suppr", lang, n=supprimes))
 
-        log.append(f"{enemy.nom} vaincu ! +{xp_gagne} XP, +{or_gagne} or")
+        log.append(tr("log_victoire", lang, n=enemy.nom, xp=xp_gagne, gold=or_gagne))
 
     elif player.hp <= 0:
         resultat = "defaite"
         perte_xp = player.mourir()
         player.session_stats["mort"] += 1
         player.session_stats["kills_sans_mourir"] = 0
-        log.append(f"Vous etes mort ! -{perte_xp} XP. Resurrection...")
+        log.append(tr("log_defaite", lang, xp=perte_xp))
         recompenses = {"perte_xp": perte_xp}
 
     spell_stacks = None
