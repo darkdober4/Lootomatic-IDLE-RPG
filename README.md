@@ -1,5 +1,3 @@
-Help me buy a new pc https://gofund.me/4f2d4ae1f
-
 # ⚔️ Lootomatic — Idle RPG
 
 **v0.5.0** — Un idle RPG web avec combat automatique, loot procédural, donjons et craft.
