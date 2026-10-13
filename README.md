@@ -25,7 +25,10 @@ Lootomatic est un jeu de type idle RPG jouable dans le navigateur. Le personnage
 - **Sauvegarde / Chargement** — JSON local dans le dossier `saves/`
 - **Statistiques de session** — Kills, dégâts, record sans mort, etc.
 
-## 🚀 Installation
+
+## WEBSITE https://lootomatic-idle-rpg.onrender.com
+
+## 🚀 Installation en local
 
 ```bash
 # Cloner le dépôt
